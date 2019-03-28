@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "xabikos.reactsnippets",
+      "christian-kohler.path-intellisense",
+      "dbaeumer.vscode-eslint",
+      "asvetliakov.snapshot-tools",
+      "mikestead.dotenv",
+      "tombonnike.vscode-status-bar-format-toggle",
+      "wix.glean",
+      "pflannery.vscode-versionlens"
+    ]
+  }
