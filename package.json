@@ -11,7 +11,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -24,6 +26,12 @@
   ],
   "devDependencies": {
     "cypress": "^3.2.0",
-    "react-testing-library": "^6.0.3"
+    "react-testing-library": "^6.0.3",
+    "@storybook/react": "^5.0.5",
+    "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-links": "^5.0.5",
+    "@storybook/addons": "^5.0.5",
+    "@babel/core": "^7.4.0",
+    "babel-loader": "^8.0.5"
   }
 }
