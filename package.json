@@ -17,10 +17,26 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "cypress"
+    ],
+    "env": {
+      "cypress/globals": true
+    }
   },
   "browserslist": [
     ">0.2%",
@@ -29,14 +45,20 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cypress": "^3.2.0",
-    "@storybook/react": "^5.0.5",
+    "@babel/core": "^7.4.0",
     "@storybook/addon-actions": "^5.0.5",
     "@storybook/addon-links": "^5.0.5",
     "@storybook/addons": "^5.0.5",
-    "@babel/core": "^7.4.0",
+    "@storybook/react": "^5.0.5",
     "babel-loader": "^8.0.5",
+    "cypress": "^3.2.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^1.3.1",
     "json-server": "^0.14.2",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
     "react-testing-library": "^6.0.3"
   }
 }
