@@ -17,6 +17,7 @@
     "test-once": "react-scripts test --no-watch",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
+    "full-test": "npm run test-once && npm run cy:run",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
