@@ -4,7 +4,10 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { linkTo } from "@storybook/addon-links";
 
-import { Button, Welcome } from "@storybook/react/demo";
+//import { Button, Welcome } from "@storybook/react/demo";
+import "bootstrap/dist/css/bootstrap.css";
+import { Button } from "reactstrap";
+
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 
 import { withInfo } from "@storybook/addon-info";
@@ -31,6 +34,12 @@ stories.add(
   ),
   { info: "button info" }
 );
+
+stories.add("with a Reactstrap button", () => (
+  <Button color="danger" disabled={boolean("Disabled", false)}>
+    {text("Label", "Reactstrap danger button")}
+  </Button>
+));
 
 // Knobs as dynamic variables.
 stories.add(
