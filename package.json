@@ -13,6 +13,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "prestart:api": "node tools/createMockDb.js",
     "test-once": "react-scripts test --no-watch",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
