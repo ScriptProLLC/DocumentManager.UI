@@ -8,6 +8,9 @@ describe("App", () => {
   // https://on.cypress.io/interacting-with-elements
 
   it("starts correctly", () => {
-    cy.get("p").should("have.text", "Edit src/App.js and save to reload.");
+    cy.get("#mainBody").should(
+      "have.text",
+      "Edit src/App.js and save to reload."
+    );
   });
 });
