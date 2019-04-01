@@ -13,12 +13,19 @@ exports[`renders the App component correctly 1`] = `
         class="App-logo"
         src="logo.svg"
       />
-      <p>
+      <p
+        id="mainBody"
+      >
         Edit 
         <code>
           src/App.js
         </code>
          and save to reload.
+      </p>
+      <p>
+        document-manager-ui
+         
+        0.0.1
       </p>
       <a
         class="App-link"

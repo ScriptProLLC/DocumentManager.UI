@@ -8,8 +8,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
+          <p id="mainBody">
             Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <p>
+            {process.env.REACT_APP_NAME} {process.env.REACT_APP_VERSION}
           </p>
           <a
             className="App-link"

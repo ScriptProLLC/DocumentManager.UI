@@ -8,7 +8,7 @@ it("runs a basic test", () => {
 
 it("renders the app component", () => {
   const { container } = render(<App />);
-  expect(container.querySelector("p").textContent).toBe(
+  expect(container.querySelector("#mainBody").textContent).toBe(
     "Edit src/App.js and save to reload."
   );
 });
