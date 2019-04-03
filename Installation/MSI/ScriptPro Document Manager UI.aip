@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="13.4" version="13.4" Modules="enterprise" RootPath="." Language="en" Id="{B6B26103-DB19-4A49-8E5C-EE54A450A465}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="DigCertStoreComponent;UpdaterComponent;SerValComponent;AutorunComponent;MultipleInstancesComponent;MsiJavaComponent;MsiExtComponent;MsiAssemblyComponent;MsiDriverPackagesComponent;MsiServInstComponent;AnalyticsComponent;ActSyncAppComponent;MsiMergeModsComponent;MsiThemeComponent;BackgroundImagesComponent;DictionaryComponent;MsiEnvComponent;ScheduledTasksComponent;CPLAppletComponent;GameUxComponent;FirewallExceptionComponent;UserAccountsComponent;MsiClassComponent;MsiOdbcDataSrcComponent;SqlConnectionComponent;SharePointSlnComponent;SilverlightSlnComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_IIS_VERSION;AI_DETECTED_IIS_SERVICE"/>
+    <ROW Property="AI_REQUIRED_IIS_DISPLAY" MultiBuildValue="DefaultBuild:7.5" ValueLocId="-"/>
+    <ROW Property="AI_REQUIRED_IIS_VERSION" MultiBuildValue="DefaultBuild:07.5" ValueLocId="-"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer contains the logic and data required to run [|ProductName] v[|ProductVersion]." ValueLocId="*"/>
+    <ROW Property="HTTP.PORT" Value="13006"/>
+    <ROW Property="MATCH.URL" Value="(DocumentManagerUI/.*)"/>
+    <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="Manufacturer" Value="ScriptPro LLC"/>
+    <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
+    <ROW Property="ProductCode" Value="1033:{F9A4112C-0614-4D10-963C-21FCC6B53D4D} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="ScriptPro Document Manager UI"/>
+    <ROW Property="ProductVersion" Value="0.0.0" Type="32"/>
+    <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
+    <ROW Property="REVERSEPROXYCONFIG.VERSION.COMPARE" Value="&lt;undefined&gt;"/>
+    <ROW Property="SITE.NAME" Value="DocumentManagerUI"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{07BD5206-0F85-44A3-B20B-671DBD323737}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="DocumentManagerUI_Dir" Directory_Parent="APPDIR" DefaultDir="DOCUME~1|DocumentManagerUI"/>
+    <ROW Directory="NewFolder_Dir" Directory_Parent="static_Dir" DefaultDir="css"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="js_Dir" Directory_Parent="static_Dir" DefaultDir="js"/>
+    <ROW Directory="media_Dir" Directory_Parent="static_Dir" DefaultDir="media"/>
+    <ROW Directory="static_Dir" Directory_Parent="DocumentManagerUI_Dir" DefaultDir="static"/>
+    <ROW Directory="www_Dir" Directory_Parent="APPDIR" DefaultDir="www"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="SPCentral_Registry" ComponentId="{1916A2B9-595E-44A4-8115-A84F4D2AD416}" Directory_="APPDIR" Attributes="260" KeyPath="InstalledDateTime"/>
+    <ROW Component="efc73d3.chunk.js" ComponentId="{6D558F59-DF10-401D-95E7-2C12B2F8D1AE}" Directory_="js_Dir" Attributes="0" KeyPath="efc73d3.chunk.js" Type="0"/>
+    <ROW Component="favicon.ico" ComponentId="{50C2D7C2-E501-4F5C-9AB4-5D5AA16FDF3E}" Directory_="DocumentManagerUI_Dir" Attributes="0" KeyPath="favicon.ico" Type="0"/>
+    <ROW Component="index.html" ComponentId="{50CAA7EB-EDF3-47D7-BF3D-CA5586F664D5}" Directory_="DocumentManagerUI_Dir" Attributes="0" KeyPath="index.html"/>
+    <ROW Component="logo.ee7cd8ed.svg" ComponentId="{31D38DFC-FE41-4D01-9193-515B55CE7496}" Directory_="media_Dir" Attributes="0" KeyPath="logo.ee7cd8ed.svg" Type="0"/>
+    <ROW Component="main.5a79c88d.chunk.js" ComponentId="{EBC13FCF-FF87-494B-A396-2A5A6C2DEC18}" Directory_="js_Dir" Attributes="0" KeyPath="main.5a79c88d.chunk.js"/>
+    <ROW Component="main.87c4e08f.chunk.css" ComponentId="{2FF75058-A464-4CEF-86C9-C06E979FC022}" Directory_="NewFolder_Dir" Attributes="0" KeyPath="main.87c4e08f.chunk.css" Type="0"/>
+    <ROW Component="precachemanifest.6c93f649d58920c9a7ed793" ComponentId="{6CFD1F63-DB0C-4CA5-ACAD-E1556DF838CE}" Directory_="DocumentManagerUI_Dir" Attributes="0" KeyPath="precachemanifest.6c93f649d58920c9a7ed793019aeba81.js"/>
+    <ROW Component="runtimemain.a8a9905a.js" ComponentId="{49E06F42-2679-412F-BC96-ED1309F0FF90}" Directory_="js_Dir" Attributes="0" KeyPath="runtimemain.a8a9905a.js"/>
+    <ROW Component="serviceworker.js" ComponentId="{0D9514F3-939E-4CF0-AC96-A4639E1FE045}" Directory_="DocumentManagerUI_Dir" Attributes="0" KeyPath="serviceworker.js"/>
+    <ROW Component="www" ComponentId="{A15FA876-66EA-448B-8947-85430F488CDC}" Directory_="www_Dir" Attributes="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="efc73d3.chunk.js favicon.ico index.html logo.ee7cd8ed.svg main.5a79c88d.chunk.js main.87c4e08f.chunk.css precachemanifest.6c93f649d58920c9a7ed793 runtimemain.a8a9905a.js serviceworker.js www"/>
+    <ROW Feature="Maintenance" Title="Maintenance" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Components="SPCentral_Registry"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="efc73d3.chunk.js" Component_="efc73d3.chunk.js" FileName="26EFC7~1.JS|2.6efc73d3.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\2.6efc73d3.chunk.js" SelfReg="false" NextFile="main.5a79c88d.chunk.js"/>
+    <ROW File="favicon.ico" Component_="favicon.ico" FileName="favicon.ico" Attributes="0" SourcePath="..\..\build\favicon.ico" SelfReg="false" NextFile="index.html"/>
+    <ROW File="index.html" Component_="index.html" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="..\..\build\index.html" SelfReg="false" NextFile="serviceworker.js"/>
+    <ROW File="logo.ee7cd8ed.svg" Component_="logo.ee7cd8ed.svg" FileName="LOGOEE~1.SVG|logo.ee7cd8ed.svg" Attributes="0" SourcePath="..\..\build\static\media\logo.ee7cd8ed.svg" SelfReg="false"/>
+    <ROW File="main.5a79c88d.chunk.js" Component_="main.5a79c88d.chunk.js" FileName="MAIN5A~1.JS|main.5a79c88d.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\main.5a79c88d.chunk.js" SelfReg="false" NextFile="runtimemain.a8a9905a.js"/>
+    <ROW File="main.87c4e08f.chunk.css" Component_="main.87c4e08f.chunk.css" FileName="MAIN87~1.CSS|main.87c4e08f.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\main.87c4e08f.chunk.css" SelfReg="false" NextFile="efc73d3.chunk.js"/>
+    <ROW File="precachemanifest.6c93f649d58920c9a7ed793019aeba81.js" Component_="precachemanifest.6c93f649d58920c9a7ed793" FileName="PRECAC~1.JS|precache-manifest.6c93f649d58920c9a7ed793019aeba81.js" Attributes="0" SourcePath="..\..\build\precache-manifest.6c93f649d58920c9a7ed793019aeba81.js" SelfReg="false" NextFile="main.87c4e08f.chunk.css"/>
+    <ROW File="runtimemain.a8a9905a.js" Component_="runtimemain.a8a9905a.js" FileName="RUNTIM~1.JS|runtime~main.a8a9905a.js" Attributes="0" SourcePath="..\..\build\static\js\runtime~main.a8a9905a.js" SelfReg="false" NextFile="logo.ee7cd8ed.svg"/>
+    <ROW File="serviceworker.js" Component_="serviceworker.js" FileName="SERVIC~1.JS|service-worker.js" Attributes="0" SourcePath="..\..\build\service-worker.js" SelfReg="false" NextFile="precachemanifest.6c93f649d58920c9a7ed793019aeba81.js"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppPoolComponent">
+    <ROW AppPoolId="0" Name="[SITE.NAME] - AppPool" Condition="1" Flags="65905" ManagedRuntimeVersion="v4.0" PeriodicRestartRequests="10000" LogEventOnRecycle="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[TempFolder][|ProductName]\[|ProductVersion]" Options="1" EulaPathLocId="*" IntroTextPathLocId="*"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="output" PackageFileName="[|ProductName]" Languages="en" InstallationType="4" SummInfoMetadata="Subject:[|ProductVersion]#Title:[|ProductName]" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.IIsCustomPropertiesComponent">
+    <ROW CustomPropertiesId="0" SectionName="system.webServer/security/ipSecurity" Name="collection" Type="collectionItem" Content="&lt;allowed:True&gt;&lt;ipAddress:127.0.0.1&gt;&lt;subnetMask:255.255.255.255&gt;" Flags="9" TargetEntity="0" Order="0"/>
+    <ROW CustomPropertiesId="1" SectionName="system.webServer/security/ipSecurity" Name="allowUnlisted" Type="boolean (True/False)" Content="False" Flags="1" TargetEntity="0" Order="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_IIsConfig" Description="Configuring Internet Information Services" Template="Installing &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_IIsConfig" TemplateLocId="ActionText.Template.AI_IIsConfig"/>
+    <ROW Action="AI_IIsInstall" Description="Generating actions to configure Internet Information Services" DescriptionLocId="ActionText.Description.AI_IIsInstall"/>
+    <ROW Action="AI_IIsRemove" Description="Configuring Internet Information Services" Template="Removing &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_IIsRemove" TemplateLocId="ActionText.Template.AI_IIsRemove"/>
+    <ROW Action="AI_IIsRollback" Description="Rolling back IIS configuration" Template="Restoring metabase configuration." DescriptionLocId="ActionText.Description.AI_IIsRollback" TemplateLocId="ActionText.Template.AI_IIsRollback"/>
+    <ROW Action="AI_IIsUninstall" Description="Generating actions to configure Internet Information Services" DescriptionLocId="ActionText.Description.AI_IIsUninstall"/>
+    <ROW Action="AI_XmlCommit" Description="Committing XML file configurations." Template="Committing XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlCommit" TemplateLocId="ActionText.Template.AI_XmlCommit"/>
+    <ROW Action="AI_XmlConfig" Description="Executing XML file configurations" Template="Configuring XML file: &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_XmlConfig" TemplateLocId="ActionText.Template.AI_XmlConfig"/>
+    <ROW Action="AI_XmlInstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlInstall"/>
+    <ROW Action="AI_XmlRemove" Description="Executing XML file configurations" Template="Configuring XML file: &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_XmlRemove" TemplateLocId="ActionText.Template.AI_XmlRemove"/>
+    <ROW Action="AI_XmlRollback" Description="Rolling back XML file configurations." Template="Rolling back XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlRollback" TemplateLocId="ActionText.Template.AI_XmlRollback"/>
+    <ROW Action="AI_XmlUninstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlUninstall"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="iis.dll" SourcePath="&lt;AI_CUSTACTS&gt;iis.dll"/>
+    <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="Reinstall" Argument="Maintenance" Condition="AI_MAINT" Ordering="502"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="www_Dir" Component_="www" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_IIsConfig" Type="11265" Source="iis.dll" Target="OnIIsConfig" WithoutSeq="true"/>
+    <ROW Action="AI_IIsInstall" Type="1" Source="iis.dll" Target="OnIIsInstall"/>
+    <ROW Action="AI_IIsRemove" Type="11265" Source="iis.dll" Target="OnIIsRemove" WithoutSeq="true"/>
+    <ROW Action="AI_IIsRollback" Type="11521" Source="iis.dll" Target="OnIIsRollback" WithoutSeq="true"/>
+    <ROW Action="AI_IIsUninstall" Type="1" Source="iis.dll" Target="OnIIsUninstall"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
+    <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
+    <ROW Action="AI_XmlInstall" Type="1" Source="xmlCfg.dll" Target="OnXmlInstall" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_XmlRemove" Type="11265" Source="xmlCfg.dll" Target="OnXmlRemove" WithoutSeq="true"/>
+    <ROW Action="AI_XmlRollback" Type="11521" Source="xmlCfg.dll" Target="OnXmlRollback" WithoutSeq="true"/>
+    <ROW Action="AI_XmlUninstall" Type="1" Source="xmlCfg.dll" Target="OnXmlUninstall" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="Clear_REVERSEPROXYCONFIG.VERSION.COMPARE" Type="51" Source="REVERSEPROXYCONFIG.VERSION.COMPARE" Target="{}"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:C:\SPCentral\"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="54"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="52"/>
+    <ROW Action="AI_IIsInstall" Condition="(NOT PATCH AND NOT MSIPATCHREMOVE ) AND (NOT Reinstall AND AI_INSTALL_MODE &lt;&gt; &quot;Repair&quot;) AND ((VersionNT &gt;= 500 AND NOT Installed) OR (Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot;))" Sequence="6509"/>
+    <ROW Action="AI_IIsUninstall" Condition="(VersionNT &gt;= 500) AND (REMOVE = &quot;ALL&quot;)" Sequence="1699"/>
+    <ROW Action="AI_AppSearchEx" Sequence="102"/>
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
+    <ROW Action="Clear_REVERSEPROXYCONFIG.VERSION.COMPARE" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REVERSEPROXYCONFIG.VERSION.COMPARE = &quot;&lt;undefined&gt;&quot; )" Sequence="51"/>
+    <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
+    <ROW Action="AI_DATA_SETTER" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5101"/>
+    <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
+    <ROW Action="AI_DATA_SETTER_1" Condition="(REMOVE)" Sequence="3101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_ResolveKnownFolders" Sequence="54"/>
+    <ROW Action="AI_DpiContentScale" Sequence="53"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="52"/>
+    <ROW Action="AI_AppSearchEx" Sequence="102"/>
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
+    <ROW Action="Clear_REVERSEPROXYCONFIG.VERSION.COMPARE" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REVERSEPROXYCONFIG.VERSION.COMPARE = &quot;&lt;undefined&gt;&quot; )" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(AI_DETECTED_IIS_VERSION &gt;= AI_REQUIRED_IIS_VERSION) AND AI_DETECTED_IIS_SERVICE" Description="[ProductName] cannot be installed on systems with Internet Information Services version lower than [AI_REQUIRED_IIS_DISPLAY]." DescriptionLocId="AI.LaunchCondition.IIS" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="Privileged" Description="[ProductName] requires administrative privileges to install." DescriptionLocId="AI.LaunchCondition.Privileged" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="REVERSEPROXYCONFIG.VERSION.COMPARE" Description="Minimum version requirement for IIS Reverse Proxy Configuration not met.  Must be at least 1.0.0.0"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="InstalledByUser" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="InstalledByUser" Value="[LogonUser]" Component_="SPCentral_Registry"/>
+    <ROW Registry="InstalledByUserSID" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="InstalledByUserSID" Value="[UserSID]" Component_="SPCentral_Registry"/>
+    <ROW Registry="InstalledDateTime" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="InstalledDateTime" Value="[Date] [Time]" Component_="SPCentral_Registry"/>
+    <ROW Registry="InstallerDatabase" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="InstallerDatabase" Value="[DATABASE]" Component_="SPCentral_Registry"/>
+    <ROW Registry="InstallerLog" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="InstallerLog" Value="[MsiLogFileLocation]" Component_="SPCentral_Registry"/>
+    <ROW Registry="MSI" Root="2" Key="Software\SPCentral\MSI" Name="+" Component_="SPCentral_Registry"/>
+    <ROW Registry="Name" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="Name" Value="[ProductName]" Component_="SPCentral_Registry"/>
+    <ROW Registry="ProductCode" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="ProductCode" Value="[ProductCode]" Component_="SPCentral_Registry"/>
+    <ROW Registry="SPCentral" Root="2" Key="Software\SPCentral" Name="+" Component_="SPCentral_Registry"/>
+    <ROW Registry="UpgradeCode" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="UpgradeCode" Value="[UpgradeCode]" Component_="SPCentral_Registry"/>
+    <ROW Registry="Version" Root="2" Key="Software\SPCentral\MSI\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="SPCentral_Registry"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="UpgradeCode" SearchType="4" SearchString="{4B60C3B1-7100-44E8-AB57-FE799EE58EBB}" VerMin="1.0.0.0" Order="2" Property="REVERSEPROXYCONFIG.VERSION.COMPARE"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
+    <ROW Directory_="DocumentManagerUI_Dir" SourcePath="..\..\build" Feature="MainFeature" IncludePattern="precache-manifest.*.js" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+    <ROW Directory_="NewFolder_Dir" SourcePath="..\..\build\static\css" Feature="MainFeature" IncludePattern="*.css" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+    <ROW Directory_="js_Dir" SourcePath="..\..\build\static\js" Feature="MainFeature" IncludePattern="*.js" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+    <ROW Directory_="media_Dir" SourcePath="..\..\build\static\media" Feature="MainFeature" IncludePattern="logo.*.svg" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.WebApplicationsComponent">
+    <ROW WebSiteId="0" Root="DocumentManagerUI_Dir" Condition="1" AccessFlags="17089121" AccessPerm="513" DocumentList="index.html" AppPool="0" AspNetVers="4.0.30319" WebApplication="[SITE.NAME]" ServerBindings=":[HTTP.PORT]:" AccessSSLFlags="0" ConnectionTimeout="-1" MaxConcurrentRequests="-1" MaxRequests="-1" TimeLimit="-1"/>
+    <ROW WebSiteId="1" Root="APPDIR" Condition="1" AccessFlags="49761" AccessPerm="513" DocumentList="index.html, index.htm, default.htm" WebApplication="Default Web Site" ServerBindings=":80:" AccessSSLFlags="0" ConnectionTimeout="-1" MaxConcurrentRequests="-1" MaxRequests="-1" TimeLimit="-1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
+    <ROW XmlAttribute="name" XmlElement="rule" Name="name" Flags="15" Order="0" Value="[SITE.NAME]-[HTTP.PORT]"/>
+    <ROW XmlAttribute="stopProcessing" XmlElement="rule" Name="stopProcessing" Flags="14" Order="1" Value="true"/>
+    <ROW XmlAttribute="type" XmlElement="action" Name="type" Flags="14" Order="0" Value="Rewrite"/>
+    <ROW XmlAttribute="url" XmlElement="action" Name="url" Flags="14" Order="1" Value="http://localhost:[HTTP.PORT]/{R:1}"/>
+    <ROW XmlAttribute="url_1" XmlElement="match" Name="url" Flags="14" Order="0" Value="[MATCH.URL]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
+    <ROW XmlElement="action" ParentElement="rule" Name="action" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="configuration" Name="configuration" Condition="1" Order="0" Flags="30"/>
+    <ROW XmlElement="match" ParentElement="rule" Name="match" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="rewrite" ParentElement="system.webServer" Name="rewrite" Condition="1" Order="0" Flags="12"/>
+    <ROW XmlElement="rule" ParentElement="rules" Name="rule" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="rules" ParentElement="rewrite" Name="rules" Condition="1" Order="0" Flags="12"/>
+    <ROW XmlElement="system.webServer" ParentElement="configuration" Name="system.webServer" Condition="1" Order="0" Flags="12"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlFileComponent">
+    <ROW XmlFile="web.config" FileName="WEB~1.CON|web.config" DirProperty="www_Dir" Component="SPCentral_Registry" RootElement="configuration" Flags="73" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+  </COMPONENT>
+</DOCUMENT>
