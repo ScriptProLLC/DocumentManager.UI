@@ -32,3 +32,6 @@ yarn-error.log*
 # MSI
 Installation/MSI/output/
 Installation/MSI/*-cache/
+
+# StoryBook Build
+/storybook-static/
