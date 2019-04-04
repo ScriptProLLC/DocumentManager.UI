@@ -7,8 +7,15 @@ import { linkTo } from "@storybook/addon-links";
 //import { Button, Welcome } from "@storybook/react/demo";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
+import DocumentListItem from "./../components/document-list-item/document-list-item";
 
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  object
+} from "@storybook/addon-knobs";
 
 import { withInfo } from "@storybook/addon-info";
 
