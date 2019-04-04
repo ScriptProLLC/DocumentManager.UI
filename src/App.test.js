@@ -12,10 +12,3 @@ it("renders the app component", () => {
     "Edit src/App.js and save to reload."
   );
 });
-
-it("renders the App component correctly", () => {
-  const component = render(<App />);
-
-  let tree = component.container;
-  expect(tree).toMatchSnapshot();
-});
