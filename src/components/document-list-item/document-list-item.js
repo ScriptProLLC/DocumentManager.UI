@@ -7,10 +7,16 @@ class DocumentListItem extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false };
+
+    this.reportToggle = props.reportToggle;
   }
 
   toggle() {
     this.setState(state => ({ collapse: !state.collapse }));
+
+    if (this.reportToggle) {
+      this.reportToggle(this.state.collapse ? "collapsed" : "open");
+    }
   }
 
   render() {

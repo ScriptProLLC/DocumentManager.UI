@@ -1,6 +1,7 @@
 import React from "react";
 
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 //import { Button, Welcome } from "@storybook/react/demo";
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,6 +18,7 @@ storiesOf("DocumentListItem component", module)
     "component",
     () => (
       <DocumentListItem
+        reportToggle={action("toggle")}
         document={object("document", {
           Name: "Document Name",
           DateCreated: "01/01/1970 09:22 AM",
