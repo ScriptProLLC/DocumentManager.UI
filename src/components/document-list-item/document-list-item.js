@@ -29,20 +29,20 @@ class DocumentListItem extends Component {
     return (
       <div className="DocumentListItem">
         <div>
-          <span id="documentName">{this.props.document.Name}</span>
+          <span data-testid="documentName">{this.props.document.Name}</span>
           <Button
             outline
             color="secondary"
             onClick={this.toggle}
             style={{ marginBottom: "1rem" }}
-            id="collapseToggle"
+            data-testid="collapseToggle"
           >
             {this.state.collapse ? <span>&#9660;</span> : <span>&#9658;</span>}
           </Button>
         </div>
-        <Collapse isOpen={this.state.collapse} id="collapse">
+        <Collapse isOpen={this.state.collapse} data-testid="collapse">
           <ListGroup>
-            <ListGroupItem id="dateCreatedField">
+            <ListGroupItem data-testid="dateCreatedField">
               {"Date Created: " + this.props.document.DateCreated}
             </ListGroupItem>
             {attributes}
