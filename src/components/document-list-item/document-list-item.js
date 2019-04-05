@@ -6,17 +6,17 @@ class DocumentListItem extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+    this.state = { expanded: props.expanded ? props.expanded : false };
 
     this.reportToggle = props.reportToggle;
   }
 
   toggle() {
-    this.setState(state => ({ collapse: !state.collapse }));
-
     if (this.reportToggle) {
-      this.reportToggle(this.state.collapse ? "collapsed" : "open");
+      this.reportToggle(this.state.expanded ? "collapsed" : "open");
     }
+
+    this.setState(state => ({ expanded: !state.expanded }));
   }
 
   render() {
@@ -37,10 +37,10 @@ class DocumentListItem extends Component {
             style={{ marginBottom: "1rem" }}
             data-testid="collapseToggle"
           >
-            {this.state.collapse ? <span>&#9660;</span> : <span>&#9658;</span>}
+            {this.state.expanded ? <span>&#9660;</span> : <span>&#9658;</span>}
           </Button>
         </div>
-        <Collapse isOpen={this.state.collapse} data-testid="collapse">
+        <Collapse isOpen={this.state.expanded} data-testid="collapse">
           <ListGroup>
             <ListGroupItem data-testid="dateCreatedField">
               {"Date Created: " + this.props.document.DateCreated}
