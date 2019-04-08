@@ -1,6 +1,14 @@
 import React, { Component } from "react";
+import "font-awesome/css/font-awesome.min.css";
 import "./document-list-item.css";
-import { Collapse, ListGroup, ListGroupItem, Button } from "reactstrap";
+import {
+  Collapse,
+  ListGroup,
+  ListGroupItem,
+  Button,
+  Row,
+  Col
+} from "reactstrap";
 
 class DocumentListItem extends Component {
   constructor(props) {
@@ -27,27 +35,37 @@ class DocumentListItem extends Component {
     );
 
     return (
-      <div className="DocumentListItem">
-        <div>
-          <span data-testid="documentName">{this.props.document.Name}</span>
-          <Button
-            outline
-            color="secondary"
-            onClick={this.toggle}
-            style={{ marginBottom: "1rem" }}
-            data-testid="collapseToggle"
-          >
-            {this.state.expanded ? <span>&#9660;</span> : <span>&#9658;</span>}
-          </Button>
-        </div>
-        <Collapse isOpen={this.state.expanded} data-testid="collapse">
-          <ListGroup>
-            <ListGroupItem data-testid="dateCreatedField">
-              {"Date Created: " + this.props.document.DateCreated}
-            </ListGroupItem>
-            {attributes}
-          </ListGroup>
-        </Collapse>
+      <div className="container">
+        <Row className="border-white">
+          <Col>
+            <span data-testid="documentName">{this.props.document.Name}</span>
+          </Col>
+          <Col>
+            <Button
+              outline
+              color="secondary"
+              onClick={this.toggle}
+              className="btn btn-sm clearfix"
+              data-testid="collapseToggle"
+            >
+              {this.state.expanded ? (
+                <i className="fa fa-caret-down" />
+              ) : (
+                <i className="fa fa-caret-right" />
+              )}
+            </Button>
+          </Col>
+        </Row>
+        <Row className="border-0">
+          <Col xs="12">
+            <Collapse isOpen={this.state.expanded} data-testid="collapse">
+              <ListGroupItem data-testid="dateCreatedField">
+                {"Date Created: " + this.props.document.DateCreated}
+              </ListGroupItem>
+              <ListGroup>{attributes}</ListGroup>
+            </Collapse>
+          </Col>
+        </Row>
       </div>
     );
   }
