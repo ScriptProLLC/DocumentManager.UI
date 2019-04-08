@@ -23,6 +23,18 @@ describe("DocumentListItem component", () => {
     expect(getByTestId("documentName").textContent).toBe(document.Name);
   });
 
+  it("renders the name of the document with unicode characters", () => {
+    var document = {
+      Name: "\u0913",
+      DateCreated: "date",
+      Attributes: { attr1: "Hello", attr2: "World" }
+    };
+
+    const { getByTestId } = render(<DocumentListItem document={document} />);
+
+    expect(getByTestId("documentName").textContent).toBe("ओ");
+  });
+
   it("renders the dateCreated of the document", () => {
     var document = {
       Name: "name",
@@ -35,6 +47,18 @@ describe("DocumentListItem component", () => {
     expect(getByTestId("dateCreatedField").textContent).toBe(
       `Date Created: ${document.DateCreated}`
     );
+  });
+
+  it("does not render a line for attributes if they are not included", () => {
+    var document = {
+      Name: "name",
+      DateCreated: "01/01/1970 09:22 AM",
+      Attributes: {}
+    };
+
+    const { container } = render(<DocumentListItem document={document} />);
+
+    expect(container.querySelectorAll(".list-group-item").length).toBe(1);
   });
 
   it("renders a field for each attribute", () => {
