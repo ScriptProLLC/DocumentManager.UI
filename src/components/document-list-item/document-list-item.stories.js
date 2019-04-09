@@ -1,5 +1,6 @@
 import React from "react";
 
+import { createStoryDocument } from "./../../util/dataHelper";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -19,14 +20,7 @@ storiesOf("Document List Item", module)
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
-        document={object("document", {
-          Name: "Document Name",
-          DateCreated: "01/01/1970 09:22 AM",
-          Attributes: {
-            pages: "3",
-            fileSize: "543K"
-          }
-        })}
+        document={object("document", createStoryDocument())}
       />
     ),
     { info: "Document List Item info" }
@@ -37,14 +31,7 @@ storiesOf("Document List Item", module)
       <DocumentListItem
         reportToggle={action("toggle")}
         expanded={true}
-        document={object("document", {
-          Name: "Document Name",
-          DateCreated: "01/01/1970 09:22 AM",
-          Attributes: {
-            pages: "3",
-            fileSize: "543K"
-          }
-        })}
+        document={object("document", createStoryDocument())}
       />
     ),
     { info: "Document List Item info" }
@@ -54,14 +41,10 @@ storiesOf("Document List Item", module)
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
-        document={object("document", {
-          Name: "Document Name \u0913",
-          DateCreated: "01/01/1970 09:22 AM",
-          Attributes: {
-            pages: "3",
-            fileSize: "543K"
-          }
-        })}
+        document={object(
+          "document",
+          createStoryDocument({ Name: "Document Name \u0913" })
+        )}
       />
     ),
     { info: "Document List Item info" }
@@ -71,14 +54,7 @@ storiesOf("Document List Item", module)
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
-        document={object("document", {
-          Name: "",
-          DateCreated: "01/01/1970 09:22 AM",
-          Attributes: {
-            pages: "3",
-            fileSize: "543K"
-          }
-        })}
+        document={object("document", createStoryDocument({ Name: "" }))}
       />
     ),
     { info: "Document List Item info" }
@@ -89,11 +65,7 @@ storiesOf("Document List Item", module)
       <DocumentListItem
         reportToggle={action("toggle")}
         expanded={true}
-        document={object("document", {
-          Name: "Document Name",
-          DateCreated: "01/01/1970 09:22 AM",
-          Attributes: {}
-        })}
+        document={object("document", createStoryDocument({ Attributes: {} }))}
       />
     ),
     { info: "Document List Item info" }
@@ -104,15 +76,17 @@ storiesOf("Document List Item", module)
       <DocumentListItem
         reportToggle={action("toggle")}
         expanded={true}
-        document={object("document", {
-          Name: "Document Name",
-          DateCreated: "01/01/1970 09:22 AM",
-          Attributes: {
-            withSpaces: "Attribute with Spaces",
-            withApostraphe: "Attribute's value",
-            withNoSpaces: "ThisDocumentHasAReallyLongAtrtibuteForTesting"
-          }
-        })}
+        document={object(
+          "document",
+          createStoryDocument({
+            Attributes: {
+              "Name with Spaces": "Attribute with Spaces",
+              "Name with Apostraphe '": "Attribute's value",
+              ThisDocumentHasAReallyLongNameForTesting:
+                "ThisDocumentHasAReallyLongAtrtibuteForTesting"
+            }
+          })
+        )}
       />
     ),
     { knobs: { escapeHTML: false } },

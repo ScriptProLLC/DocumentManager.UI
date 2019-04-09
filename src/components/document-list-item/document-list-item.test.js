@@ -7,16 +7,13 @@ import {
 } from "react-testing-library";
 import "jest-dom/extend-expect";
 import DocumentListItem from "./document-list-item";
+import { createTestDocument } from "./../../util/dataHelper";
 
 describe("DocumentListItem component", () => {
   afterEach(cleanup);
 
   it("renders the name of the document", () => {
-    var document = {
-      Name: "name",
-      DateCreated: "date",
-      Attributes: { attr1: "Hello", attr2: "World" }
-    };
+    var document = createTestDocument({ Name: "Document Name" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -24,11 +21,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders the name of the document with unicode characters", () => {
-    var document = {
-      Name: "\u0913",
-      DateCreated: "date",
-      Attributes: { attr1: "Hello", attr2: "World" }
-    };
+    var document = createTestDocument({ Name: "\u0913" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -36,11 +29,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders the dateCreated of the document", () => {
-    var document = {
-      Name: "name",
-      DateCreated: "01/01/1970 09:22 AM",
-      Attributes: { attr1: "Hello", attr2: "World" }
-    };
+    var document = createTestDocument({ DateCreated: "01/01/1970 09:22 AM" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -50,11 +39,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("does not render a line for attributes if they are not included", () => {
-    var document = {
-      Name: "name",
-      DateCreated: "01/01/1970 09:22 AM",
-      Attributes: {}
-    };
+    var document = createTestDocument({ Attributes: {} });
 
     const { container } = render(<DocumentListItem document={document} />);
 
@@ -62,11 +47,10 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders a field for each attribute", () => {
-    var document = {
-      Name: "name",
+    var document = createTestDocument({
       DateCreated: "01/01/1970 09:22 AM",
       Attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
-    };
+    });
 
     const { container } = render(<DocumentListItem document={document} />);
 
@@ -74,11 +58,9 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders the correct text for an attribute", () => {
-    var document = {
-      Name: "name",
-      DateCreated: "01/01/1970 09:22 AM",
-      Attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
-    };
+    var document = createTestDocument({
+      Attributes: { attr1: "Hello", attr2: "World" }
+    });
 
     const { container } = render(<DocumentListItem document={document} />);
 
@@ -88,11 +70,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("hides the collapse by default", async () => {
-    var document = {
-      Name: "name",
-      DateCreated: "01/01/1970 09:22 AM",
-      Attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
-    };
+    var document = createTestDocument();
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
     var elem = getByTestId("collapse");
@@ -101,11 +79,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("toggles the collapse on click", async () => {
-    var document = {
-      Name: "name",
-      DateCreated: "01/01/1970 09:22 AM",
-      Attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
-    };
+    var document = createTestDocument();
 
     const { container, getByTestId } = render(
       <DocumentListItem document={document} />
