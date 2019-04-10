@@ -1,7 +1,7 @@
 import React from "react";
 
+import { storiesOf, addParameters } from "@storybook/react";
 import { createStoryDocument } from "./../../util/dataHelper";
-import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 //import { Button, Welcome } from "@storybook/react/demo";
@@ -11,6 +11,27 @@ import DocumentListItem from "./document-list-item.js";
 import { withKnobs, object } from "@storybook/addon-knobs";
 
 import { withInfo } from "@storybook/addon-info";
+
+const newViewports = {
+  device1: {
+    name: "Device 1",
+    styles: {
+      width: "600px",
+      height: "963px"
+    }
+  },
+  device2: {
+    name: "Device 2",
+    styles: {
+      width: "533px",
+      height: "801px"
+    }
+  }
+};
+
+addParameters({
+  viewport: { viewports: newViewports, defaultViewport: "device1" }
+});
 
 storiesOf("Document List Item", module)
   .addDecorator(withKnobs)
