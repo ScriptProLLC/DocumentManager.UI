@@ -14,11 +14,13 @@ class DocumentListItem extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = { expanded: props.expanded ? props.expanded : false };
-
+    this.state = {
+      expanded: props.expanded ? props.expanded : false
+    };
     this.reportToggle = props.reportToggle;
   }
 
+  // Toggle Expansion
   toggle() {
     if (this.reportToggle) {
       this.reportToggle(this.state.expanded ? "collapsed" : "open");
@@ -28,41 +30,51 @@ class DocumentListItem extends Component {
   }
 
   render() {
-    var attributes = Object.entries(this.props.document.Attributes).map(
-      ([key, value], index) => (
-        <ListGroupItem key={key}>{key + ": " + value}</ListGroupItem>
-      )
-    );
+    // Expanded List - Item Template
+    var documentAttributes = Object.entries({
+      ...{ "Date Created": this.props.document.DateCreated },
+      ...this.props.document.Attributes
+    }).map(([key, value]) => (
+      <ListGroupItem
+        key={key}
+        className="document-list-expanded-item"
+        data-testid={key}
+      >
+        <span className="fa fa-level-up mr-3" />
+        <strong>{key}: </strong>
+        {value}
+      </ListGroupItem>
+    ));
 
     return (
-      <div className="container">
-        <Row className="border-white">
-          <Col>
-            <span data-testid="documentName">{this.props.document.Name}</span>
-          </Col>
+      <div className="document-list-container">
+        {/* Document Name + Expand Button */}
+        <Row>
           <Col>
             <Button
-              outline
-              color="secondary"
-              onClick={this.toggle}
-              className="btn btn-sm clearfix"
+              className="btn document-list-expand-button"
               data-testid="collapseToggle"
+              onClick={this.toggle}
+              outline
+              size="sm"
             >
               {this.state.expanded ? (
-                <i className="fa fa-caret-down" />
+                <i className="fa fa-caret-down fa-lg" />
               ) : (
-                <i className="fa fa-caret-right" />
+                <i className="fa fa-caret-right fa-lg" />
               )}
             </Button>
+            <div data-testid="documentName" className="document-list-item-name">
+              {this.props.document.Name || "Unnamed Document"}
+            </div>
           </Col>
         </Row>
-        <Row className="border-0">
-          <Col xs="12">
+
+        {/* Expandable Section */}
+        <Row>
+          <Col>
             <Collapse isOpen={this.state.expanded} data-testid="collapse">
-              <ListGroupItem data-testid="dateCreatedField">
-                {"Date Created: " + this.props.document.DateCreated}
-              </ListGroupItem>
-              <ListGroup>{attributes}</ListGroup>
+              <ListGroup>{documentAttributes}</ListGroup>
             </Collapse>
           </Col>
         </Row>

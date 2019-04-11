@@ -31,9 +31,9 @@ describe("DocumentListItem component", () => {
   it("renders the dateCreated of the document", () => {
     var document = createTestDocument({ DateCreated: "01/01/1970 09:22 AM" });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { container } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("dateCreatedField").textContent).toBe(
+    expect(container.querySelectorAll("li")[0].textContent).toBe(
       `Date Created: ${document.DateCreated}`
     );
   });

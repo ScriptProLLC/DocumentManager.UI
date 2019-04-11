@@ -1,7 +1,36 @@
-button {
+/* Temporary styling import because I believe Storybook is trumping the global
+styles so leaving here until I move to app level (which I will probably serve locally)*/
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
+.document-list-container {
+  max-width: 999px;
+  font-family: "Quicksand", sans-serif;
+}
+
+.document-list-expand-button {
+  margin-top: 0.5rem;
+  width: 3rem;
   float: right;
 }
 
-.DocumentListItem {
-  width: 30%;
+.document-list-expand-button:focus {
+  box-shadow: none;
+}
+
+.document-list-expanded-item {
+  border: none;
+  color: #888;
+  padding: 0.25rem 0 0.25rem 2rem;
+  word-break: break-all;
+}
+
+.document-list-expanded-item .fa-level-up {
+  transform: rotate(90deg);
+}
+
+.document-list-item-name {
+  display: block;
+  font-size: 1.25rem;
+  padding: 0.5rem 3.5rem 0rem 1rem;
+  word-break: break-word;
 }

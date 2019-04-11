@@ -13,8 +13,8 @@ function createStoryDocument(overrideObject) {
     Name: "Document Name",
     DateCreated: "01/01/1970 09:22 AM",
     Attributes: {
-      pages: "3",
-      fileSize: "543K"
+      Pages: "3",
+      "File Size": "543K"
     }
   };
 

@@ -37,7 +37,7 @@ storiesOf("Document List Item", module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ header: false }))
   .add(
-    "collapsed",
+    "Collapsed",
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
@@ -47,7 +47,7 @@ storiesOf("Document List Item", module)
     { info: "Document List Item info" }
   )
   .add(
-    "expanded",
+    "Expanded",
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
@@ -58,7 +58,7 @@ storiesOf("Document List Item", module)
     { info: "Document List Item info" }
   )
   .add(
-    "unicode in name",
+    "Unicode In Name",
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
@@ -71,7 +71,7 @@ storiesOf("Document List Item", module)
     { info: "Document List Item info" }
   )
   .add(
-    "empty name",
+    "Empty Name",
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
@@ -81,18 +81,23 @@ storiesOf("Document List Item", module)
     { info: "Document List Item info" }
   )
   .add(
-    "no attributes",
+    "Long Document Name",
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
-        expanded={true}
-        document={object("document", createStoryDocument({ Attributes: {} }))}
+        document={object(
+          "document",
+          createStoryDocument({
+            Name:
+              "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
+          })
+        )}
       />
     ),
     { info: "Document List Item info" }
   )
   .add(
-    "various attribute strings",
+    "Various Attribute Strings",
     () => (
       <DocumentListItem
         reportToggle={action("toggle")}
@@ -103,8 +108,8 @@ storiesOf("Document List Item", module)
             Attributes: {
               "Name with Spaces": "Attribute with Spaces",
               "Name with Apostraphe '": "Attribute's value",
-              ThisDocumentHasAReallyLongNameForTesting:
-                "ThisDocumentHasAReallyLongAtrtibuteForTesting"
+              "This Document Has A Really Long Name For Testing":
+                "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
             }
           })
         )}
