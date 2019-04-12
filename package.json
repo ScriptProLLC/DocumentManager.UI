@@ -27,6 +27,18 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "cypress"
+    ],
+    "env": {
+      "cypress/globals": true
+    }
+  },
   "jest-junit": {
     "outputDirectory": "./test-results",
     "outputName": "./jest.xml"
