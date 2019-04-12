@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./DocumentListItem.css";
 import {
@@ -10,38 +10,23 @@ import {
   Col
 } from "reactstrap";
 
-class DocumentListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.handleSelection = this.handleSelection.bind(this);
-    this.state = {
-      expanded: props.expanded ? props.expanded : false
-    };
-    this.reportToggle = props.reportToggle;
-  }
+function DocumentListItem(props) {
+  let [expanded, setExpanded] = useState(props.expanded);
+  let listItems = {
+    ...{ "Date Created": props.document.DateCreated },
+    ...props.document.Attributes
+  };
 
-  // Toggle Expansion
-  toggle() {
-    if (this.reportToggle) {
-      this.reportToggle(this.state.expanded ? "collapsed" : "open");
+  const toggle = () => {
+    if (props.reportToggle) {
+      props.reportToggle(expanded ? "collapsed" : "open");
     }
 
-    this.setState(state => ({ expanded: !state.expanded }));
-  }
+    setExpanded(!expanded);
+  };
 
-  handleSelection() {
-    if (this.props.onSelected) {
-      this.props.onSelected("child " + this.props.index + " clicked");
-    }
-  }
-
-  render() {
-    // Expanded List - Item Template
-    var documentAttributes = Object.entries({
-      ...{ "Date Created": this.props.document.DateCreated },
-      ...this.props.document.Attributes
-    }).map(([key, value]) => (
+  function displayListItems() {
+    return Object.entries(listItems).map(([key, value]) => (
       <ListGroupItem
         key={key}
         className="document-list-expanded-item"
@@ -52,48 +37,44 @@ class DocumentListItem extends Component {
         {value}
       </ListGroupItem>
     ));
-
-    return (
-      <div className="document-list-container">
-        {/* Document Name + Expand Button */}
-        <Row>
-          <Col>
-            <Button
-              className="btn document-list-expand-button"
-              data-testid="collapseToggle"
-              onClick={this.toggle}
-              outline
-              size="sm"
-            >
-              {this.state.expanded ? (
-                <i className="fa fa-caret-down fa-lg" />
-              ) : (
-                <i className="fa fa-caret-right fa-lg" />
-              )}
-            </Button>
-            <div
-              data-testid="documentName"
-              className="document-list-item-name"
-              onClick={this.handleSelection}
-            >
-              {this.props.document.Name || "Unnamed Document"}
-            </div>
-          </Col>
-        </Row>
-
-        {/* Expandable Section */}
-        <Row>
-          <Col>
-            <Collapse isOpen={this.state.expanded} data-testid="collapse">
-              <ListGroup data-testid="attributesList">
-                {documentAttributes}
-              </ListGroup>
-            </Collapse>
-          </Col>
-        </Row>
-      </div>
-    );
   }
+
+  return (
+    <div className="document-list-container">
+      {/* Document Name + Expand Button */}
+      <Row>
+        <Col>
+          <Button
+            className="btn document-list-expand-button"
+            data-testid="collapseToggle"
+            onClick={toggle}
+            outline
+            size="sm"
+          >
+            {expanded ? (
+              <i className="fa fa-caret-down fa-lg" />
+            ) : (
+              <i className="fa fa-caret-right fa-lg" />
+            )}
+          </Button>
+          <div data-testid="documentName" className="document-list-item-name">
+            {props.document.Name || "Unnamed Document"}
+          </div>
+        </Col>
+      </Row>
+
+      {/* Expandable Section */}
+      <Row>
+        <Col>
+          <Collapse isOpen={expanded} data-testid="collapse">
+            <ListGroup data-testid="attributesList">
+              {displayListItems()}
+            </ListGroup>
+          </Collapse>
+        </Col>
+      </Row>
+    </div>
+  );
 }
 
 export default DocumentListItem;
