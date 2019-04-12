@@ -31,9 +31,9 @@ describe("DocumentListItem component", () => {
   it("renders the dateCreated of the document", () => {
     var document = createTestDocument({ DateCreated: "01/01/1970 09:22 AM" });
 
-    const { container } = render(<DocumentListItem document={document} />);
+    const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(container.querySelectorAll("li")[0].textContent).toBe(
+    expect(getByTestId("Date Created").textContent).toBe(
       `Date Created: ${document.DateCreated}`
     );
   });
@@ -41,9 +41,9 @@ describe("DocumentListItem component", () => {
   it("does not render a line for attributes if they are not included", () => {
     var document = createTestDocument({ Attributes: {} });
 
-    const { container } = render(<DocumentListItem document={document} />);
+    const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(container.querySelectorAll(".list-group-item").length).toBe(1);
+    expect(getByTestId("attributesList").childElementCount).toBe(1);
   });
 
   it("renders a field for each attribute", () => {
@@ -52,9 +52,9 @@ describe("DocumentListItem component", () => {
       Attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
     });
 
-    const { container } = render(<DocumentListItem document={document} />);
+    const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(container.querySelectorAll(".list-group-item").length).toBe(4);
+    expect(getByTestId("attributesList").childElementCount).toBe(4);
   });
 
   it("renders the correct text for an attribute", () => {
@@ -62,9 +62,9 @@ describe("DocumentListItem component", () => {
       Attributes: { attr1: "Hello", attr2: "World" }
     });
 
-    const { container } = render(<DocumentListItem document={document} />);
+    const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(container.querySelectorAll("li")[1].textContent).toBe(
+    expect(getByTestId("attr1").textContent).toBe(
       `attr1: ${document.Attributes.attr1}`
     );
   });

@@ -85,7 +85,9 @@ class DocumentListItem extends Component {
         <Row>
           <Col>
             <Collapse isOpen={this.state.expanded} data-testid="collapse">
-              <ListGroup>{documentAttributes}</ListGroup>
+              <ListGroup data-testid="attributesList">
+                {documentAttributes}
+              </ListGroup>
             </Collapse>
           </Col>
         </Row>
