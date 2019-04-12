@@ -6,6 +6,7 @@ test-results/
 /node_modules
 /.pnp
 .pnp.js
+/tools/db.json
 
 # testing
 /coverage
