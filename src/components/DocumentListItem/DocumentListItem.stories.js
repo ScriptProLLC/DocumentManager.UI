@@ -1,12 +1,12 @@
 import React from "react";
 
 import { storiesOf, addParameters } from "@storybook/react";
-import { createStoryDocument } from "./../../util/dataHelper";
+import { createStoryDocument } from "../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
 
 //import { Button, Welcome } from "@storybook/react/demo";
 import "bootstrap/dist/css/bootstrap.css";
-import DocumentListItem from "./document-list-item.js";
+import DocumentListItem from "./DocumentListItem.js";
 
 import { withKnobs, object } from "@storybook/addon-knobs";
 

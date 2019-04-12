@@ -6,8 +6,8 @@ import {
   waitForDomChange
 } from "react-testing-library";
 import "jest-dom/extend-expect";
-import DocumentListItem from "./document-list-item";
-import { createTestDocument } from "./../../util/dataHelper";
+import DocumentListItem from "./DocumentListItem";
+import { createTestDocument } from "../../util/dataHelper";
 
 describe("DocumentListItem component", () => {
   afterEach(cleanup);

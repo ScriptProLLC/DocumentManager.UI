@@ -1,7 +1,7 @@
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./DocumentList.css";
-import DocumentListItem from "./../document-list-item/document-list-item";
+import DocumentListItem from "../DocumentListItem/DocumentListItem";
 
 function DocumentList(props) {
   let docs = props.documents;
