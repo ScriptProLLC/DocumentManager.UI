@@ -5,71 +5,49 @@ import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.css";
 import DocumentListItem from "./DocumentListItem.js";
 import { withKnobs, object } from "@storybook/addon-knobs";
-import { withInfo } from "@storybook/addon-info";
 
 storiesOf("Document List Item", module)
   .addDecorator(withKnobs)
-  .addDecorator(withInfo({ header: false }))
-  .add(
-    "Collapsed",
-    () => (
-      <DocumentListItem
-        reportToggle={action("toggle")}
-        document={object("document", createStoryDocument())}
-      />
-    ),
-    { info: "Document List Item info" }
-  )
-  .add(
-    "Expanded",
-    () => (
-      <DocumentListItem
-        reportToggle={action("toggle")}
-        expanded={true}
-        document={object("document", createStoryDocument())}
-      />
-    ),
-    { info: "Document List Item info" }
-  )
-  .add(
-    "Unicode In Name",
-    () => (
-      <DocumentListItem
-        reportToggle={action("toggle")}
-        document={object(
-          "document",
-          createStoryDocument({ Name: "Document Name \u0913" })
-        )}
-      />
-    ),
-    { info: "Document List Item info" }
-  )
-  .add(
-    "Empty Name",
-    () => (
-      <DocumentListItem
-        reportToggle={action("toggle")}
-        document={object("document", createStoryDocument({ Name: "" }))}
-      />
-    ),
-    { info: "Document List Item info" }
-  )
-  .add(
-    "Long Document Name",
-    () => (
-      <DocumentListItem
-        reportToggle={action("toggle")}
-        document={object(
-          "document",
-          createStoryDocument({
-            Name:
-              "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
-          })
-        )}
-      />
-    ),
-    { info: "Document List Item info" }
-  )
+  .add("Collapsed", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      document={object("document", createStoryDocument())}
+    />
+  ))
+  .add("Expanded", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      expanded={true}
+      document={object("document", createStoryDocument())}
+    />
+  ))
+  .add("Unicode In Name", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      document={object(
+        "document",
+        createStoryDocument({ Name: "Document Name \u0913" })
+      )}
+    />
+  ))
+  .add("Empty Name", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      document={object("document", createStoryDocument({ Name: "" }))}
+    />
+  ))
+  .add("Long Document Name", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      document={object(
+        "document",
+        createStoryDocument({
+          Name:
+            "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
+        })
+      )}
+    />
+  ))
   .add(
     "Various Attribute Strings",
     () => (
@@ -89,6 +67,5 @@ storiesOf("Document List Item", module)
         )}
       />
     ),
-    { knobs: { escapeHTML: false } },
-    { info: "Document List Item info" }
+    { knobs: { escapeHTML: false } }
   );
