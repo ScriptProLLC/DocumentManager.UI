@@ -14,6 +14,7 @@ class DocumentListItem extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
     this.state = {
       expanded: props.expanded ? props.expanded : false
     };
@@ -27,6 +28,12 @@ class DocumentListItem extends Component {
     }
 
     this.setState(state => ({ expanded: !state.expanded }));
+  }
+
+  handleSelection() {
+    if (this.props.onSelected) {
+      this.props.onSelected("child " + this.props.index + " clicked");
+    }
   }
 
   render() {
@@ -64,7 +71,11 @@ class DocumentListItem extends Component {
                 <i className="fa fa-caret-right fa-lg" />
               )}
             </Button>
-            <div data-testid="documentName" className="document-list-item-name">
+            <div
+              data-testid="documentName"
+              className="document-list-item-name"
+              onClick={this.handleSelection}
+            >
               {this.props.document.Name || "Unnamed Document"}
             </div>
           </Col>
