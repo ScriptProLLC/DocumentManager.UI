@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./DocumentListItem.css";
+import PropTypes from "prop-types";
 import {
   Collapse,
   ListGroup,
@@ -76,5 +77,14 @@ function DocumentListItem(props) {
     </div>
   );
 }
+
+// Define PropTypes For Document List Item
+DocumentListItem.propTypes = {
+  document: PropTypes.shape({
+    Name: PropTypes.string,
+    DateCreated: PropTypes.string.isRequired,
+    Attributes: PropTypes.object
+  })
+};
 
 export default DocumentListItem;
