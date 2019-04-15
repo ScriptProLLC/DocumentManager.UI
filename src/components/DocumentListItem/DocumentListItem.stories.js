@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { createStoryDocument } from "../../util/dataHelper";
+import { createTestDocument } from "../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.css";
 import DocumentListItem from "./DocumentListItem.js";
@@ -11,14 +11,14 @@ storiesOf("Document List Item", module)
   .add("Collapsed", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object("document", createStoryDocument())}
+      document={object("document", createTestDocument())}
     />
   ))
   .add("Expanded", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
       expanded={true}
-      document={object("document", createStoryDocument())}
+      document={object("document", createTestDocument())}
     />
   ))
   .add("Unicode In Name", () => (
@@ -26,14 +26,14 @@ storiesOf("Document List Item", module)
       reportToggle={action("toggle")}
       document={object(
         "document",
-        createStoryDocument({ Name: "Document Name \u0913" })
+        createTestDocument({ Name: "Document Name \u0913" })
       )}
     />
   ))
   .add("Empty Name", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object("document", createStoryDocument({ Name: "" }))}
+      document={object("document", createTestDocument({ Name: "" }))}
     />
   ))
   .add("Long Document Name", () => (
@@ -41,7 +41,7 @@ storiesOf("Document List Item", module)
       reportToggle={action("toggle")}
       document={object(
         "document",
-        createStoryDocument({
+        createTestDocument({
           Name:
             "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
         })
@@ -56,7 +56,7 @@ storiesOf("Document List Item", module)
         expanded={true}
         document={object(
           "document",
-          createStoryDocument({
+          createTestDocument({
             Attributes: {
               "Name with Spaces": "Attribute with Spaces",
               "Name with Apostraphe '": "Attribute's value",

@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { createStoryDocument } from "./../../util/dataHelper";
+import { createTestDocument } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.css";
 import DocumentList from "./DocumentList.js";
@@ -16,13 +16,13 @@ storiesOf("Document List", module)
         documents={[
           object(
             "doc 1",
-            createStoryDocument({
+            createTestDocument({
               Name: "document 1"
             })
           ),
           object(
             "doc 2",
-            createStoryDocument({
+            createTestDocument({
               Name: "document 2"
             })
           )
