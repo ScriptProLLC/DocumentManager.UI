@@ -14,15 +14,12 @@ function DocumentList(props) {
     console.log(toggleState);
   }
 
-  var children = Object.entries(docs).map(([key, value], index) => (
-    <li key={key}>
+  var children = docs.map(doc => (
+    <li key={doc.Id} data-testid={doc.Id}>
       <DocumentListItem
-        key={key}
-        index={index}
-        document={value}
+        document={doc}
         onSelected={onSelected}
         reportToggle={reportToggle}
-        data-testid={key}
       />
     </li>
   ));
