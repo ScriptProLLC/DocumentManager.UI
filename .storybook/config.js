@@ -11,23 +11,51 @@ function loadStories() {
 
 const newViewports = {
   device1: {
-    name: "Device 1",
+    name: "1920x1080",
     styles: {
-      width: "600px",
-      height: "963px"
+      width: "1920px",
+      height: "1080px"
     }
   },
   device2: {
-    name: "Device 2",
+    name: "1440x900",
     styles: {
-      width: "533px",
-      height: "801px"
+      width: "1440px",
+      height: "900px"
+    }
+  },
+  device3: {
+    name: "1366x768",
+    styles: {
+      width: "1366px",
+      height: "768px"
+    }
+  },
+  device4: {
+    name: "1280x1024",
+    styles: {
+      width: "1280px",
+      height: "1024px"
+    }
+  },
+  device5: {
+    name: "1024x768",
+    styles: {
+      width: "1024px",
+      height: "768px"
+    }
+  },
+  device6: {
+    name: "800x600",
+    styles: {
+      width: "800px",
+      height: "600px"
     }
   }
 };
 
 addParameters({
-  viewport: { viewports: newViewports, defaultViewport: "device1" }
+  viewport: { viewports: newViewports, defaultViewport: "device2" }
 });
 
 addParameters({
