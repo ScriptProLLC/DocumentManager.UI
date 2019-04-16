@@ -41,7 +41,7 @@ function DocumentListItem(props) {
   }
 
   return (
-    <div className="document-list-container">
+    <div className="document-list-item-container">
       {/* Document Name + Expand Button */}
       <Row>
         <Col>

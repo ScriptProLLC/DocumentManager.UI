@@ -2,15 +2,10 @@
 styles so leaving here until I move to app level (which I will probably serve locally)*/
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
-.document-list-container {
-  max-width: 999px;
-  font-family: "Quicksand", sans-serif;
-}
-
 .document-list-expand-button {
-  margin-top: 0.5rem;
-  width: 3rem;
   float: right;
+  margin: 0.5rem 1rem 0.5rem 0;
+  width: 3rem;
 }
 
 .document-list-expand-button:focus {
@@ -20,7 +15,7 @@ styles so leaving here until I move to app level (which I will probably serve lo
 .document-list-expanded-item {
   border: none;
   color: #888;
-  padding: 0.25rem 0 0.25rem 2rem;
+  padding: 0.25rem 1rem 0.25rem 2rem;
   word-break: break-all;
 }
 
@@ -28,9 +23,25 @@ styles so leaving here until I move to app level (which I will probably serve lo
   transform: rotate(90deg);
 }
 
+.document-list-item-container {
+  font-family: "Quicksand", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Pull Expanded Content Up A Bit To Group Better With Parent */
+.document-list-item-container .document-list-expanded-item:first-of-type {
+  margin-top: -0.5rem;
+}
+
+/* On Document Hover, Change Background And Cursor - Will Be Needed When Click Opens Document */
+.document-list-item-container:hover, .document-list-item-container:hover .list-group-item {
+  background: #f7f7f7;
+  cursor: pointer;
+}
+
 .document-list-item-name {
   display: block;
   font-size: 1.25rem;
-  padding: 0.5rem 3.5rem 0rem 1rem;
+  padding: 0.5rem 4.5rem 0rem 1rem;
   word-break: break-word;
 }
