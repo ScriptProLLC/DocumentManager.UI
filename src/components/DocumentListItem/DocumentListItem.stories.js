@@ -36,6 +36,12 @@ storiesOf("Document List Item", module)
       document={object("document", createTestDocument({ Name: "" }))}
     />
   ))
+  .add("Null Name", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      document={object("document", createTestDocument({ Name: null }))}
+    />
+  ))
   .add("Long Document Name", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
@@ -46,6 +52,13 @@ storiesOf("Document List Item", module)
             "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
         })
       )}
+    />
+  ))
+  .add("No Attributes", () => (
+    <DocumentListItem
+      reportToggle={action("toggle")}
+      expanded={true}
+      document={object("document", createTestDocument({ Attributes: null }))}
     />
   ))
   .add(

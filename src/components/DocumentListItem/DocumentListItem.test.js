@@ -28,6 +28,22 @@ describe("DocumentListItem component", () => {
     expect(getByTestId("documentName").textContent).toBe("ओ");
   });
 
+  it("renders a default name if the name is null", () => {
+    var document = createTestDocument({ Name: null });
+
+    const { getByTestId } = render(<DocumentListItem document={document} />);
+
+    expect(getByTestId("documentName").textContent).toBe("Unnamed Document");
+  });
+
+  it("renders a default name if the name is empty", () => {
+    var document = createTestDocument({ Name: "" });
+
+    const { getByTestId } = render(<DocumentListItem document={document} />);
+
+    expect(getByTestId("documentName").textContent).toBe("Unnamed Document");
+  });
+
   it("renders the dateCreated of the document", () => {
     var document = createTestDocument({ DateCreated: "01/01/1970 09:22 AM" });
 
@@ -39,7 +55,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("does not render a line for attributes if they are not included", () => {
-    var document = createTestDocument({ Attributes: {} });
+    var document = createTestDocument({ Attributes: null });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
