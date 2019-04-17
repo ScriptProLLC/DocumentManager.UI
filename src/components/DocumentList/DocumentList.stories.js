@@ -18,7 +18,7 @@ storiesOf("Document List", module)
     host({
       title: "DocumentList Component",
       align: "center top",
-      height: 800,
+      height: 500,
       width: 400,
       border: true
     })

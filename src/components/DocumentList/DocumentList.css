@@ -1,6 +1,12 @@
+/* Will Want To Move This To Higher Level When Out Of Storybook */
 ul {
   list-style-type: none;
   padding-left: 0;
+}
+
+.document-list-container {
+  height: 100%;
+  overflow-y: auto;
 }
 
 /* Custom Scrollbars */
