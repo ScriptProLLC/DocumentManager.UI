@@ -1,14 +1,33 @@
 import React from "react";
 import DocumentListItem from "./DocumentListItem.js";
-
+import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, object } from "@storybook/addon-knobs";
-
 import { createTestDocument } from "../../util/dataHelper";
 
-import "bootstrap/dist/css/bootstrap.css";
+const data = {
+  generic: createTestDocument(),
+  unicodeInName: createTestDocument({ Name: "Document Name \u0913" }),
+  emptyName: createTestDocument({ Name: "" }),
+  nullName: createTestDocument({ Name: null }),
+  longName: createTestDocument({
+    Name:
+      "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
+  }),
+  variousAttributes: createTestDocument({
+    Attributes: {
+      "Name with Spaces": "Attribute with Spaces",
+      "Name with Apostraphe '": "Attribute's value",
+      "This Document Has A Really Long Name For Testing":
+        "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
+    }
+  }),
+  noAttributes: createTestDocument({
+    Attributes: null
+  })
+};
 
 storiesOf("Document List Item", module)
   .addDecorator(withKnobs)
@@ -24,54 +43,45 @@ storiesOf("Document List Item", module)
   .add("Collapsed", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object("document", createTestDocument())}
+      document={object("document", data.generic)}
     />
   ))
   .add("Expanded", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
       expanded={true}
-      document={object("document", createTestDocument())}
+      document={object("document", data.generic)}
     />
   ))
   .add("Unicode In Name", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object(
-        "document",
-        createTestDocument({ Name: "Document Name \u0913" })
-      )}
+      document={object("document", data.unicodeInName)}
     />
   ))
   .add("Empty Name", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object("document", createTestDocument({ Name: "" }))}
+      document={object("document", data.emptyName)}
     />
   ))
   .add("Null Name", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object("document", createTestDocument({ Name: null }))}
+      document={object("document", data.nullName)}
     />
   ))
   .add("Long Document Name", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
-      document={object(
-        "document",
-        createTestDocument({
-          Name:
-            "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
-        })
-      )}
+      document={object("document", data.longName)}
     />
   ))
   .add("No Attributes", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
       expanded={true}
-      document={object("document", createTestDocument({ Attributes: null }))}
+      document={object("document", data.noAttributes)}
     />
   ))
   .add(
@@ -80,17 +90,7 @@ storiesOf("Document List Item", module)
       <DocumentListItem
         reportToggle={action("toggle")}
         expanded={true}
-        document={object(
-          "document",
-          createTestDocument({
-            Attributes: {
-              "Name with Spaces": "Attribute with Spaces",
-              "Name with Apostraphe '": "Attribute's value",
-              "This Document Has A Really Long Name For Testing":
-                "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
-            }
-          })
-        )}
+        document={object("document", data.variousAttributes)}
       />
     ),
     { knobs: { escapeHTML: false } }

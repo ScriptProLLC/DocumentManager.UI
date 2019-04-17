@@ -1,14 +1,16 @@
 import React from "react";
 import DocumentList from "./DocumentList.js";
-
+import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
+import { createTestDocumentList } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, object } from "@storybook/addon-knobs";
 
-import { createTestDocument } from "./../../util/dataHelper";
-
-import "bootstrap/dist/css/bootstrap.css";
+const data = {
+  fewDocuments: createTestDocumentList(3),
+  manyDocuments: createTestDocumentList(30)
+};
 
 storiesOf("Document List", module)
   .addDecorator(withKnobs)
@@ -31,20 +33,7 @@ storiesOf("Document List", module)
     () => (
       <DocumentList
         onSelected={action("selected")}
-        documents={[
-          object(
-            "doc 1",
-            createTestDocument({
-              Name: "Document 1"
-            })
-          ),
-          object(
-            "doc 2",
-            createTestDocument({
-              Name: "Document 2"
-            })
-          )
-        ]}
+        documents={object("documents", data.fewDocuments)}
       />
     ),
     { knobs: { escapeHTML: false } }
@@ -54,50 +43,7 @@ storiesOf("Document List", module)
     () => (
       <DocumentList
         onSelected={action("selected")}
-        documents={[
-          object(
-            "doc 1",
-            createTestDocument({
-              Name: "Document 1"
-            })
-          ),
-          object(
-            "doc 2",
-            createTestDocument({
-              Name: "Document 2"
-            })
-          ),
-          object(
-            "doc 3",
-            createTestDocument({
-              Name: "Document 3"
-            })
-          ),
-          object(
-            "doc 4",
-            createTestDocument({
-              Name: "Document 4"
-            })
-          ),
-          object(
-            "doc 5",
-            createTestDocument({
-              Name: "Document 5"
-            })
-          ),
-          object(
-            "doc 6",
-            createTestDocument({
-              Name: "Document 6"
-            })
-          ),
-          object(
-            "doc 7",
-            createTestDocument({
-              Name: "Document 7"
-            })
-          )
-        ]}
+        documents={object("documents", data.manyDocuments)}
       />
     ),
     { knobs: { escapeHTML: false } }
