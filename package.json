@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
+    "pdfjs-dist": "^2.0.943",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "pdfjs-dist": "^2.0.943",
     "react-scripts": "2.1.8",
-    "bootstrap": "^4.3.1",
     "reactstrap": "^7.1.0",
-    "font-awesome": "^4.7.0"
+    "storybook-host": "^5.0.3"
   },
   "scripts": {
     "start": "run-p start-dev start-api",

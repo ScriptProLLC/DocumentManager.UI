@@ -7,7 +7,7 @@ const documents = [
     DateCreated: "01/01/1970 09:22 AM",
     Attributes: {
       Pages: "3",
-      FileSize: "543k"
+      "File Size": "543k"
     }
   }
 ];

@@ -1,13 +1,26 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { createTestDocument } from "../../util/dataHelper";
-import { action } from "@storybook/addon-actions";
-import "bootstrap/dist/css/bootstrap.css";
 import DocumentListItem from "./DocumentListItem.js";
+
+import { storiesOf } from "@storybook/react";
+import { host } from "storybook-host";
+import { action } from "@storybook/addon-actions";
 import { withKnobs, object } from "@storybook/addon-knobs";
+
+import { createTestDocument } from "../../util/dataHelper";
+
+import "bootstrap/dist/css/bootstrap.css";
 
 storiesOf("Document List Item", module)
   .addDecorator(withKnobs)
+  .addDecorator(
+    host({
+      title: "DocumentListItem Component",
+      align: "center top",
+      height: 800,
+      width: 400,
+      border: true
+    })
+  )
   .add("Collapsed", () => (
     <DocumentListItem
       reportToggle={action("toggle")}
