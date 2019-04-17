@@ -9,15 +9,15 @@ import { createTestDocument } from "../../util/dataHelper";
 
 const data = {
   generic: createTestDocument(),
-  unicodeInName: createTestDocument({ Name: "Document Name \u0913" }),
-  emptyName: createTestDocument({ Name: "" }),
-  nullName: createTestDocument({ Name: null }),
+  unicodeInName: createTestDocument({ name: "Document Name \u0913" }),
+  emptyName: createTestDocument({ name: "" }),
+  nullName: createTestDocument({ name: null }),
   longName: createTestDocument({
-    Name:
+    name:
       "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
   }),
   variousAttributes: createTestDocument({
-    Attributes: {
+    attributes: {
       "Name with Spaces": "Attribute with Spaces",
       "Name with Apostraphe '": "Attribute's value",
       "This Document Has A Really Long Name For Testing":
@@ -25,7 +25,7 @@ const data = {
     }
   }),
   noAttributes: createTestDocument({
-    Attributes: null
+    attributes: null
   })
 };
 

@@ -2,14 +2,14 @@ const data = require("./../../tools/mockData");
 
 function createTestDocument(overrideObject) {
   var localDoc = Object.assign({}, data.documents[0]);
-  localDoc.Id = generateGuid();
+  localDoc.id = generateGuid();
   return overrideObject ? Object.assign(localDoc, overrideObject) : localDoc;
 }
 
 function createTestDocumentList(length, overrideObject) {
   var docs = [];
   for (var i = 0; i < length; i++) {
-    docs.push(createTestDocument({ Name: `Document ${i + 1}` }));
+    docs.push(createTestDocument({ name: `Document ${i + 1}` }));
   }
 
   return overrideObject ? Object.assign(docs, overrideObject) : docs;

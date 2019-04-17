@@ -14,8 +14,8 @@ import {
 function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(props.expanded);
   let listItems = {
-    ...{ "Date Created": props.document.DateCreated },
-    ...props.document.Attributes
+    ...{ "Date Created": props.document.dateCreated },
+    ...props.document.attributes
   };
 
   const toggle = () => {
@@ -59,7 +59,7 @@ function DocumentListItem(props) {
             )}
           </Button>
           <div data-testid="documentName" className="document-list-item-name">
-            {props.document.Name || "Unnamed Document"}
+            {props.document.name || "Unnamed Document"}
           </div>
         </Col>
       </Row>
@@ -81,9 +81,9 @@ function DocumentListItem(props) {
 // Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
   document: PropTypes.shape({
-    Name: PropTypes.string,
-    DateCreated: PropTypes.string.isRequired,
-    Attributes: PropTypes.object
+    name: PropTypes.string,
+    dateCreated: PropTypes.string.isRequired,
+    attributes: PropTypes.object
   })
 };
 

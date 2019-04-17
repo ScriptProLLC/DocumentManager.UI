@@ -13,15 +13,15 @@ describe("DocumentListItem component", () => {
   afterEach(cleanup);
 
   it("renders the name of the document", () => {
-    var document = createTestDocument({ Name: "Document Name" });
+    var document = createTestDocument({ name: "Document Name" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe(document.Name);
+    expect(getByTestId("documentName").textContent).toBe(document.name);
   });
 
   it("renders the name of the document with unicode characters", () => {
-    var document = createTestDocument({ Name: "\u0913" });
+    var document = createTestDocument({ name: "\u0913" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -29,7 +29,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders a default name if the name is null", () => {
-    var document = createTestDocument({ Name: null });
+    var document = createTestDocument({ name: null });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -37,7 +37,7 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders a default name if the name is empty", () => {
-    var document = createTestDocument({ Name: "" });
+    var document = createTestDocument({ name: "" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -45,17 +45,17 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders the dateCreated of the document", () => {
-    var document = createTestDocument({ DateCreated: "01/01/1970 09:22 AM" });
+    var document = createTestDocument({ dateCreated: "01/01/1970 09:22 AM" });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
     expect(getByTestId("Date Created").textContent).toBe(
-      `Date Created: ${document.DateCreated}`
+      `Date Created: ${document.dateCreated}`
     );
   });
 
   it("does not render a line for attributes if they are not included", () => {
-    var document = createTestDocument({ Attributes: null });
+    var document = createTestDocument({ attributes: null });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
@@ -64,8 +64,8 @@ describe("DocumentListItem component", () => {
 
   it("renders a field for each attribute", () => {
     var document = createTestDocument({
-      DateCreated: "01/01/1970 09:22 AM",
-      Attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
+      dateCreated: "01/01/1970 09:22 AM",
+      attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
     });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
@@ -75,13 +75,13 @@ describe("DocumentListItem component", () => {
 
   it("renders the correct text for an attribute", () => {
     var document = createTestDocument({
-      Attributes: { attr1: "Hello", attr2: "World" }
+      attributes: { attr1: "Hello", attr2: "World" }
     });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
     expect(getByTestId("attr1").textContent).toBe(
-      `attr1: ${document.Attributes.attr1}`
+      `attr1: ${document.attributes.attr1}`
     );
   });
 

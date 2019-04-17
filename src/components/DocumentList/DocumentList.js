@@ -15,7 +15,7 @@ function DocumentList(props) {
   }
 
   var children = docs.map(doc => (
-    <li key={doc.Id} data-testid={doc.Id}>
+    <li key={doc.id} data-testid={doc.id}>
       <DocumentListItem
         document={doc}
         onSelected={onSelected}
