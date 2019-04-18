@@ -3,13 +3,33 @@ import DocumentList from "./DocumentList.js";
 import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
-import { createTestDocumentList } from "./../../util/dataHelper";
+import {
+  createTestDocument,
+  createTestDocumentList
+} from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, object } from "@storybook/addon-knobs";
 
 const data = {
   fewDocuments: createTestDocumentList(3),
-  manyDocuments: createTestDocumentList(30)
+  manyDocuments: createTestDocumentList(30),
+  oneLongName: [
+    createTestDocument({ name: "DocumentList document 1" }),
+    createTestDocument({
+      name:
+        "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
+    })
+  ],
+  oneLongAttributeName: [
+    createTestDocument({ name: "DocumentList document 1" }),
+    createTestDocument({
+      name: "DocumentList document 2",
+      attributes: {
+        "This Document Has A Really Long Name For Testing":
+          "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
+      }
+    })
+  ]
 };
 
 storiesOf("Document List", module)
@@ -28,6 +48,27 @@ storiesOf("Document List", module)
     () => <DocumentList onSelected={action("selected")} documents={[]} />,
     { knobs: { escapeHTML: false } }
   )
+  .add(
+    "Few Documents, one long name",
+    () => (
+      <DocumentList
+        onSelected={action("selected")}
+        documents={object("documents", data.oneLongName)}
+      />
+    ),
+    { knobs: { escapeHTML: false } }
+  )
+  .add(
+    "Few Documents, one long attribute name",
+    () => (
+      <DocumentList
+        onSelected={action("selected")}
+        documents={object("documents", data.oneLongAttributeName)}
+      />
+    ),
+    { knobs: { escapeHTML: false } }
+  )
+
   .add(
     "Few Documents",
     () => (
