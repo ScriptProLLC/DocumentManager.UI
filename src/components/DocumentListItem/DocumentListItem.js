@@ -27,6 +27,12 @@ function DocumentListItem(props) {
     setExpanded(!expanded);
   };
 
+  const select = () => {
+    if (props.onSelected) {
+      props.onSelected(props.document.id);
+    }
+  };
+
   function displayListItems() {
     return Object.entries(listItems).map(([key, value]) => (
       <ListGroupItem
@@ -59,7 +65,11 @@ function DocumentListItem(props) {
               <i className="fa fa-caret-right fa-lg" />
             )}
           </Button>
-          <div data-testid="documentName" className="document-list-item-name">
+          <div
+            data-testid="documentName"
+            className="document-list-item-name"
+            onClick={select}
+          >
             {props.document.name || "Unnamed Document"}
           </div>
         </Col>
