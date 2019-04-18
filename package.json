@@ -25,7 +25,7 @@
     "cy-open": "cypress open",
     "cy-run": "cypress run",
     "lint": "run-p lint-js lint-css",
-    "lint-js": "eslint src/**/* cypress/integration/**/* tools/**/*",
+    "lint-js": "eslint src/**/* cypress/integration/**/* tools/**/*.js",
     "lint-css": "stylelint src/**/*.css",
     "full-test": "run-p test-once cy-run",
     "storybook": "start-storybook -p 9009 -s public",
