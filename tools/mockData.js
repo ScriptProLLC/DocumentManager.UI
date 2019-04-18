@@ -4,7 +4,7 @@ const documents = [
     documentCollectionId: "030b9d08-e102-460c-882a-6b0d562aad29",
     name: "Document 1",
     documentFile: "Base64StringHere1",
-    dateCreated: "01/01/1970 09:22 AM",
+    dateCreated: "1997-01-01T06:30:16.25",
     attributes: {
       Pages: "3",
       "File Size": "543k"

@@ -45,12 +45,14 @@ describe("DocumentListItem component", () => {
   });
 
   it("renders the dateCreated of the document", () => {
-    var document = createTestDocument({ dateCreated: "01/01/1970 09:22 AM" });
+    var document = createTestDocument({
+      dateCreated: "1997-01-01T06:30:16.25"
+    });
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
     expect(getByTestId("Date Created").textContent).toBe(
-      `Date Created: ${document.dateCreated}`
+      `Date Created: 01/01/1997 06:30 am`
     );
   });
 
@@ -64,7 +66,7 @@ describe("DocumentListItem component", () => {
 
   it("renders a field for each attribute", () => {
     var document = createTestDocument({
-      dateCreated: "01/01/1970 09:22 AM",
+      dateCreated: "1997-01-01T06:30:16.25",
       attributes: { attr1: "Hello", attr2: "World", attr3: "!" }
     });
 

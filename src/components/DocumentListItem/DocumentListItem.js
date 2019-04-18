@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./DocumentListItem.css";
 import PropTypes from "prop-types";
+import { formatDate } from "./../../util/dateFormatter";
 import {
   Collapse,
   ListGroup,
@@ -14,7 +15,7 @@ import {
 function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(props.expanded);
   let listItems = {
-    ...{ "Date Created": props.document.dateCreated },
+    ...{ "Date Created": formatDate(props.document.dateCreated) },
     ...props.document.attributes
   };
 
