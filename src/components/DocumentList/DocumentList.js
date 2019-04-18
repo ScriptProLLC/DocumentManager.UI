@@ -26,7 +26,7 @@ function DocumentList(props) {
 
   return (
     <div className="document-list-container">
-      <ul>{children}</ul>
+      <ul data-testid="documentListItems">{children}</ul>
     </div>
   );
 }
