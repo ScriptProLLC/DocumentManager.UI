@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 
@@ -28,12 +28,18 @@ function DocumentManager(props) {
     }
   ];
 
+  let [selectedDocument, setSelectedDocument] = useState(docs[0]);
+
   return (
     <div className="document-manager-container">
       <h1>Scriptpro Document Manager</h1>
       <div className="document-list-pane">
         <h3>Documents</h3>
-        <DocumentList documents={docs} />
+        <DocumentList
+          documents={docs}
+          onSelected={setSelectedDocument}
+          selectedDoc={selectedDocument}
+        />
       </div>
     </div>
   );

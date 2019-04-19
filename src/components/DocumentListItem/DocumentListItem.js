@@ -29,7 +29,7 @@ function DocumentListItem(props) {
 
   const select = () => {
     if (props.onSelected) {
-      props.onSelected(props.document.id);
+      props.onSelected(props.document);
     }
   };
 
@@ -48,7 +48,13 @@ function DocumentListItem(props) {
   }
 
   return (
-    <div className="document-list-item-container">
+    <div
+      className={
+        props.isSelected
+          ? "document-list-item-container selected"
+          : "document-list-item-container"
+      }
+    >
       {/* Document Name + Expand Button */}
       <Row>
         <Col>
@@ -78,7 +84,7 @@ function DocumentListItem(props) {
       {/* Expandable Section */}
       <Row>
         <Col>
-          <Collapse isOpen={expanded} data-testid="collapse">
+          <Collapse isOpen={expanded} data-testid="collapse" onClick={select}>
             <ListGroup data-testid="attributesList">
               {displayListItems()}
             </ListGroup>

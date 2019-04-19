@@ -7,7 +7,9 @@ function DocumentList(props) {
   let docs = props.documents;
 
   function onSelected(data) {
-    console.log(data);
+    if (props.onSelected) {
+      props.onSelected(data);
+    }
   }
 
   function reportToggle(toggleState) {
@@ -20,6 +22,7 @@ function DocumentList(props) {
         document={doc}
         onSelected={onSelected}
         reportToggle={reportToggle}
+        isSelected={props.selectedDoc ? doc.id === props.selectedDoc.id : false}
       />
     </li>
   ));
