@@ -44,13 +44,6 @@ const newViewports = {
       width: "1024px",
       height: "768px"
     }
-  },
-  device6: {
-    name: "800x600",
-    styles: {
-      width: "800px",
-      height: "600px"
-    }
   }
 };
 

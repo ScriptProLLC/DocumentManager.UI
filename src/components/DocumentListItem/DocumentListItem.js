@@ -76,6 +76,11 @@ function DocumentListItem(props) {
             className="document-list-item-name"
             onClick={select}
           >
+            {props.isSelected ? (
+              <i className="fa fa-file" />
+            ) : (
+              <i className="fa fa-file-o" />
+            )}
             {props.document.name || "Unnamed Document"}
           </div>
         </Col>

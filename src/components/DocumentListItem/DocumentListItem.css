@@ -3,11 +3,12 @@ styles so leaving here until I move to app level (which I will probably serve lo
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
 .document-list-expanded-item.list-group-item {
+  background: transparent;
   border: none;
   color: #888;
+  font-size: 0.85rem;
   padding: 0.25rem 1rem 0.25rem 2rem;
   word-break: break-all;
-  font-size: .85rem;
 }
 
 .document-list-expanded-item .fa-level-up {
@@ -48,11 +49,22 @@ styles so leaving here until I move to app level (which I will probably serve lo
 .document-list-item-name {
   display: block;
   font-size: 1.25rem;
-  padding: 0.7rem 4.5rem .5rem 1rem;
+  padding: 0.7rem 4.5rem 0.5rem 1rem;
   word-break: break-word;
 }
 
+.fa-file, .fa-file-o {
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  padding-top: 0.3rem;
+  vertical-align: text-top;
+}
+
+.fa-file {
+  color: #555;
+}
+
 .selected {
-  border-style: double;
-  border-color: darkslategray;
+  background: #f7f7f7;
+  font-weight: bold;
 }

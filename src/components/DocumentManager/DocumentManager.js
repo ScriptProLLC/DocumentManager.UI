@@ -25,6 +25,39 @@ function DocumentManager(props) {
         Pages: "4",
         "File Size": "622k"
       }
+    },
+    {
+      id: "19d210f1-d1e1-4e0d-ab75-66343423",
+      documentCollectionId: "030b9d08-e102-460c-882a-6b0d562aad29",
+      name: "Document 3",
+      documentFile: "Base64StringHere1",
+      dateCreated: "1997-01-09T09:37:15.25",
+      attributes: {
+        Pages: "4",
+        "File Size": "622k"
+      }
+    },
+    {
+      id: "19d210f1-d1e1-4e0d-ab75-1111222",
+      documentCollectionId: "030b9d08-e102-460c-882a-6b0d562aad29",
+      name: "Document 4",
+      documentFile: "Base64StringHere1",
+      dateCreated: "1997-01-09T09:37:15.25",
+      attributes: {
+        Pages: "4",
+        "File Size": "622k"
+      }
+    },
+    {
+      id: "19d210f1-d1e1-4e0d-ab75-32432",
+      documentCollectionId: "030b9d08-e102-460c-882a-6b0d562aad29",
+      name: "Document 5",
+      documentFile: "Base64StringHere1",
+      dateCreated: "1997-01-09T09:37:15.25",
+      attributes: {
+        Pages: "4",
+        "File Size": "622k"
+      }
     }
   ];
 
@@ -32,14 +65,16 @@ function DocumentManager(props) {
 
   return (
     <div className="document-manager-container">
-      <h1>Scriptpro Document Manager</h1>
       <div className="document-list-pane">
-        <h3>Documents</h3>
+        <div className="header">Document List</div>
         <DocumentList
           documents={docs}
           onSelected={setSelectedDocument}
           selectedDoc={selectedDocument}
         />
+      </div>
+      <div className="document-viewer-pane">
+        <div className="header">View Document</div>
       </div>
     </div>
   );
