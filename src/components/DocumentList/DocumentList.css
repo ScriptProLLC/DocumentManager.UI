@@ -6,6 +6,7 @@ ul {
 
 .document-list-container {
   overflow-y: auto;
+  height: calc(100% - 3.5rem);
 }
 
 /* Custom Scrollbars */

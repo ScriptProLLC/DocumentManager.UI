@@ -3,10 +3,12 @@ import DocumentManager from "./DocumentManager.js";
 import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
-import { action } from "@storybook/addon-actions";
+import { createTestDocumentList } from "./../../util/dataHelper";
 import { withKnobs, object } from "@storybook/addon-knobs";
 
-const data = {};
+const data = {
+  manyDocuments: createTestDocumentList(30)
+};
 
 storiesOf("Document Manager", module)
   .addDecorator(withKnobs)
@@ -19,4 +21,7 @@ storiesOf("Document Manager", module)
       border: true
     })
   )
-  .add("Basic", () => <DocumentManager />);
+  .add("Basic", () => <DocumentManager />)
+  .add("Lots of Docs", () => (
+    <DocumentManager documents={object("documents", data.manyDocuments)} />
+  ));
