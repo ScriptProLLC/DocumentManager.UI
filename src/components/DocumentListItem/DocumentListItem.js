@@ -65,22 +65,18 @@ function DocumentListItem(props) {
             outline
             size="sm"
           >
-            {expanded ? (
-              <i className="fa fa-caret-down fa-lg" />
-            ) : (
-              <i className="fa fa-caret-right fa-lg" />
-            )}
+            <i
+              className={
+                expanded ? "fa fa-caret-down fa-lg" : "fa fa-caret-right fa-lg"
+              }
+            />
           </Button>
           <div
             data-testid="documentName"
             className="document-list-item-name"
             onClick={select}
           >
-            {props.isSelected ? (
-              <i className="fa fa-file" />
-            ) : (
-              <i className="fa fa-file-o" />
-            )}
+            <i className={props.isSelected ? "fa fa-file" : "fa fa-file-o"} />
             {props.document.name || "Unnamed Document"}
           </div>
         </Col>
