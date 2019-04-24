@@ -68,7 +68,9 @@ function DocumentManager(props) {
   return (
     <div className="document-manager-container">
       <div className="document-list-pane">
-        <div className="header">Document List</div>
+        <div className="header" data-testid="document_list_header">
+          Document List
+        </div>
         <DocumentList
           documents={docs}
           onSelected={setSelectedDocument}
@@ -76,7 +78,9 @@ function DocumentManager(props) {
         />
       </div>
       <div className="document-viewer-pane">
-        <div className="header">View Document</div>
+        <div className="header" data-testid="document_viewer_header">
+          View Document
+        </div>
       </div>
     </div>
   );
