@@ -24,4 +24,5 @@ storiesOf("Document Manager", module)
   .add("Basic", () => <DocumentManager />)
   .add("Lots of Docs", () => (
     <DocumentManager documents={object("documents", data.manyDocuments)} />
-  ));
+  ))
+  .add("No documents", () => <DocumentManager documents={[]} />);

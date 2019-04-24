@@ -63,7 +63,7 @@ function DocumentManager(props) {
         }
       ];
 
-  let [selectedDocument, setSelectedDocument] = useState(docs[0]);
+  let [selectedDocument, setSelectedDocument] = useState(docs ? docs[0] : []);
 
   return (
     <div className="document-manager-container">
