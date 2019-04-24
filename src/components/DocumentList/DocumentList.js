@@ -16,13 +16,24 @@ function DocumentList(props) {
     console.log(toggleState);
   }
 
-  var children = docs.map(doc => (
+  function isExpanded(index) {
+    if (props.expandedItems) {
+      return (
+        props.expandedItems.find(element => {
+          return element === index + 1;
+        }) !== undefined
+      );
+    }
+  }
+
+  var children = docs.map((doc, index) => (
     <li key={doc.id} data-testid={doc.id}>
       <DocumentListItem
         document={doc}
         onSelected={onSelected}
         reportToggle={reportToggle}
         isSelected={props.selectedDoc ? doc.id === props.selectedDoc.id : false}
+        expanded={isExpanded(index)}
       />
     </li>
   ));

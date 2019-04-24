@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DocumentList from "./DocumentList.js";
 import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
@@ -32,6 +32,17 @@ const data = {
   ]
 };
 
+const selectionStateContainer = defaultValue => {
+  let [selectedDocument, setSelectedDocument] = useState(defaultValue);
+
+  const onSelected = data => {
+    action("selected");
+    setSelectedDocument(data);
+  };
+
+  return { onSelected, selectedDocument };
+};
+
 storiesOf("Document List", module)
   .addDecorator(withKnobs)
   .addDecorator(
@@ -50,42 +61,63 @@ storiesOf("Document List", module)
   )
   .add(
     "Few Documents, one long name",
-    () => (
-      <DocumentList
-        onSelected={action("selected")}
-        documents={object("documents", data.oneLongName)}
-      />
-    ),
+    () => {
+      var container = selectionStateContainer(data.oneLongName[0]);
+
+      return (
+        <DocumentList
+          onSelected={container.onSelected}
+          documents={object("documents", data.oneLongName)}
+          selectedDoc={object("selectedDoc", container.selectedDocument)}
+        />
+      );
+    },
     { knobs: { escapeHTML: false } }
   )
   .add(
     "Few Documents, one long attribute name",
-    () => (
-      <DocumentList
-        onSelected={action("selected")}
-        documents={object("documents", data.oneLongAttributeName)}
-      />
-    ),
+    () => {
+      var container = selectionStateContainer(data.oneLongAttributeName[0]);
+
+      return (
+        <DocumentList
+          onSelected={container.onSelected}
+          documents={object("documents", data.oneLongAttributeName)}
+          selectedDoc={object("selectedDoc", container.selectedDocument)}
+          expandedItems={[2]}
+        />
+      );
+    },
     { knobs: { escapeHTML: false } }
   )
 
   .add(
     "Few Documents",
-    () => (
-      <DocumentList
-        onSelected={action("selected")}
-        documents={object("documents", data.fewDocuments)}
-      />
-    ),
+    () => {
+      var container = selectionStateContainer(data.fewDocuments[0]);
+
+      return (
+        <DocumentList
+          onSelected={container.onSelected}
+          documents={object("documents", data.fewDocuments)}
+          selectedDoc={object("selectedDoc", container.selectedDocument)}
+        />
+      );
+    },
     { knobs: { escapeHTML: false } }
   )
   .add(
     "Many Documents",
-    () => (
-      <DocumentList
-        onSelected={action("selected")}
-        documents={object("documents", data.manyDocuments)}
-      />
-    ),
+    () => {
+      var container = selectionStateContainer(data.manyDocuments[0]);
+
+      return (
+        <DocumentList
+          onSelected={container.onSelected}
+          documents={object("documents", data.manyDocuments)}
+          selectedDoc={object("selectedDoc", container.selectedDocument)}
+        />
+      );
+    },
     { knobs: { escapeHTML: false } }
   );
