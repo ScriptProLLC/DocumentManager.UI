@@ -70,7 +70,7 @@ function DocumentManager(props) {
     <div className="document-manager-container">
       <div className="document-list-pane">
         <div className="header" data-testid="document_list_header">
-          Document List
+          Documents
         </div>
         <DocumentList
           documents={docs}
@@ -80,7 +80,7 @@ function DocumentManager(props) {
       </div>
       <div className="document-viewer-pane">
         <div className="header" data-testid="document_viewer_header">
-          View Document
+          Document Viewer
         </div>
         <DocumentViewer document={selectedDocument} />
       </div>
