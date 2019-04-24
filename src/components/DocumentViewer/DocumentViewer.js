@@ -12,6 +12,8 @@ function DocumentViewer(props) {
   let totalPagesCount = 0;
   let viewport = null;
 
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.worker.js`;
+
   useEffect(() => {
     var doc = props.document
       ? { data: atob(props.document.documentFile) }
