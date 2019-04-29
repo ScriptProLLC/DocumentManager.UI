@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
+import DocumentActions from "../DocumentActions/DocumentActions";
 
 function DocumentManager(props) {
   let docs = props.documents
@@ -83,6 +84,7 @@ function DocumentManager(props) {
           Document Viewer
         </div>
         <DocumentViewer document={selectedDocument} />
+        <DocumentActions document={selectedDocument} />
       </div>
     </div>
   );
