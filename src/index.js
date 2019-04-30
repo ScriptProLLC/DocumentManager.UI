@@ -10,7 +10,9 @@ if (!containsCollectionParam(document.location.href)) {
 }
 
 ReactDOM.render(
-  <DocumentManager collection={getCollectionFromUrl(document.location.href)} />,
+  <DocumentManager
+    collectionId={getCollectionFromUrl(document.location.href)}
+  />,
   document.getElementById("root")
 );
 

@@ -13,7 +13,7 @@ function DocumentManager(props) {
   useEffect(() => {
     const load = async () => {
       if (!documents) {
-        const result = await getDocuments(props.collection, true);
+        const result = await getDocuments(props.collectionId);
         setDocuments(result);
         setSelectedDocument(result[0] || null);
       } else {
