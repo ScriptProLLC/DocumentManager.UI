@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForDomChange
-} from "react-testing-library";
+import { render, cleanup } from "react-testing-library";
 import "jest-dom/extend-expect";
 import {
   createTestDocument,
@@ -16,7 +11,7 @@ describe("DocumentManager component", () => {
   afterEach(cleanup);
 
   it("renders the correct amount of items", () => {
-    var documents = createTestDocumentList(8);
+    const documents = createTestDocumentList(8);
 
     const { getByTestId } = render(<DocumentManager documents={documents} />);
 
@@ -24,7 +19,7 @@ describe("DocumentManager component", () => {
   });
 
   it("renders the document list", () => {
-    var document = createTestDocument();
+    const document = createTestDocument();
 
     const { getByTestId } = render(<DocumentManager documents={[document]} />);
 
