@@ -6,7 +6,7 @@ import DocumentActions from "../DocumentActions/DocumentActions";
 import { getDocuments } from "./../../api/docManagerApi";
 
 function DocumentManager(props) {
-  let [documents, setDocuments] = useState(props.documents || null);
+  let [documents, setDocuments] = useState(null);
   let [isLoading, setIsLoading] = useState(true);
   let [selectedDocument, setSelectedDocument] = useState(null);
 
@@ -16,10 +16,8 @@ function DocumentManager(props) {
         const result = await getDocuments(props.collectionId);
         setDocuments(result);
         setSelectedDocument(result[0] || null);
-      } else {
-        setSelectedDocument(documents[0]);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     load();

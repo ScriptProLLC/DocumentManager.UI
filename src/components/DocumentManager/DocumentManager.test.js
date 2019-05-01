@@ -1,45 +1,48 @@
 import React from "react";
-import { render, cleanup } from "react-testing-library";
+import { render, cleanup, waitForElement } from "react-testing-library";
 import "jest-dom/extend-expect";
-import {
-  createTestDocument,
-  createTestDocumentList
-} from "../../util/dataHelper";
 import DocumentManager from "./DocumentManager";
+import { act } from "react-dom/test-utils";
+
+jest.mock("axios");
 
 describe("DocumentManager component", () => {
   afterEach(cleanup);
 
-  it("renders the correct amount of items", () => {
-    const documents = createTestDocumentList(8);
+  it("renders the correct amount of items", async () => {
+    const { getByTestId } = render(
+      <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"} />
+    );
 
-    const { getByTestId } = render(<DocumentManager documents={documents} />);
+    const documentList = await waitForElement(() =>
+      getByTestId("documentListItems")
+    );
 
-    expect(getByTestId("documentListItems").childElementCount).toBe(8);
+    expect(documentList.childElementCount).toBe(2);
   });
 
-  it("renders the document list", () => {
-    const document = createTestDocument();
+  it("renders the document list", async () => {
+    const { getByTestId } = render(
+      <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"} />
+    );
 
-    const { getByTestId } = render(<DocumentManager documents={[document]} />);
+    const documentList = await waitForElement(() =>
+      getByTestId("documentListItems")
+    );
 
-    expect(getByTestId("documentListItems")).toBeTruthy();
+    expect(documentList).toBeTruthy();
   });
 
   it("renders the document viewer", () => {});
 
   it("renders the document list header text", () => {
-    var document = createTestDocument();
-
-    const { getByTestId } = render(<DocumentManager documents={[document]} />);
+    const { getByTestId } = render(<DocumentManager />);
 
     expect(getByTestId("document_list_header")).toBeTruthy();
   });
 
   it("renders the document viewer header text", () => {
-    var document = createTestDocument();
-
-    const { getByTestId } = render(<DocumentManager documents={[document]} />);
+    const { getByTestId } = render(<DocumentManager />);
 
     expect(getByTestId("document_viewer_header")).toBeTruthy();
   });
