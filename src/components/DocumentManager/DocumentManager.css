@@ -15,11 +15,13 @@
 }
 
 .header {
-  background: #198ec6;
-  background: -moz-linear-gradient(top, #198ec6 0%, #2d4194 100%);
-  background: -webkit-linear-gradient(top, #198ec6 0%,#2d4194 100%);
-  background: linear-gradient(to bottom, #198ec6 0%,#2d4194 100%);
+  background: #208fc6;
+  background: -moz-linear-gradient(top, #208fc6 0%, #315c9a 100%);
+  background: -webkit-linear-gradient(top, #208fc6 0%, #315c9a 100%);
+  background: linear-gradient(to bottom, #208fc6 0%, #315c9a 100%);
+  box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.25);
   color: white;
+  font-family: "Quicksand", Helvetica, sans-serif;
   font-size: 1.4rem;
   font-weight: normal;
   height: 3.5rem;

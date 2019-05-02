@@ -41,23 +41,25 @@ styles so leaving here until I move to app level (which I will probably serve lo
 }
 
 /* On Document Hover, Change Background And Cursor - Will Be Needed When Click Opens Document */
-.document-list-item-container:hover, .document-list-item-container:hover .list-group-item {
-  background: #f7f7f7;
+.document-list-item-container:hover,
+.document-list-item-container:hover .list-group-item {
+  background: #eee;
   cursor: pointer;
 }
 
 .document-list-item-name {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 0.7rem 4.5rem 0.5rem 1rem;
   word-break: break-word;
 }
 
-.fa-file, .fa-file-o {
+.fa-file,
+.fa-file-o {
   font-size: 1rem;
   margin-right: 0.75rem;
   padding-top: 0.3rem;
-  vertical-align: text-top;
+  vertical-align: inherit;
 }
 
 .fa-file {
@@ -65,6 +67,6 @@ styles so leaving here until I move to app level (which I will probably serve lo
 }
 
 .selected {
-  background: #f7f7f7;
+  background: #eee;
   font-weight: bold;
 }
