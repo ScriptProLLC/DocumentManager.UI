@@ -19,7 +19,6 @@ function DocumentManager(props) {
         setIsLoading(false);
       }
     };
-
     load();
   }, []);
 
@@ -43,9 +42,7 @@ function DocumentManager(props) {
         <div className="header" data-testid="document_viewer_header">
           Document Viewer
         </div>
-        {
-          //<DocumentViewer document={selectedDocument} />
-        }
+        <DocumentViewer document={selectedDocument} />
         <DocumentActions document={selectedDocument} />
       </div>
     </div>
