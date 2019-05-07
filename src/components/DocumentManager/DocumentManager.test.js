@@ -7,7 +7,10 @@ import { act } from "react-dom/test-utils";
 jest.mock("axios");
 
 describe("DocumentManager component", () => {
-  afterEach(cleanup);
+  afterEach(() => {
+    cleanup();
+    jest.clearAllMocks();
+  });
 
   it("renders the correct amount of items", async () => {
     const { getByTestId } = render(

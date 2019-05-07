@@ -5,18 +5,18 @@ import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, object } from "@storybook/addon-knobs";
-import { createTestDocument } from "../../util/dataHelper";
+import { createTestCollectionDocument } from "../../util/dataHelper";
 
 const data = {
-  generic: createTestDocument(),
-  unicodeInName: createTestDocument({ name: "Document Name \u0913" }),
-  emptyName: createTestDocument({ name: "" }),
-  nullName: createTestDocument({ name: null }),
-  longName: createTestDocument({
+  generic: createTestCollectionDocument(),
+  unicodeInName: createTestCollectionDocument({ name: "Document Name \u0913" }),
+  emptyName: createTestCollectionDocument({ name: "" }),
+  nullName: createTestCollectionDocument({ name: null }),
+  longName: createTestCollectionDocument({
     name:
       "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
   }),
-  variousAttributes: createTestDocument({
+  variousAttributes: createTestCollectionDocument({
     attributes: {
       "Name with Spaces": "Attribute with Spaces",
       "Name with Apostraphe '": "Attribute's value",
@@ -24,7 +24,7 @@ const data = {
         "ThisDocumentHasAReallyLongAttributeForTestingBecausePeopleWillNaturallyCreateStringsThatAreRidiculouslyTooLongSoItMakesSenseToTestAllCasesForSure"
     }
   }),
-  noAttributes: createTestDocument({
+  noAttributes: createTestCollectionDocument({
     attributes: null
   })
 };

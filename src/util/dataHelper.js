@@ -6,6 +6,13 @@ function createTestDocument(overrideObject) {
   return overrideObject ? Object.assign(localDoc, overrideObject) : localDoc;
 }
 
+function createTestCollectionDocument(overrideObject) {
+  var localDoc = Object.assign({}, data.documents[0]);
+  localDoc.id = generateGuid();
+  localDoc.documentFile = null;
+  return overrideObject ? Object.assign(localDoc, overrideObject) : localDoc;
+}
+
 function createTestDocumentList(length, overrideObject) {
   var docs = [];
   for (var i = 0; i < length; i++) {
@@ -25,5 +32,6 @@ function generateGuid() {
 
 module.exports = {
   createTestDocument,
+  createTestCollectionDocument,
   createTestDocumentList
 };

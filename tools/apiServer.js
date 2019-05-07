@@ -19,6 +19,11 @@ const router = jsonServer.router(path.join(__dirname, "db.json"));
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
 const middlewares = jsonServer.defaults();
 
+const fileToBeRemoved = url => {
+  var matchCondition = url.split("=");
+  return matchCondition[0] === "/documents?documentCollectionId";
+};
+
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
 
@@ -38,6 +43,18 @@ server.use(
 );
 // Use default router
 server.use(router);
+
+router.render = function(req, res) {
+  if (fileToBeRemoved(req.url)) {
+    var data = res.locals.data;
+    for (var i = 0; i < res.locals.data.length; i++) {
+      data[i].documentFile = null;
+    }
+    res.jsonp(data);
+  } else {
+    res.jsonp(res.locals.data);
+  }
+};
 
 // Start server
 const port = 3001;
