@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PDFViewer from "./PDFViewer";
 import { DocumentViewerContext } from "./DocumentViewerContext";
+import DocumentActions from "../DocumentActions/DocumentActions";
 import "./DocumentViewer.css";
 
 function DocumentViewer(props) {
@@ -11,7 +12,7 @@ function DocumentViewer(props) {
 
   function render() {
     if (!pdfDocument) {
-      return <div> Loading... </div>;
+      return <div className="document-viewer-container"> Loading... </div>;
     } else {
       return (
         <DocumentViewerContext.Provider
@@ -19,8 +20,9 @@ function DocumentViewer(props) {
             documentFile
           }}
         >
-          <div>
+          <div className="document-viewer-container">
             <PDFViewer />
+            <DocumentActions document={pdfDocument} />
           </div>
         </DocumentViewerContext.Provider>
       );

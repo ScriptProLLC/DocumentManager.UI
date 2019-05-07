@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
-import DocumentActions from "../DocumentActions/DocumentActions";
 import { getDocuments } from "./../../api/docManagerApi";
 
 function DocumentManager(props) {
@@ -43,7 +42,6 @@ function DocumentManager(props) {
           Document Viewer
         </div>
         <DocumentViewer document={selectedDocument} />
-        <DocumentActions document={selectedDocument} />
       </div>
     </div>
   );

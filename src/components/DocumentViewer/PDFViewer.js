@@ -21,17 +21,16 @@ function PDFViewer() {
   }, [isFrameLoaded, documentFile]);
 
   return (
-    <div className="container-fluid">
-      <iframe
-        title="pdfjs"
-        className="pdfjs"
-        src="/pdfjs-2.0.943-dist/web/viewer.html?file="
-        frameBorder="0"
-        width="100%"
-        ref={iFrameRef}
-        onLoad={() => setIsFrameLoaded(true)}
-      />
-    </div>
+    <iframe
+      title="pdfjs"
+      className="pdfjs"
+      src="/pdfjs-2.0.943-dist/web/viewer.html?file="
+      frameBorder="0"
+      width="100%"
+      height="100%"
+      ref={iFrameRef}
+      onLoad={() => setIsFrameLoaded(true)}
+    />
   );
 }
 

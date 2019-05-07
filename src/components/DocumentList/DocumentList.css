@@ -11,7 +11,7 @@ ul {
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -20,6 +20,7 @@ ul {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #208fc6;
+  background: #ddd;
   border-radius: 0.5rem;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 0.5rem rgba(0, 0, 0, 0.25);
 }
