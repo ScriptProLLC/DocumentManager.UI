@@ -26,17 +26,21 @@ function DocumentList(props) {
     }
   }
 
-  var children = docs.map((doc, index) => (
-    <li key={doc.id} data-testid={doc.id}>
-      <DocumentListItem
-        document={doc}
-        onSelected={onSelected}
-        reportToggle={reportToggle}
-        isSelected={props.selectedDoc ? doc.id === props.selectedDoc.id : false}
-        expanded={isExpanded(index)}
-      />
-    </li>
-  ));
+  var children = docs
+    ? docs.map((doc, index) => (
+        <li key={doc.id} data-testid={doc.id}>
+          <DocumentListItem
+            document={doc}
+            onSelected={onSelected}
+            reportToggle={reportToggle}
+            isSelected={
+              props.selectedDoc ? doc.id === props.selectedDoc.id : false
+            }
+            expanded={isExpanded(index)}
+          />
+        </li>
+      ))
+    : null;
 
   return (
     <div className="document-list-container">

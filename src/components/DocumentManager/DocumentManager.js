@@ -11,10 +11,12 @@ function DocumentManager(props) {
 
   useEffect(() => {
     const load = async () => {
-      if (!documents) {
+      if (!documents && props.collectionId) {
         const result = await getDocuments(props.collectionId);
         setDocuments(result);
         setSelectedDocument(result[0] || null);
+        setIsLoading(false);
+      } else {
         setIsLoading(false);
       }
     };

@@ -26,7 +26,7 @@ describe("DocumentManager", () => {
             $selectedElement => {
               var spanName = $selectedElement[0].innerText;
 
-              expect(elemToTest.innerText).to.equal(spanName);
+              expect(elemToTest.innerText.trim()).to.equal(spanName.trim());
             }
           );
         }
