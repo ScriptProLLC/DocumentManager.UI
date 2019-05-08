@@ -38,6 +38,7 @@ server.use(function(req, res, next) {
 // Declaring custom routes below. Add custom routes before JSON Server router
 server.use(
   jsonServer.rewriter({
+    "/api/docmanager/*": "/$1",
     "/collections/:id/documents": "/documents?documentCollectionId=:id"
   })
 );
@@ -57,7 +58,7 @@ router.render = function(req, res) {
 };
 
 // Start server
-const port = 3001;
+const port = 13005;
 server.listen(port, () => {
   console.log(`JSON Server is running on port ${port}`);
 });

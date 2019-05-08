@@ -25,6 +25,7 @@
     "test-once": "react-scripts test --no-watch --reporters=default --reporters=jest-junit",
     "cy-open": "cypress open",
     "cy-run": "cypress run",
+    "cy-test": "run-p -r cy-run start-api",
     "lint": "run-p lint-js lint-css",
     "lint-js": "eslint src/**/* tools/**/*.js",
     "lint-css": "stylelint src/**/*.css",

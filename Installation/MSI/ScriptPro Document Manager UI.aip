@@ -9,9 +9,11 @@
     <ROW Property="AI_REQUIRED_IIS_DISPLAY" MultiBuildValue="DefaultBuild:7.5" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_IIS_VERSION" MultiBuildValue="DefaultBuild:07.5" ValueLocId="-"/>
     <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="API.ADDRESS" Value="http://localhost:13005"/>
     <ROW Property="ARPCOMMENTS" Value="This installer contains the logic and data required to run [|ProductName] v[|ProductVersion]." ValueLocId="*"/>
     <ROW Property="HTTP.PORT" Value="13006"/>
-    <ROW Property="MATCH.URL" Value="DocumentManagerUI(/.*)"/>
+    <ROW Property="MATCH.URL.API" Value="(api/docmanager/.*)"/>
+    <ROW Property="MATCH.URL.UI" Value="DocumentManagerUI(/.*)"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="ScriptPro LLC"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
@@ -490,7 +492,7 @@
     <ROW File="annotationparagraph.svg" Component_="pdfJS_Images" FileName="ANNOTA~9.SVG|annotation-paragraph.svg" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\annotation-paragraph.svg" SelfReg="false" NextFile="findbarButtonnextrtl.png"/>
     <ROW File="chunk.css" Component_="chunk.css" FileName="206017~1.CSS|2.06017638.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\2.06017638.chunk.css" SelfReg="false" NextFile="runtimemain.d653cc00.js"/>
     <ROW File="debugger.js" Component_="pdfJS_Web" FileName="debugger.js" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\debugger.js" SelfReg="false" NextFile="annotationcheck.svg"/>
-    <ROW File="e58eaa29.chunk.js" Component_="d071e673.chunk.js" FileName="2E58EA~1.JS|2.e58eaa29.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\2.e58eaa29.chunk.js" SelfReg="false" NextFile="main.28bd3bd7.chunk.js"/>
+    <ROW File="f9e.chunk.js" Component_="d071e673.chunk.js" FileName="258920~1.JS|2.58920f9e.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\2.58920f9e.chunk.js" SelfReg="false" NextFile="main.911d087d.chunk.js"/>
     <ROW File="favicon.ico" Component_="favicon.ico" FileName="favicon.ico" Attributes="0" SourcePath="..\..\build\favicon.ico" SelfReg="false" NextFile="index.html"/>
     <ROW File="findbarButtonnext.png" Component_="pdfJS_Images" FileName="FINDBA~3.PNG|findbarButton-next.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\findbarButton-next.png" SelfReg="false" NextFile="findbarButtonnext2x.png"/>
     <ROW File="findbarButtonnext2x.png" Component_="pdfJS_Images" FileName="FINDBA~4.PNG|findbarButton-next@2x.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\findbarButton-next@2x.png" SelfReg="false" NextFile="findbarButtonpreviousrtl.png"/>
@@ -510,8 +512,8 @@
     <ROW File="loadingsmall.png" Component_="pdfJS_Images" FileName="LOADIN~1.PNG|loading-small.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\loading-small.png" SelfReg="false" NextFile="loadingsmall2x.png"/>
     <ROW File="loadingsmall2x.png" Component_="pdfJS_Images" FileName="LOADIN~2.PNG|loading-small@2x.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\loading-small@2x.png" SelfReg="false" NextFile="secondaryToolbarButtondocumentProperties.png"/>
     <ROW File="locale.properties" Component_="pdfJS_locale" FileName="LOCALE~1.PRO|locale.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\locale.properties" SelfReg="false" NextFile="viewer.properties_69"/>
-    <ROW File="main.28bd3bd7.chunk.js" Component_="d071e673.chunk.js" FileName="MAIN28~1.JS|main.28bd3bd7.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\main.28bd3bd7.chunk.js" SelfReg="false"/>
-    <ROW File="main.aaf4d915.chunk.css" Component_="chunk.css" FileName="MAINAA~1.CSS|main.aaf4d915.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\main.aaf4d915.chunk.css" SelfReg="false" NextFile="e58eaa29.chunk.js"/>
+    <ROW File="main.911d087d.chunk.js" Component_="d071e673.chunk.js" FileName="MAIN91~1.JS|main.911d087d.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\main.911d087d.chunk.js" SelfReg="false"/>
+    <ROW File="main.aaf4d915.chunk.css" Component_="chunk.css" FileName="MAINAA~1.CSS|main.aaf4d915.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\main.aaf4d915.chunk.css" SelfReg="false" NextFile="precachemanifest.6a1403ef56b995e3aa61351c02c5a196.js"/>
     <ROW File="msRKSJH.bcmap" Component_="pdfJS_Cmaps" FileName="78MS-R~1.BCM|78ms-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\78ms-RKSJ-H.bcmap" SelfReg="false" NextFile="msRKSJV.bcmap"/>
     <ROW File="msRKSJH.bcmap_1" Component_="pdfJS_Cmaps" FileName="90MS-R~1.BCM|90ms-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\90ms-RKSJ-H.bcmap" SelfReg="false" NextFile="msRKSJV.bcmap_1"/>
     <ROW File="msRKSJV.bcmap" Component_="pdfJS_Cmaps" FileName="78MS-R~2.BCM|78ms-RKSJ-V.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\78ms-RKSJ-V.bcmap" SelfReg="false" NextFile="pvRKSJH.bcmap"/>
@@ -522,7 +524,7 @@
     <ROW File="pdf.js.map" Component_="pdfJS" FileName="PDFJS~1.MAP|pdf.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\build\pdf.js.map" SelfReg="false" NextFile="pdf.worker.js"/>
     <ROW File="pdf.worker.js" Component_="pdfJS" FileName="PDFWOR~1.JS|pdf.worker.js" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\build\pdf.worker.js" SelfReg="false" NextFile="pdf.worker.js.map"/>
     <ROW File="pdf.worker.js.map" Component_="pdfJS" FileName="PDFWOR~1.MAP|pdf.worker.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\build\pdf.worker.js.map" SelfReg="false" NextFile="LICENSE"/>
-    <ROW File="precachemanifest.a86eac2448402c54bccca76e93343c09.js" Component_="favicon.ico" FileName="PRECAC~2.JS|precache-manifest.a86eac2448402c54bccca76e93343c09.js" Attributes="0" SourcePath="..\..\build\precache-manifest.a86eac2448402c54bccca76e93343c09.js" SelfReg="false" NextFile="main.aaf4d915.chunk.css"/>
+    <ROW File="precachemanifest.6a1403ef56b995e3aa61351c02c5a196.js" Component_="favicon.ico" FileName="PRECAC~1.JS|precache-manifest.6a1403ef56b995e3aa61351c02c5a196.js" Attributes="0" SourcePath="..\..\build\precache-manifest.6a1403ef56b995e3aa61351c02c5a196.js" SelfReg="false" NextFile="f9e.chunk.js"/>
     <ROW File="pvRKSJH.bcmap" Component_="pdfJS_Cmaps" FileName="83PV-R~1.BCM|83pv-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\83pv-RKSJ-H.bcmap" SelfReg="false" NextFile="msRKSJH.bcmap_1"/>
     <ROW File="pvRKSJH.bcmap_1" Component_="pdfJS_Cmaps" FileName="90PV-R~1.BCM|90pv-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\90pv-RKSJ-H.bcmap" SelfReg="false" NextFile="pvRKSJV.bcmap"/>
     <ROW File="pvRKSJV.bcmap" Component_="pdfJS_Cmaps" FileName="90PV-R~2.BCM|90pv-RKSJ-V.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\90pv-RKSJ-V.bcmap" SelfReg="false" NextFile="AddH.bcmap"/>
@@ -607,7 +609,7 @@
     <ROW File="viewer.css" Component_="pdfJS_Web" FileName="viewer.css" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.css" SelfReg="false" NextFile="viewer.html"/>
     <ROW File="viewer.html" Component_="pdfJS_Web" FileName="VIEWER~1.HTM|viewer.html" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.html" SelfReg="false" NextFile="viewer.js"/>
     <ROW File="viewer.js" Component_="pdfJS_Web" FileName="viewer.js" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.js" SelfReg="false" NextFile="viewer.js.map"/>
-    <ROW File="viewer.js.map" Component_="pdfJS_Web" FileName="VIEWER~1.MAP|viewer.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.js.map" SelfReg="false" NextFile="precachemanifest.a86eac2448402c54bccca76e93343c09.js"/>
+    <ROW File="viewer.js.map" Component_="pdfJS_Web" FileName="VIEWER~1.MAP|viewer.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.js.map" SelfReg="false" NextFile="main.aaf4d915.chunk.css"/>
     <ROW File="viewer.properties" Component_="pdfJS_properties" FileName="VIEWER~1.PRO|viewer.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\ach\viewer.properties" SelfReg="false" NextFile="viewer.properties_1"/>
     <ROW File="viewer.properties_1" Component_="pdfJS_properties_1" FileName="VIEWER~1.PRO|viewer.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\af\viewer.properties" SelfReg="false" NextFile="viewer.properties_2"/>
     <ROW File="viewer.properties_10" Component_="pdfJS_properties_10" FileName="VIEWER~1.PRO|viewer.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\bn-BD\viewer.properties" SelfReg="false" NextFile="viewer.properties_11"/>
@@ -908,21 +910,34 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
     <ROW XmlAttribute="name" XmlElement="rule" Name="name" Flags="15" Order="0" Value="[SITE.NAME]-[HTTP.PORT]"/>
+    <ROW XmlAttribute="name_1" XmlElement="rule_1" Name="name" Flags="15" Order="0" Value="[API.ADDRESS]"/>
     <ROW XmlAttribute="stopProcessing" XmlElement="rule" Name="stopProcessing" Flags="14" Order="1" Value="true"/>
+    <ROW XmlAttribute="stopProcessing_1" XmlElement="rule_1" Name="stopProcessing" Flags="14" Order="1" Value="true"/>
     <ROW XmlAttribute="type" XmlElement="action" Name="type" Flags="14" Order="0" Value="Rewrite"/>
+    <ROW XmlAttribute="type_1" XmlElement="action_1" Name="type" Flags="14" Order="0" Value="Rewrite"/>
     <ROW XmlAttribute="url" XmlElement="action" Name="url" Flags="14" Order="1" Value="http://localhost:[HTTP.PORT]/{R:1}"/>
-    <ROW XmlAttribute="url_1" XmlElement="match" Name="url" Flags="14" Order="0" Value="[MATCH.URL]"/>
+    <ROW XmlAttribute="url_1" XmlElement="match" Name="url" Flags="14" Order="0" Value="[MATCH.URL.UI]"/>
+    <ROW XmlAttribute="url_2" XmlElement="action_1" Name="url" Flags="14" Order="1" Value="[API.ADDRESS]/{R:1}"/>
+    <ROW XmlAttribute="url_3" XmlElement="match_1" Name="url" Flags="14" Order="0" Value="[MATCH.URL.API]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
     <ROW XmlElement="action" ParentElement="rule" Name="action" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="action_1" ParentElement="rule_1" Name="action" Condition="1" Order="1" Flags="14"/>
     <ROW XmlElement="configuration" Name="configuration" Condition="1" Order="0" Flags="30"/>
+    <ROW XmlElement="configuration_1" Name="configuration" Condition="1" Order="0" Flags="30"/>
     <ROW XmlElement="match" ParentElement="rule" Name="match" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="match_1" ParentElement="rule_1" Name="match" Condition="1" Order="0" Flags="14"/>
     <ROW XmlElement="rewrite" ParentElement="system.webServer" Name="rewrite" Condition="1" Order="0" Flags="12"/>
+    <ROW XmlElement="rewrite_1" ParentElement="system.webServer_1" Name="rewrite" Condition="1" Order="0" Flags="12"/>
     <ROW XmlElement="rule" ParentElement="rules" Name="rule" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="rule_1" ParentElement="rules_1" Name="rule" Condition="1" Order="0" Flags="14"/>
     <ROW XmlElement="rules" ParentElement="rewrite" Name="rules" Condition="1" Order="0" Flags="12"/>
+    <ROW XmlElement="rules_1" ParentElement="rewrite_1" Name="rules" Condition="1" Order="0" Flags="12"/>
     <ROW XmlElement="system.webServer" ParentElement="configuration" Name="system.webServer" Condition="1" Order="0" Flags="12"/>
+    <ROW XmlElement="system.webServer_1" ParentElement="configuration_1" Name="system.webServer" Condition="1" Order="0" Flags="12"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlFileComponent">
     <ROW XmlFile="web.config" FileName="WEB~1.CON|web.config" DirProperty="www_Dir" Component="SPCentral_Registry" RootElement="configuration" Flags="73" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="web.config_1" FileName="WEB~1.CON|web.config" DirProperty="DocumentManagerUI_Dir" Component="favicon.ico" RootElement="configuration_1" Flags="73" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
   </COMPONENT>
 </DOCUMENT>
