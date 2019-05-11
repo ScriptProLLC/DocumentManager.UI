@@ -4,30 +4,26 @@ import "./ModalDialog.css";
 import PropTypes from "prop-types";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-function ModalDialog(props) {
-  let header = props.header || "Alert";
-  let iconStyle = props.iconStyle || "Warning";
-  let cancelPrompt = props.cancelPrompt || "Cancel";
-  let confirmPrompt = props.confirmPrompt || "Confirm";
-
+function ModalDialog({
+  header,
+  iconStyle,
+  cancelPrompt,
+  confirmPrompt,
+  reportResult,
+  toggle,
+  showDialog,
+  prompt
+}) {
   function confirmClick() {
-    if (props.reportResult) {
-      props.reportResult(props.confirmPrompt);
-    }
+    if (reportResult) reportResult(confirmPrompt);
   }
 
   function cancelClick() {
-    if (props.reportResult) {
-      props.reportResult(props.cancelPrompt);
-    }
+    if (reportResult) reportResult(cancelPrompt);
   }
 
-  const toggle = () => {
-    if (props.toggle) {
-      props.toggle();
-    } else {
-      props.reportResult(props.cancelPrompt);
-    }
+  const handleToggle = () => {
+    toggle ? toggle() : reportResult(cancelPrompt);
   };
 
   const iconStyleCheck = style => {
@@ -36,7 +32,7 @@ function ModalDialog(props) {
 
   return (
     <div>
-      <Modal isOpen={props.showDialog} toggle={toggle}>
+      <Modal isOpen={showDialog} toggle={handleToggle}>
         <ModalHeader toggle={toggle}>{header}</ModalHeader>
         <ModalBody>
           <span className={iconStyleCheck("Info")}>
@@ -51,7 +47,7 @@ function ModalDialog(props) {
           </span>
           <span>
             &nbsp;
-            {props.prompt}
+            {prompt}
           </span>
         </ModalBody>
         <ModalFooter>
@@ -70,9 +66,19 @@ function ModalDialog(props) {
 // Define PropTypes For Document List Item
 ModalDialog.propTypes = {
   header: PropTypes.string,
-  prompt: PropTypes.string,
+  prompt: PropTypes.string.isRequired,
   confirmPrompt: PropTypes.string,
-  cancelPrompt: PropTypes.string
+  cancelPrompt: PropTypes.string,
+  iconStyle: PropTypes.oneOf(["Warning", "Info", "Error"]),
+  reportResult: PropTypes.func
+};
+
+ModalDialog.defaultProps = {
+  header: "Alert",
+  iconStyle: "Warning",
+  cancelPrompt: "Cancel",
+  confirmPrompt: "Confirm",
+  reportResult: null
 };
 
 export default ModalDialog;
