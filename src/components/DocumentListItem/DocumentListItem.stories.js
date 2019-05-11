@@ -1,6 +1,5 @@
 import React from "react";
 import DocumentListItem from "./DocumentListItem.js";
-import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import { action } from "@storybook/addon-actions";

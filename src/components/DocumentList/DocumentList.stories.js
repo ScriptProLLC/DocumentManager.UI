@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import DocumentList from "./DocumentList.js";
-import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import {
