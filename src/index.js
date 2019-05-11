@@ -5,9 +5,12 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DocumentManager from "./components/DocumentManager";
 import { getCollectionFromUrl } from "./util/url";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 ReactDOM.render(
-  <DocumentManager collectionId={getCollectionFromUrl()} />,
+  <ErrorBoundary>
+    <DocumentManager collectionId={getCollectionFromUrl()} />
+  </ErrorBoundary>,
   document.getElementById("root")
 );
 
