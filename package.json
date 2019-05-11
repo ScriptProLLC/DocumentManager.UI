@@ -22,6 +22,7 @@
     "prestart-api": "node tools/createMockDb.js",
     "start-api": "node tools/apiServer.js",
     "test-once": "react-scripts test --no-watch --reporters=default --reporters=jest-junit",
+    "cy": "run-p start cy-open",
     "cy-open": "cypress open",
     "cy-run": "cypress run",
     "cy-test": "run-p -r cy-run start-api",
