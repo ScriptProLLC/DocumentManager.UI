@@ -1,3 +1,4 @@
+// Why not use an ES import?
 const data = require("./../../tools/mockData");
 
 function createTestDocument(overrideObject) {
@@ -30,6 +31,7 @@ function generateGuid() {
   return _p8() + _p8(true) + _p8(true) + _p8();
 }
 
+// Why not use the export keyword on the public function above?
 module.exports = {
   createTestDocument,
   createTestCollectionDocument,
