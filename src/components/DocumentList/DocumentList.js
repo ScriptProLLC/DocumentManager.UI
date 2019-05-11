@@ -1,12 +1,13 @@
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./DocumentList.css";
-import DocumentListItem from "../DocumentListItem/DocumentListItem";
+import DocumentListItem from "../DocumentListItem";
 
 function DocumentList(props) {
   let docs = props.documents;
 
   function onSelected(data) {
+    // Why check for this? It should be required, since it's necessary for the app to work.
     if (props.onSelected) {
       props.onSelected(data);
     }
