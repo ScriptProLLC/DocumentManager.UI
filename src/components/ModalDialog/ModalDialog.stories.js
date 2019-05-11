@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import ModalDialog from "./ModalDialog";
@@ -14,7 +13,7 @@ storiesOf("ModalDialog", module)
     <ModalDialog
       showDialog={boolean("showDialog", true)}
       toggle={() => {}}
-      iconStyle={text("iconStyle", "Warning")}
+      iconStyle={text("iconStyle", "warning")}
       cancelPrompt={text("cancelPrompt", "No")}
       reportResult={reportResult}
       confirmPrompt={text("confirmPrompt", "Yes")}
