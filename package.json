@@ -17,7 +17,7 @@
   "scripts": {
     "start": "run-p start-dev start-api",
     "start-dev": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --stats && webpack-bundle-analyzer build/bundle-stats.json -m server",
     "prebuild": "npm run lint",
     "test": "react-scripts test",
     "prestart-api": "node tools/createMockDb.js",
@@ -75,6 +75,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^1.16.4",
     "react-testing-library": "^6.0.3",
-    "stylelint": "^9.10.1"
+    "stylelint": "^9.10.1",
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }
