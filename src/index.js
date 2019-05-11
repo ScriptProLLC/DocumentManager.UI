@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DocumentManager from "./components/DocumentManager/DocumentManager";
+import DocumentManager from "./components/DocumentManager";
 import { getCollectionFromUrl } from "./util/url";
 
 ReactDOM.render(
