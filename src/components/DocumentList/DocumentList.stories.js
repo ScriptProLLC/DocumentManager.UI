@@ -7,7 +7,7 @@ import {
   createTestDocumentList
 } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, object } from "@storybook/addon-knobs";
+import { object } from "@storybook/addon-knobs";
 
 const data = {
   fewDocuments: createTestDocumentList(3),
@@ -43,7 +43,6 @@ const selectionStateContainer = defaultValue => {
 };
 
 storiesOf("Document List", module)
-  .addDecorator(withKnobs)
   .addDecorator(
     host({
       title: "DocumentList Component",

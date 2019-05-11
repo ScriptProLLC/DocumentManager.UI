@@ -29,7 +29,6 @@ const data = {
 };
 
 storiesOf("Document List Item", module)
-  .addDecorator(withKnobs)
   .addDecorator(
     host({
       title: "DocumentListItem Component",

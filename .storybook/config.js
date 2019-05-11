@@ -1,9 +1,13 @@
-import { configure } from "@storybook/react";
+import { configure, addDecorator } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
 import "@storybook/addon-console";
 import { themes } from "@storybook/theming";
 import { addParameters } from "@storybook/react";
 
 const req = require.context("../src/components", true, /\.stories\.js$/);
+
+// Enable knobs for all stories
+addDecorator(withKnobs);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));

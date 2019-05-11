@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { text, boolean } from "@storybook/addon-knobs";
 import ModalDialog from "./ModalDialog";
 
 function reportResult(result) {
@@ -8,7 +8,6 @@ function reportResult(result) {
 }
 
 storiesOf("ModalDialog", module)
-  .addDecorator(withKnobs)
   .add("All params set", () => (
     <ModalDialog
       showDialog={boolean("showDialog", true)}
