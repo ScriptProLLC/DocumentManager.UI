@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { DocumentViewerContext } from "./DocumentViewerContext";
-import { decodeBase64 } from "../../util/Base64Util";
+import { decodeBase64 } from "../../util/base64Util";
 
 function PDFViewer() {
   let iFrameRef = useRef();
