@@ -1,0 +1,18 @@
+/* Using BEM naming scheme: http://getbem.com/introduction/ */
+.icon__warning {
+  color: yellow;
+}
+
+.icon__warning--exclamation {
+  font-size: 1.5em;
+  padding-top: 0.2em;
+  color: black;
+}
+
+.icon__error {
+  color: red;
+}
+
+.icon__info {
+  color: lightblue;
+}
