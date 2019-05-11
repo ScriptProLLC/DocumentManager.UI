@@ -3,6 +3,7 @@ import "font-awesome/css/font-awesome.min.css";
 import "./DocumentListItem.css";
 import PropTypes from "prop-types";
 import { formatDate } from "../../util/dates";
+import Icon from "../Icon";
 import {
   Collapse,
   ListGroup,
@@ -67,18 +68,14 @@ function DocumentListItem(props) {
             outline
             size="sm"
           >
-            <i
-              className={
-                expanded ? "fa fa-caret-down fa-lg" : "fa fa-caret-right fa-lg"
-              }
-            />
+            <Icon type={props.expanded ? "caret-down" : "caret-right"} />
           </Button>
           <div
             data-testid="documentName"
             className="document-list-item-name"
             onClick={select}
           >
-            <i className={props.isSelected ? "fa fa-file" : "fa fa-file-o"} />
+            <Icon type={props.isSelected ? "file" : "file-o"} />
             {props.document.name || "Unnamed Document"}
           </div>
         </Col>
@@ -104,7 +101,8 @@ DocumentListItem.propTypes = {
     name: PropTypes.string,
     dateCreated: PropTypes.string.isRequired,
     attributes: PropTypes.object
-  })
+  }),
+  expanded: PropTypes.bool
 };
 
 export default DocumentListItem;
