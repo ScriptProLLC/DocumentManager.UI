@@ -4,6 +4,7 @@ import "font-awesome/css/font-awesome.min.css";
 import "./DocumentActions.css";
 
 function DocumentActions(props) {
+  if (!props.document) return null;
   return (
     <div className="document-actions-container">
       <span data-testid="documentActionDocumentName">
@@ -18,10 +19,6 @@ DocumentActions.propTypes = {
   document: PropTypes.shape({
     name: PropTypes.string
   })
-};
-
-DocumentActions.defaultProps = {
-  document: { name: "" }
 };
 
 export default DocumentActions;
