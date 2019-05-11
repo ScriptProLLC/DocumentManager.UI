@@ -27,10 +27,10 @@ const Icon = ({ type }) => {
         return <i className="fa fa-caret-right fa-lg" />;
 
       case "file":
-        return <i className="fa file" />;
+        return <i className="fa fa-file" />;
 
       case "file-o":
-        return <i className="fa file-o" />;
+        return <i className="fa fa-file-o" />;
 
       default:
         throw new Error("Unknown type: " + type);
