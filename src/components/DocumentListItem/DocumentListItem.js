@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./DocumentListItem.css";
 import PropTypes from "prop-types";
-import { formatDate } from "./../../util/dateFormatter";
+import { formatDate } from "../../util/dates";
 import {
   Collapse,
   ListGroup,
@@ -19,6 +19,7 @@ function DocumentListItem(props) {
     ...props.document.attributes
   };
 
+  // Suggest being consistent about nested function styles.
   const toggle = () => {
     if (props.reportToggle) {
       props.reportToggle(expanded ? "collapsed" : "open");
@@ -33,6 +34,7 @@ function DocumentListItem(props) {
     }
   };
 
+  // Suggest renaming to renderListItems
   function displayListItems() {
     return Object.entries(listItems).map(([key, value]) => (
       <ListGroupItem
