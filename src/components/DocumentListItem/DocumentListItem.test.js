@@ -15,33 +15,33 @@ describe("DocumentListItem component", () => {
   it("renders the name of the document", () => {
     var document = createTestDocument({ name: "Document Name" });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { getByText } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe(document.name);
+    getByText(document.name);
   });
 
   it("renders the name of the document with unicode characters", () => {
     var document = createTestDocument({ name: "\u0913" });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { getByText } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe("ओ");
+    getByText("ओ");
   });
 
   it("renders a default name if the name is null", () => {
     var document = createTestDocument({ name: null });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { getByText } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe("Unnamed Document");
+    getByText("Unnamed Document");
   });
 
   it("renders a default name if the name is empty", () => {
     var document = createTestDocument({ name: "" });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { getByText } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe("Unnamed Document");
+    getByText("Unnamed Document");
   });
 
   it("renders the dateCreated of the document", () => {
@@ -52,7 +52,7 @@ describe("DocumentListItem component", () => {
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
     expect(getByTestId("Date Created").textContent).toBe(
-      `Date Created: 01/01/1997 06:30 am`
+      "Date Created: 01/01/1997 6:30 AM"
     );
   });
 
