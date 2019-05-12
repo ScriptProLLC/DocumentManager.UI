@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./DocumentListItem.css";
-import PropTypes from "prop-types";
 import { formatDate } from "../../util/dates";
 import Icon from "../Icon";
 import {
@@ -11,6 +10,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { documentType } from "../../types";
 
 function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(false);
@@ -96,11 +96,7 @@ function DocumentListItem(props) {
 
 // Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
-  document: PropTypes.shape({
-    name: PropTypes.string,
-    dateCreated: PropTypes.string.isRequired,
-    attributes: PropTypes.object
-  })
+  document: documentType
 };
 
 export default DocumentListItem;
