@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
@@ -41,5 +42,9 @@ function DocumentManager(props) {
     </div>
   );
 }
+
+DocumentManager.propTypes = {
+  collectionId: PropTypes.string
+};
 
 export default DocumentManager;
