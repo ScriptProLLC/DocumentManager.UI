@@ -18,27 +18,14 @@ function DocumentList(props) {
     console.log(toggleState);
   }
 
-  function isExpanded(index) {
-    if (props.expandedItems) {
-      return (
-        props.expandedItems.find(element => {
-          return element === index + 1;
-        }) !== undefined
-      );
-    }
-  }
-
   var children = docs
-    ? docs.map((doc, index) => (
+    ? docs.map(doc => (
         <li key={doc.id} data-testid={doc.id}>
           <DocumentListItem
             document={doc}
             onSelected={onSelected}
             reportToggle={reportToggle}
-            isSelected={
-              props.selectedDoc ? doc.id === props.selectedDoc.id : false
-            }
-            expanded={isExpanded(index)}
+            isSelected={props.selectedDoc && doc.id === props.selectedDoc.id}
           />
         </li>
       ))
@@ -52,7 +39,9 @@ function DocumentList(props) {
 }
 
 DocumentList.propTypes = {
-  documents: PropTypes.arrayOf(documentType).isRequired
+  documents: PropTypes.arrayOf(documentType).isRequired,
+  selectedDoc: documentType,
+  onSelected: PropTypes.func
 };
 
 export default DocumentList;

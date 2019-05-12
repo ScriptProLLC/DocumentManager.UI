@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 function DocumentListItem(props) {
-  let [expanded, setExpanded] = useState(props.expanded);
+  let [expanded, setExpanded] = useState(false);
   let listItems = {
     ...{ "Date Created": formatDate(props.document.dateCreated) },
     ...props.document.attributes
@@ -67,7 +67,7 @@ function DocumentListItem(props) {
             outline
             size="sm"
           >
-            <Icon type={props.expanded ? "caret-down" : "caret-right"} />
+            <Icon type={expanded ? "caret-down" : "caret-right"} />
           </Button>
           <div
             data-testid="documentName"
@@ -100,8 +100,7 @@ DocumentListItem.propTypes = {
     name: PropTypes.string,
     dateCreated: PropTypes.string.isRequired,
     attributes: PropTypes.object
-  }),
-  expanded: PropTypes.bool
+  })
 };
 
 export default DocumentListItem;
