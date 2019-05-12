@@ -1,5 +1,6 @@
 import { configure, addDecorator } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "@storybook/addon-console";
 import { themes } from "@storybook/theming";
 import { addParameters } from "@storybook/react";
