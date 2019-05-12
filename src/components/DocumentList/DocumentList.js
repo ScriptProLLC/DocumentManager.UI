@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { documentType } from "../../types";
 import "./DocumentList.css";
 import DocumentListItem from "../DocumentListItem";
 
@@ -50,7 +52,7 @@ function DocumentList(props) {
 }
 
 DocumentList.propTypes = {
-  documents: PropTypes.arrayOf(documents).isRequired
+  documents: PropTypes.arrayOf(documentType).isRequired
 };
 
 export default DocumentList;
