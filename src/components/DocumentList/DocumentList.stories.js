@@ -7,7 +7,7 @@ import {
   createTestDocumentList
 } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
-import { object } from "@storybook/addon-knobs";
+import { object, array } from "@storybook/addon-knobs";
 
 const data = {
   fewDocuments: createTestDocumentList(3),
@@ -65,7 +65,7 @@ storiesOf("Document List", module)
       return (
         <DocumentList
           onSelected={container.onSelected}
-          documents={object("documents", data.oneLongName)}
+          documents={array("documents", data.oneLongName)}
           selectedDoc={object("selectedDoc", container.selectedDocument)}
         />
       );
@@ -80,7 +80,7 @@ storiesOf("Document List", module)
       return (
         <DocumentList
           onSelected={container.onSelected}
-          documents={object("documents", data.oneLongAttributeName)}
+          documents={array("documents", data.oneLongAttributeName)}
           selectedDoc={object("selectedDoc", container.selectedDocument)}
           expandedItems={[2]}
         />
@@ -97,7 +97,7 @@ storiesOf("Document List", module)
       return (
         <DocumentList
           onSelected={container.onSelected}
-          documents={object("documents", data.fewDocuments)}
+          documents={array("documents", data.fewDocuments)}
           selectedDoc={object("selectedDoc", container.selectedDocument)}
         />
       );
@@ -112,7 +112,7 @@ storiesOf("Document List", module)
       return (
         <DocumentList
           onSelected={container.onSelected}
-          documents={object("documents", data.manyDocuments)}
+          documents={array("documents", data.manyDocuments)}
           selectedDoc={object("selectedDoc", container.selectedDocument)}
         />
       );
