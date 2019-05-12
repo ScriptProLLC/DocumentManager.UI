@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
-import DocumentActions from "../DocumentActions/DocumentActions";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
 
 function DocumentManager(props) {
