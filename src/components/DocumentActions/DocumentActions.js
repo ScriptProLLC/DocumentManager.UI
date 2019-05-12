@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "font-awesome/css/font-awesome.min.css";
 import "./DocumentActions.css";
 
 function DocumentActions(props) {

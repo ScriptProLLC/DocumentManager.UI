@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "font-awesome/css/font-awesome.min.css";
 import "./DocumentListItem.css";
 import PropTypes from "prop-types";
 import { formatDate } from "../../util/dates";

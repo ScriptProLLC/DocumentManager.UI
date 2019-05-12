@@ -1,5 +1,4 @@
 import React from "react";
-import "font-awesome/css/font-awesome.min.css";
 import "./DocumentList.css";
 import DocumentListItem from "../DocumentListItem";
 
@@ -49,5 +48,9 @@ function DocumentList(props) {
     </div>
   );
 }
+
+DocumentList.propTypes = {
+  documents: PropTypes.arrayOf(documents).isRequired
+};
 
 export default DocumentList;
