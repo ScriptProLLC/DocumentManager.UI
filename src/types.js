@@ -6,9 +6,9 @@ export const documentType = shape({
   name: string,
   documentFile: string,
   dateCreated: string,
-  attributes: {
+  attributes: shape({
     // TODO: Convert to camelCase when retrieved if the source API cannot be changed. Ideally, update source API to accept a header that requests camelCased JSON for this.
     Pages: string,
     "File Size": string
-  }
+  })
 });
