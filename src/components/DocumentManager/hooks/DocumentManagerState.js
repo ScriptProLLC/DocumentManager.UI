@@ -19,7 +19,7 @@ function useDocumentManagerState(collectionId) {
         setSelectedDocument(documentWithFile);
       }
     })();
-  }, []);
+  }, [collectionId]);
 
   function updateCollectionDocument(collection, document) {
     const index = collection.findIndex(d => d.id === document.id);
