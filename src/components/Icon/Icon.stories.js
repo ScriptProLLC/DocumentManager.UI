@@ -8,8 +8,8 @@ storiesOf("Icons", module)
     host({
       title: "Icons",
       align: "center top",
-      height: 500,
-      width: 400,
+      height: 100,
+      width: 100,
       border: true
     })
   )
