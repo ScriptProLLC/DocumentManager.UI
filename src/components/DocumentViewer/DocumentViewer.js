@@ -8,6 +8,7 @@ function DocumentViewer(props) {
   let pdfDocument = props.document;
   let documentFile = pdfDocument ? pdfDocument.documentFile : null;
 
+  // TODO: Delete? Does nothing.
   useEffect(() => {}, [documentFile]);
 
   function render() {
