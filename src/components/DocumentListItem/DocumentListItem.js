@@ -10,7 +10,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { documentType } from "../../types";
+import { documentPropType } from "../../propTypes";
 
 function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(false);
@@ -96,7 +96,7 @@ function DocumentListItem(props) {
 
 // Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
-  document: documentType
+  document: documentPropType
 };
 
 export default DocumentListItem;

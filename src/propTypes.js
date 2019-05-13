@@ -1,6 +1,6 @@
 import { string, shape } from "prop-types";
 
-export const documentType = shape({
+export const documentPropType = shape({
   id: string,
   documentCollectionId: string,
   name: string,

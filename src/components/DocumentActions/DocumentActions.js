@@ -1,5 +1,5 @@
 import React from "react";
-import { documentType } from "../../types";
+import { documentPropType } from "../../propTypes";
 import "./DocumentActions.css";
 
 function DocumentActions(props) {
@@ -16,7 +16,7 @@ function DocumentActions(props) {
 
 DocumentActions.propTypes = {
   // TODO: Suggest just passing in documentName alone if that's the only property used in this component.
-  document: documentType
+  document: documentPropType
 };
 
 export default DocumentActions;
