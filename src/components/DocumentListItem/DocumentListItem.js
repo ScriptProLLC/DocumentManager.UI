@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "./DocumentListItem.css";
 import { formatDate } from "../../util/dates";
 import Icon from "../Icon";
@@ -96,7 +97,10 @@ function DocumentListItem(props) {
 
 // Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
-  document: documentPropType
+  document: documentPropType,
+  isSelected: PropTypes.bool,
+  onSelected: PropTypes.func,
+  reportToggle: PropTypes.func
 };
 
 export default DocumentListItem;
