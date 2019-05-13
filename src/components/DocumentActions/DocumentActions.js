@@ -15,7 +15,7 @@ function DocumentActions(props) {
 }
 
 DocumentActions.propTypes = {
-  // Suggest just passing in documentName alone if that's the only property used in this component.
+  // TODO: Suggest just passing in documentName alone if that's the only property used in this component.
   document: documentType
 };
 
