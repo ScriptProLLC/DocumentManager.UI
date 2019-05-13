@@ -13,13 +13,10 @@ function useDocumentManagerState(collectionId) {
   useEffect(() => {
     (async () => {
       try {
-        const collectionDocuments = await getCollectionDocuments(collectionId);
-        setDocuments(collectionDocuments);
-
-        if (collectionDocuments.length > 0) {
-          const documentWithFile = await getDocument(collectionDocuments[0].id);
-          updateCollectionDocument(collectionDocuments, documentWithFile);
-          setSelectedDocument(documentWithFile);
+        const docs = await getCollectionDocuments(collectionId);
+        if (docs.length > 0) {
+          const doc = await getDocument(docs[0].id);
+          updateState(docs, doc);
         }
       } catch (error) {
         alert("Loading documents failed. Please try reloading your browser.");
@@ -27,9 +24,9 @@ function useDocumentManagerState(collectionId) {
     })();
   }, [collectionId]);
 
-  function updateCollectionDocument(collection, document) {
-    const index = collection.findIndex(d => d.id === document.id);
-    collection[index] = document;
+  function updateState(docs, doc) {
+    setDocuments(docs.map(d => (d.id === doc.id ? doc : d)));
+    setSelectedDocument(doc);
   }
 
   async function updateSelectedDocument(document) {
@@ -39,9 +36,8 @@ function useDocumentManagerState(collectionId) {
     }
 
     try {
-      const documentWithFile = await getDocument(document.id);
-      updateCollectionDocument(documents, documentWithFile);
-      setSelectedDocument(documentWithFile);
+      const doc = await getDocument(document.id);
+      updateState(documents, doc);
     } catch (error) {
       alert("Loading document failed. Please try reloading your browser.");
     }
