@@ -10,13 +10,17 @@ function useDocumentManagerState(collectionId) {
 
   useEffect(() => {
     (async () => {
-      const collectionDocuments = await getCollectionDocuments(collectionId);
-      setDocuments(collectionDocuments);
+      try {
+        const collectionDocuments = await getCollectionDocuments(collectionId);
+        setDocuments(collectionDocuments);
 
-      if (collectionDocuments.length > 0) {
-        const documentWithFile = await getDocument(collectionDocuments[0].id);
-        updateCollectionDocument(collectionDocuments, documentWithFile);
-        setSelectedDocument(documentWithFile);
+        if (collectionDocuments.length > 0) {
+          const documentWithFile = await getDocument(collectionDocuments[0].id);
+          updateCollectionDocument(collectionDocuments, documentWithFile);
+          setSelectedDocument(documentWithFile);
+        }
+      } catch (error) {
+        alert("Loading documents failed. Please try reloading your browser.");
       }
     })();
   }, [collectionId]);
@@ -31,10 +35,14 @@ function useDocumentManagerState(collectionId) {
       setSelectedDocument(document);
       return;
     }
-    const documentWithFile = await getDocument(document.id);
 
-    updateCollectionDocument(documents, documentWithFile);
-    setSelectedDocument(documentWithFile);
+    try {
+      const documentWithFile = await getDocument(document.id);
+      updateCollectionDocument(documents, documentWithFile);
+      setSelectedDocument(documentWithFile);
+    } catch (error) {
+      alert("Loading document failed. Please try reloading your browser.");
+    }
   }
 
   return [documents, selectedDocument, updateSelectedDocument];

@@ -6,15 +6,25 @@ export async function getCollectionDocuments(collectionId) {
     "retrieving collection documents at " + process.env.REACT_APP_API_URL + path
   );
 
-  return await axios
-    .get(process.env.REACT_APP_API_URL + path)
-    .then(res => res.data);
+  try {
+    return await axios
+      .get(process.env.REACT_APP_API_URL + path)
+      .then(res => res.data);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function getDocument(documentId) {
   var path = `/documents/${documentId}`;
   console.log("retrieving document at " + process.env.REACT_APP_API_URL + path);
-  return await axios
-    .get(process.env.REACT_APP_API_URL + path)
-    .then(res => res.data);
+  try {
+    return await axios
+      .get(process.env.REACT_APP_API_URL + path)
+      .then(res => res.data);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
