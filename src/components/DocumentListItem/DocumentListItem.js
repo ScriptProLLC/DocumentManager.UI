@@ -97,6 +97,7 @@ function DocumentListItem(props) {
 
 // Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
+  // TODO: Suggest marking as required where relevant. Most props should be required. And if optional, should typically have a default.
   document: documentPropType,
   isSelected: PropTypes.bool,
   onSelected: PropTypes.func,
