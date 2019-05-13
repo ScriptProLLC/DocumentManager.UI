@@ -43,6 +43,10 @@
     ],
     "env": {
       "cypress/globals": true
+    },
+    "rules": {
+      "no-unused-vars": "warn",
+      "react/prop-types": "warn"
     }
   },
   "jest-junit": {
