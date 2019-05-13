@@ -6,6 +6,8 @@ import {
 
 function useDocumentManagerState(collectionId) {
   let [documents, setDocuments] = useState(null);
+  // TODO: Suggest storing only the selectedDocument's id here. Store all documents in the documents array, including the base64 file.
+  // This way, you can check if the base64 file is loaded yet for the doc, and avoid making another call to the API for a doc you've already loaded.
   let [selectedDocument, setSelectedDocument] = useState(null);
 
   useEffect(() => {
