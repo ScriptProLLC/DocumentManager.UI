@@ -3,7 +3,7 @@ import { documentType } from "../../types";
 import "./DocumentActions.css";
 
 function DocumentActions(props) {
-  // Why render this at all without a document? Suggest requiring document and only rendering when a document is available.
+  // TODO: Why render this at all without a document? Suggest requiring document and only rendering when a document is available.
   let documentName =
     props.document && props.document.name ? props.document.name : String.Empty;
 
