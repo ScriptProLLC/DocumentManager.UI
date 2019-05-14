@@ -2,7 +2,10 @@ import React from "react";
 import { render, cleanup, waitForElement } from "react-testing-library";
 import "jest-dom/extend-expect";
 import DocumentManager from "./DocumentManager";
+import mockAxios from "./../../../__mocks__/axios";
 import { act } from "react-dom/test-utils";
+
+const mockData = require("./../../../tools/mockData");
 
 jest.mock("axios");
 
@@ -13,6 +16,7 @@ describe("DocumentManager component", () => {
   });
 
   it("renders the correct amount of items", async () => {
+    mockAxios.setCollection(mockData.documents);
     const { getByTestId } = render(
       <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"} />
     );

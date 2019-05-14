@@ -37,7 +37,7 @@ function useDocumentManagerState(collectionId) {
     setSelectedDocument(documentWithFile);
   }
 
-  return [documents, selectedDocument, updateSelectedDocument];
+  return { documents, selectedDocument, updateSelectedDocument };
 }
 
 export { useDocumentManagerState };

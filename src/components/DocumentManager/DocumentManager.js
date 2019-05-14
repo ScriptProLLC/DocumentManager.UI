@@ -6,11 +6,11 @@ import DocumentActions from "../DocumentActions/DocumentActions";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
 
 function DocumentManager(props) {
-  const [
+  const {
     documents,
     selectedDocument,
     updateSelectedDocument
-  ] = useDocumentManagerState(props.collectionId);
+  } = useDocumentManagerState(props.collectionId);
 
   return (
     <div className="document-manager-container">

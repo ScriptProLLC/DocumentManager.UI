@@ -1,6 +1,7 @@
 "use strict";
 
-const mockData = require("./../tools/mockData");
+var collection = [];
+var document = {};
 
 const requestType = {
   GetCollectionDocuments: "getCollectionDocuments"
@@ -26,12 +27,15 @@ const removeDocumentFiles = documents => {
 module.exports = {
   get: url => {
     if (getRequestType(url) === requestType.GetCollectionDocuments) {
-      return Promise.resolve({ data: removeDocumentFiles(mockData.documents) });
+      return Promise.resolve({ data: collection });
     } else {
-      return Promise.resolve({ data: mockData.documents[0] });
+      return Promise.resolve({ data: document });
     }
   },
   post: () => {},
   patch: () => {},
-  delete: () => {}
+  delete: () => {},
+  setCollection: c => {
+    collection = c;
+  }
 };

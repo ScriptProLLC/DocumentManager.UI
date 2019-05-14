@@ -30,8 +30,19 @@ function generateGuid() {
   return _p8() + _p8(true) + _p8(true) + _p8();
 }
 
+function cloneWithoutFile(document) {
+  var clone = Object.assign({}, document);
+  clone.documentFile = null;
+  return clone;
+}
+function tick(s = 1) {
+  return new Promise(r => setTimeout(r, s));
+}
+
 module.exports = {
   createTestDocument,
   createTestCollectionDocument,
-  createTestDocumentList
+  createTestDocumentList,
+  cloneWithoutFile,
+  tick
 };
