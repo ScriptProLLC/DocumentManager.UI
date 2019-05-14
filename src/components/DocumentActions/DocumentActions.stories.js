@@ -1,6 +1,5 @@
 import React from "react";
 import DocumentActions from "./DocumentActions";
-import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import { createTestDocument } from "./../../util/dataHelper";

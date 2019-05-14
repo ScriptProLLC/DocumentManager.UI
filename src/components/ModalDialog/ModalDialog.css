@@ -1,25 +1,35 @@
-.warning-yellow {
-  color: yellow;
+.close {
+  line-height: 0.75;
+  color: #777;
+  float: none;
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
 }
 
-.error-red {
-  color: red;
+.close:focus {
+  outline: none;
 }
 
-.info-blue {
-  color: lightblue;
+.close:hover {
+  color: #333;
 }
 
-.warning-exclamation {
-  font-size: 1.5em;
-  padding-top: 0.2em;
-  color: black;
+.close span {
+  font-size: 1.75rem;
+  font-weight: bold;
 }
 
-.icon-hidden {
-  display: none;
+.modal {
+  font-family: "Quicksand", Helvetica, sans-serif;
 }
 
-.icon-shown {
-  display: inline-block;
+.modal-header-text {
+  display: inline;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.modal-title {
+  padding-right: 1.25rem;
 }

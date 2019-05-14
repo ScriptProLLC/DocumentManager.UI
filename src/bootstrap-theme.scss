@@ -1,0 +1,23 @@
+/* Import the necessary Bootstrap files */
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+/* Basic Colors */
+$theme-colors: (
+  primary: #208fc6,
+  secondary: #315c9a,
+  warning: #f1872e,
+  info: #ffc107,
+  danger: #a00,
+  success: #8cc845,
+  white: #fff,
+  light: #ccc,
+  light-grey: #aaa,
+  grey: #777,
+  dark-grey: #555,
+  dark: #272727,
+  black: #000
+);
+
+/* Import Bootstrap to set the changes */
+@import "../node_modules/bootstrap/scss/bootstrap";

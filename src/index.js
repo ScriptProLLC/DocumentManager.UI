@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./bootstrap-theme.scss";
 import * as serviceWorker from "./serviceWorker";
-import "bootstrap/dist/css/bootstrap.min.css";
 import DocumentManager from "./components/DocumentManager/DocumentManager";
 
 if (!containsCollectionParam(document.location.href)) {

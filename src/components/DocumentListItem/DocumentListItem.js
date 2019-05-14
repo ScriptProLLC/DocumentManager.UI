@@ -60,6 +60,7 @@ function DocumentListItem(props) {
         <Col>
           <Button
             className="btn document-list-expand-button"
+            color="dark-grey"
             data-testid="collapseToggle"
             onClick={toggle}
             outline
@@ -77,7 +78,9 @@ function DocumentListItem(props) {
             onClick={select}
           >
             <i className={props.isSelected ? "fa fa-file" : "fa fa-file-o"} />
-            {props.document.name || "Unnamed Document"}
+            <span className={props.isSelected ? "text-dark-grey" : ""}>
+              {props.document.name || "Unnamed Document"}
+            </span>
           </div>
         </Col>
       </Row>

@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, object } from "@storybook/addon-knobs";
 import ModalDialog from "./ModalDialog";
