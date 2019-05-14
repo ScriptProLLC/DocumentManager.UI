@@ -22,7 +22,7 @@ beforeEach(() => {
 });
 
 describe("useDocumentManagerState", () => {
-  it("should initialize with the list of collection documents", async done => {
+  it("should initialize with the list of collection documents", async () => {
     configureApi(
       mockData.documents.map(cloneWithoutFile),
       mockData.documents[0]
@@ -34,20 +34,18 @@ describe("useDocumentManagerState", () => {
     expect(result.current.documents.map(cloneWithoutFile)).toEqual(
       mockData.documents.map(cloneWithoutFile)
     );
-    done();
   });
 
-  it("should initialize with an empty list if collection is empty", async done => {
+  it("should initialize with an empty list if collection is empty", async () => {
     configureApi([], {});
 
     const { result } = renderHook(() => useDocumentManagerState());
     await renderCompletion();
 
     expect(result.current.documents).toEqual([]);
-    done();
   });
 
-  it("should select the first item in the list by default", async done => {
+  it("should select the first item in the list by default", async () => {
     configureApi(
       mockData.documents.map(cloneWithoutFile),
       mockData.documents[0]
@@ -57,10 +55,9 @@ describe("useDocumentManagerState", () => {
     await renderCompletion();
 
     expect(result.current.selectedDocument).toEqual(mockData.documents[0]);
-    done();
   });
 
-  it("should update the selected document", async done => {
+  it("should update the selected document", async () => {
     configureApi(
       mockData.documents.map(cloneWithoutFile),
       mockData.documents[0]
@@ -77,10 +74,9 @@ describe("useDocumentManagerState", () => {
 
     await renderCompletion();
     expect(result.current.selectedDocument).toEqual(mockData.documents[1]);
-    done();
   });
 
-  it("should make a call to get the document file on initialize", async done => {
+  it("should make a call to get the document file on initialize", async () => {
     configureApi(mockData.documents.map(cloneWithoutFile), {});
     var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
 
@@ -88,10 +84,9 @@ describe("useDocumentManagerState", () => {
 
     await renderCompletion();
     expect(getDocumentSpy).toHaveBeenCalledTimes(1);
-    done();
   });
 
-  it("should make a call to get the document file when selecting a new document", async done => {
+  it("should make a call to get the document file when selecting a new document", async () => {
     configureApi(
       mockData.documents.map(cloneWithoutFile),
       mockData.documents[0]
@@ -110,10 +105,9 @@ describe("useDocumentManagerState", () => {
     expect(result.current.documents[1].documentFile).toEqual(
       mockData.documents[1].documentFile
     );
-    done();
   });
 
-  it("should not make call to update the documents list if the document already has a file", async done => {
+  it("should not make call to update the documents list if the document already has a file", async () => {
     configureApi(
       [cloneWithoutFile(mockData.documents[0]), mockData.documents[1]],
       mockData.documents[0]
@@ -129,6 +123,5 @@ describe("useDocumentManagerState", () => {
 
     await renderCompletion();
     expect(getDocumentSpy).toHaveBeenCalledTimes(1);
-    done();
   });
 });
