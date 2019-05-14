@@ -114,7 +114,10 @@ describe("useDocumentManagerState", () => {
   });
 
   it("should not make call to update the documents list if the document already has a file", async done => {
-    configureApi(mockData.documents, {});
+    configureApi(
+      [cloneWithoutFile(mockData.documents[0]), mockData.documents[1]],
+      mockData.documents[0]
+    );
     var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
 
     const { result } = renderHook(() => useDocumentManagerState());
