@@ -11,8 +11,10 @@ function DocumentViewer(props) {
   useEffect(() => {}, [documentFile]);
 
   function render() {
-    if (!pdfDocument) {
-      return <div className="document-viewer-container"> Loading... </div>;
+    if (!pdfDocument || !pdfDocument.documentFile) {
+      return (
+        <div className="document-viewer-container">No document present</div>
+      );
     } else {
       return (
         <DocumentViewerContext.Provider

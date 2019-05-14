@@ -44,7 +44,11 @@ function DocumentList(props) {
 
   return (
     <div className="document-list-container">
-      <ul data-testid="documentListItems">{children}</ul>
+      {!docs || docs.length === 0 ? (
+        <div data-testid="documentListNoDocuments">No documents present</div>
+      ) : (
+        <ul data-testid="documentListItems">{children}</ul>
+      )}
     </div>
   );
 }

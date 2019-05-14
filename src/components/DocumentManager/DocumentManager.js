@@ -2,7 +2,6 @@ import React from "react";
 import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
-import DocumentActions from "../DocumentActions/DocumentActions";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
 
 function DocumentManager(props) {
@@ -32,7 +31,7 @@ function DocumentManager(props) {
         <div className="header" data-testid="document_viewer_header">
           Document Viewer
         </div>
-        {!selectedDocument ? (
+        {documents && documents.length > 0 && !selectedDocument ? (
           <div>Loading ...</div>
         ) : (
           <DocumentViewer document={selectedDocument} />

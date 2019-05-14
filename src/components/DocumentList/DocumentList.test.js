@@ -12,12 +12,14 @@ import { createTestDocumentList } from "../../util/dataHelper";
 describe("DocumentList component", () => {
   afterEach(cleanup);
 
-  it("has the correct count after adding empty list", () => {
+  it("shows the no documents text after adding empty list", () => {
     var docs = [];
 
     const { getByTestId } = render(<DocumentList documents={docs} />);
 
-    expect(getByTestId("documentListItems").childElementCount).toBe(0);
+    expect(getByTestId("documentListNoDocuments").textContent).toBe(
+      "No documents present"
+    );
   });
 
   it("has the correct count after adding items", () => {
