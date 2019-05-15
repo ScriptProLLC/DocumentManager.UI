@@ -12,14 +12,14 @@ function ModalDialog(props) {
   // Confirm
   function confirmClick() {
     if (props.reportResult) {
-      props.reportResult(props.confirmPrompt);
+      props.reportResult(confirmPrompt);
     }
   }
 
   // Cancel
   function cancelClick() {
     if (props.reportResult) {
-      props.reportResult(props.cancelPrompt);
+      props.reportResult(cancelPrompt);
     }
   }
 
@@ -28,7 +28,7 @@ function ModalDialog(props) {
     if (props.toggle) {
       props.toggle();
     } else {
-      props.reportResult(props.cancelPrompt);
+      props.reportResult(cancelPrompt);
     }
   };
 
@@ -47,19 +47,30 @@ function ModalDialog(props) {
   };
 
   return (
-    <Modal isOpen={props.showDialog} toggle={toggle}>
-      <ModalHeader toggle={toggle}>
-        <i className={iconClass(iconStyle) + " mr-3"} />
+    <Modal isOpen={props.showDialog} toggle={toggle} data-testid="modal">
+      <ModalHeader toggle={toggle} data-testid="modal-header">
+        <i
+          className={iconClass(iconStyle) + " mr-3"}
+          data-testid="modal-icon"
+        />
         <span className="modal-header-text">{header}</span>
       </ModalHeader>
       <ModalBody>
-        <p>{props.prompt}</p>
+        <p data-testid="modal-prompt">{props.prompt}</p>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" onClick={confirmClick}>
+        <Button
+          color="secondary"
+          onClick={confirmClick}
+          data-testid="modal-confirm-prompt"
+        >
           {confirmPrompt}
         </Button>
-        <Button color="grey" onClick={cancelClick}>
+        <Button
+          color="grey"
+          onClick={cancelClick}
+          data-testid="modal-cancel-prompt"
+        >
           {cancelPrompt}
         </Button>
       </ModalFooter>
