@@ -26,9 +26,10 @@
     "cy-open": "cypress open",
     "cy-run": "cypress run",
     "cy-test": "run-p -r cy-run start-api",
-    "lint": "run-p lint-js lint-css",
+    "lint": "run-p lint-js lint-css lint-scss",
     "lint-js": "eslint src/**/*.js tools/**/*.js",
     "lint-css": "stylelint src/**/*.css",
+    "lint-scss": "stylelint src/**/*.scss",
     "full-test": "run-p test-once cy-run",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
