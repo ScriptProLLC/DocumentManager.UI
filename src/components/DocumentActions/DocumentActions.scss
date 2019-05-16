@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+
+.document-actions-container {
+  @include background-gradient($primary, $secondary);
+  @include inset-shadow(2rem, 0.25);
+  @include text-shadow(0.25rem, 0.5);
+  border-top: solid 1px $light;
+  font-size: 1.2rem;
+  height: 3.5rem;
+  padding: 0.85rem 1rem;
+}

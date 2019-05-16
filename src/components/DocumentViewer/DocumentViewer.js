@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PDFViewer from "./PDFViewer";
 import { DocumentViewerContext } from "./DocumentViewerContext";
 import DocumentActions from "../DocumentActions/DocumentActions";
-import "./DocumentViewer.css";
+import "./DocumentViewer.scss";
 
 function DocumentViewer(props) {
   let pdfDocument = props.document;
@@ -13,7 +13,12 @@ function DocumentViewer(props) {
   function render() {
     if (!pdfDocument || !pdfDocument.documentFile) {
       return (
-        <div className="document-viewer-container">No document present</div>
+        <div
+          data-testid="document_viewer_container_nodocs"
+          className="document-viewer-container"
+        >
+          No document present
+        </div>
       );
     } else {
       return (
@@ -22,7 +27,10 @@ function DocumentViewer(props) {
             documentFile
           }}
         >
-          <div className="document-viewer-container">
+          <div
+            data-testid="document_viewer_container_withdocs"
+            className="document-viewer-container"
+          >
             <PDFViewer />
             <DocumentActions document={pdfDocument} />
           </div>

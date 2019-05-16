@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import "./bootstrap-theme.scss";
 import * as serviceWorker from "./serviceWorker";
 import DocumentManager from "./components/DocumentManager/DocumentManager";
+import "font-awesome/css/font-awesome.min.css";
+import "./bootstrap-theme.scss";
+import "./index.scss";
 
 if (!containsCollectionParam(document.location.href)) {
   insertParam("collection", "d7a2add9-14bf-480e-9b97-96685a006431");

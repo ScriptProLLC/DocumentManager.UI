@@ -20,9 +20,10 @@ function PDFViewer() {
 
   return (
     <iframe
-      title="pdfjs"
-      className="pdfjs"
+      title="Document Viewer"
+      className="d-block"
       src="./pdfjs-2.0.943-dist/web/viewer.html?file="
+      data-testid="document_viewer_iframe"
       frameBorder="0"
       width="100%"
       height="100%"

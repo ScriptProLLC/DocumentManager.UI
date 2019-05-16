@@ -1,0 +1,8 @@
+/* Absolutely disgusting hack that makes me want to puke. It's a workaround for Storybook/Host which is a POS and adds CSS-in-JS styling to all elements within it, effectively destroying support for external styling. 
+
+Learn more @ https://github.com/philcockfield/storybook-host/issues/43
+*/
+
+* {
+  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+}

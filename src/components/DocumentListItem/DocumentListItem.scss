@@ -1,0 +1,71 @@
+@import "../../variables.scss";
+
+/* Selected Item BG Color */
+$selected: #eee;
+
+/* List Item Container */
+.document-list-item-container {
+  overflow-x: hidden;
+
+  &:hover {
+    background: $selected;
+    cursor: pointer;
+  }
+
+  &.selected {
+    background: $selected;
+    font-weight: bold;
+  }
+
+  /* List Item Expand Button */
+  .document-list-expand-button {
+    float: right;
+    margin: 0.5rem 1rem 0.5rem 0;
+    width: 3rem;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  /* List Item Expanded Section  */
+  .document-list-expanded-item {
+    &.list-group-item {
+      background: transparent;
+      border: none;
+      color: $dark-grey;
+      font-size: 0.85rem;
+      padding: 0.25rem 1rem 0.25rem 2rem;
+      word-break: break-all;
+    }
+
+    &:first-of-type {
+      margin-top: -0.5rem;
+    }
+
+    .fa-level-up {
+      transform: rotate(90deg);
+    }
+  }
+
+  /* List Item Document Name */
+  .document-list-item-name {
+    font-size: 1rem;
+    padding: 0.7rem 4.5rem 0.5rem 1rem;
+    word-break: break-all;
+
+    span {
+      word-break: break-all;
+    }
+
+    .fa-file,
+    .fa-file-o {
+      padding-top: 0.3rem;
+      vertical-align: inherit;
+    }
+
+    .fa-file {
+      color: $dark-grey;
+    }
+  }
+}

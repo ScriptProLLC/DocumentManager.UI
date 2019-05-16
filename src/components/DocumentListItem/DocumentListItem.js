@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "font-awesome/css/font-awesome.min.css";
-import "./DocumentListItem.css";
 import PropTypes from "prop-types";
 import { formatDate } from "./../../util/dateFormatter";
 import {
@@ -11,6 +9,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import "./DocumentListItem.scss";
 
 function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(props.expanded);
@@ -77,7 +76,11 @@ function DocumentListItem(props) {
             className="document-list-item-name"
             onClick={select}
           >
-            <i className={props.isSelected ? "fa fa-file" : "fa fa-file-o"} />
+            <i
+              className={
+                props.isSelected ? "fa fa-file mr-3" : "fa fa-file-o mr-3"
+              }
+            />
             <span className={props.isSelected ? "text-dark-grey" : ""}>
               {props.document.name || "Unnamed Document"}
             </span>

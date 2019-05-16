@@ -1,0 +1,37 @@
+/* Imports */
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
+/* Fonts */
+$sans-serif: "Quicksand", Helvetica, Arial, sans-serif;
+
+/* Colors */
+$primary: #208fc6;
+$secondary: #315c9a;
+$warning: #f1872e;
+$info: #ffc107;
+$danger: #a00;
+$success: #8cc845;
+$white: #fff;
+$light: #ccc;
+$light-grey: #aaa;
+$grey: #777;
+$dark-grey: #555;
+$dark: #272727;
+$black: #000;
+
+/* Mixins */
+@mixin background-gradient($from, $to) {
+  background: $from;
+  background: -moz-linear-gradient(top, $from 0%, $to 100%);
+  background: -webkit-linear-gradient(top, $from 0%, $to 100%);
+  background: linear-gradient(to bottom, $from 0%, $to 100%);
+  color: $white;
+}
+
+@mixin inset-shadow($size, $opacity) {
+  box-shadow: inset 0 0 $size rgba(0, 0, 0, $opacity);
+}
+
+@mixin text-shadow($size, $opacity) {
+  text-shadow: 0 0 $size rgba(0, 0, 0, $opacity);
+}

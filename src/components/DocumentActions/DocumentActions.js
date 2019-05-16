@@ -1,6 +1,5 @@
 import React from "react";
-import "font-awesome/css/font-awesome.min.css";
-import "./DocumentActions.css";
+import "./DocumentActions.scss";
 
 function DocumentActions(props) {
   let documentName =

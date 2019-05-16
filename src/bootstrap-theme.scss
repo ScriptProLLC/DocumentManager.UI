@@ -1,22 +1,27 @@
 /* Import the necessary Bootstrap files */
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+@import "./variables.scss";
 
-/* Basic Colors */
+/* Define Bootstrap Font */
+$font-family-sans-serif: $sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+/* Define Bootstrap Colors */
 $theme-colors: (
-  primary: #208fc6,
-  secondary: #315c9a,
-  warning: #f1872e,
-  info: #ffc107,
-  danger: #a00,
-  success: #8cc845,
-  white: #fff,
-  light: #ccc,
-  light-grey: #aaa,
-  grey: #777,
-  dark-grey: #555,
-  dark: #272727,
-  black: #000
+  primary: $primary,
+  secondary: $secondary,
+  warning: $warning,
+  info: $info,
+  danger: $danger,
+  success: $success,
+  white: $white,
+  light: $light,
+  light-grey: $light-grey,
+  grey: $grey,
+  dark-grey: $dark-grey,
+  dark: $dark,
+  black: $black
 );
 
 /* Import Bootstrap to set the changes */

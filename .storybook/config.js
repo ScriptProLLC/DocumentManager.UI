@@ -1,8 +1,11 @@
 import { configure } from "@storybook/react";
-import "@storybook/addon-console";
 import { themes } from "@storybook/theming";
 import { addParameters } from "@storybook/react";
+import "@storybook/addon-console";
+import "font-awesome/css/font-awesome.min.css";
+import "../src/index.scss";
 import "../src/bootstrap-theme.scss";
+import "./storybook.scss";
 
 const req = require.context("../src/components", true, /\.stories\.js$/);
 

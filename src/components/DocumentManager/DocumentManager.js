@@ -1,8 +1,8 @@
 import React from "react";
-import "./DocumentManager.css";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
+import "./DocumentManager.scss";
 
 function DocumentManager(props) {
   const {

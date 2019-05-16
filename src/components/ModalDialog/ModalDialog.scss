@@ -1,0 +1,31 @@
+@import "../../variables.scss";
+
+.close {
+  line-height: 0.75;
+  color: $grey;
+  float: none;
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $dark;
+  }
+
+  span {
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+}
+
+.modal-header-text {
+  word-break: break-all;
+}
+
+.modal-title {
+  padding-right: 1.25rem;
+}

@@ -19,13 +19,16 @@ describe("DocumentViewer", () => {
 
       elemToClick.click();
 
-      cy.get("[class=document-viewer-container]").then($selectedElement => {
-        expect($selectedElement).to.be.not.null;
-
-        expect($selectedElement[0].children[0].className.trim()).to.equal(
-          "pdfjs"
-        );
-      });
+      cy.get("[data-testid=document_viewer_container_withdocs]").then(
+        $selectedElement => {
+          expect($selectedElement).to.be.not.null;
+          expect(
+            $selectedElement[0].children[0].querySelector(
+              "[data-testid=document_viewer_iframe]"
+            )
+          );
+        }
+      );
     });
   });
 });

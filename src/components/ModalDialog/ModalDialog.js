@@ -1,7 +1,7 @@
 import React from "react";
-import "./ModalDialog.css";
 import PropTypes from "prop-types";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import "./ModalDialog.scss";
 
 function ModalDialog(props) {
   let header = props.header || "Alert";
@@ -53,7 +53,7 @@ function ModalDialog(props) {
           className={iconClass(iconStyle) + " mr-3"}
           data-testid="modal-icon"
         />
-        <span className="modal-header-text">{header}</span>
+        <strong className="modal-header-text">{header}</strong>
       </ModalHeader>
       <ModalBody>
         <p data-testid="modal-prompt">{props.prompt}</p>
