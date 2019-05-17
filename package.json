@@ -1,6 +1,7 @@
 {
   "name": "document-manager-ui",
   "homepage": "./",
+  "proxy": "http://localhost:13005",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -15,24 +16,27 @@
     "storybook-host": "^5.0.3"
   },
   "scripts": {
-    "start": "run-p start-dev start-api",
+    "postinstall": "npm run nuget-restore",
+    "start": "run-p start-api seed-api start-dev",
     "start-dev": "react-scripts start",
     "build": "react-scripts build",
     "prebuild": "npm run lint",
     "test": "react-scripts test",
-    "prestart-api": "node tools/createMockDb.js",
-    "start-api": "node tools/apiServer.js",
+    "seed-api": "node tools/seedApiDb.js",
+    "start-api": ".\\packages\\ScriptPro.Api.DocumentManager.Host.0.0.81\\Tools\\API.DocumentManager.Host.exe",
     "test-once": "react-scripts test --no-watch --reporters=default --reporters=jest-junit",
     "cy-open": "cypress open",
     "cy-run": "cypress run",
-    "cy-test": "run-p -r cy-run start-api",
+    "cy-api": "run-p start-api seed-api",
+    "cy-test": "run-p -r cy-run cy-api",
     "lint": "run-p lint-js lint-css lint-scss",
     "lint-js": "eslint src/**/*.js tools/**/*.js",
     "lint-css": "stylelint src/**/*.css",
     "lint-scss": "stylelint src/**/*.scss",
     "full-test": "run-p test-once cy-run",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "nuget-restore": ".\\node_modules\\nuget\\bin\\nuget.exe restore .\\.nuget\\packages.config -PackagesDirectory .\\packages\\"
   },
   "eslintConfig": {
     "extends": [
@@ -75,6 +79,7 @@
     "json-server": "^0.14.2",
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.5",
+    "nuget": "^2.0.2",
     "postcss": "^7.0.16",
     "prettier": "^1.16.4",
     "react-hooks-testing-library": "^0.5.0",

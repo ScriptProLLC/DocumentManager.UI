@@ -661,7 +661,7 @@ QkZDQ0E+XSA+Pg0Kc3RhcnR4cmVmDQozMjEzOQ0KJSVFT0Y=`,
   }
 ];
 
-const documentCollections = [{ id: "030b9d08-e102-460c-882a-6b0d562aad29" }];
+const documentCollections = [{ id: "d7a2add9-14bf-480e-9b97-96685a006431" }];
 
 module.exports = {
   documents,

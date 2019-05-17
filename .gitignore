@@ -7,6 +7,7 @@ test-results/
 /.pnp
 .pnp.js
 /tools/db.json
+/packages
 
 # testing
 /coverage
