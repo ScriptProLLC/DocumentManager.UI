@@ -22,6 +22,45 @@ function createTestDocumentList(length, overrideObject) {
   return overrideObject ? Object.assign(docs, overrideObject) : docs;
 }
 
+function createMixedDateDocumentList(length, overrideObject) {
+  var docs = [];
+  for (var i = 0; i < length; i++) {
+    var randDate = randomDate(new Date(2010, 1, 1), new Date()).toISOString();
+    docs.push(
+      createTestDocument({
+        name: `Document ${i + 1}`,
+        dateCreated: `${randDate}`
+      })
+    );
+  }
+
+  return overrideObject ? Object.assign(docs, overrideObject) : docs;
+}
+
+function createMixedDateDocumentListWithNulls(length, overrideObject) {
+  var docs = [];
+  for (var i = 0; i < length; i++) {
+    var randDate =
+      i % 3 === 0
+        ? null
+        : randomDate(new Date(2010, 1, 1), new Date()).toISOString();
+    docs.push(
+      createTestDocument({
+        name: `Document ${i + 1}`,
+        dateCreated: `${randDate}`
+      })
+    );
+  }
+
+  return overrideObject ? Object.assign(docs, overrideObject) : docs;
+}
+
+function randomDate(start, end) {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+}
+
 function generateGuid() {
   function _p8(s) {
     var p = (Math.random().toString(16) + "000000000").substr(2, 8);
@@ -43,6 +82,8 @@ module.exports = {
   createTestDocument,
   createTestCollectionDocument,
   createTestDocumentList,
+  createMixedDateDocumentList,
+  createMixedDateDocumentListWithNulls,
   cloneWithoutFile,
   tick
 };

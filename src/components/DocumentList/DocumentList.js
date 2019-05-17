@@ -25,8 +25,21 @@ function DocumentList(props) {
     }
   }
 
+  function parseDateNoInvalid(stringDate) {
+    var dt = new Date(stringDate);
+
+    return isNaN(dt.getTime()) ? 0 : dt.getTime();
+  }
+
+  function byDateDescending(doc1, doc2) {
+    return (
+      parseDateNoInvalid(doc2.dateCreated) -
+      parseDateNoInvalid(doc1.dateCreated)
+    );
+  }
+
   var children = docs
-    ? docs.map((doc, index) => (
+    ? docs.sort(byDateDescending).map((doc, index) => (
         <li key={doc.id} data-testid={doc.id}>
           <DocumentListItem
             document={doc}

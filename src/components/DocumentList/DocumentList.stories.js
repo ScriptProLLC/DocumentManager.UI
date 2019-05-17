@@ -4,7 +4,9 @@ import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import {
   createTestDocument,
-  createTestDocumentList
+  createTestDocumentList,
+  createMixedDateDocumentList,
+  createMixedDateDocumentListWithNulls
 } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, object } from "@storybook/addon-knobs";
@@ -12,6 +14,8 @@ import { withKnobs, object } from "@storybook/addon-knobs";
 const data = {
   fewDocuments: createTestDocumentList(3),
   manyDocuments: createTestDocumentList(30),
+  unsortedDocuments: createMixedDateDocumentList(10),
+  unsortedDocumentsWithNulls: createMixedDateDocumentListWithNulls(12),
   oneLongName: [
     createTestDocument({ name: "DocumentList document 1" }),
     createTestDocument({
@@ -114,6 +118,38 @@ storiesOf("Document List", module)
         <DocumentList
           onSelected={container.onSelected}
           documents={object("documents", data.manyDocuments)}
+          selectedDoc={object("selectedDoc", container.selectedDocument)}
+        />
+      );
+    },
+    { knobs: { escapeHTML: false } }
+  )
+  .add(
+    "Sorted by dateCreated, docs generated with random dates",
+    () => {
+      var container = selectionStateContainer(data.unsortedDocuments[0]);
+
+      return (
+        <DocumentList
+          onSelected={container.onSelected}
+          documents={object("documents", data.unsortedDocuments)}
+          selectedDoc={object("selectedDoc", container.selectedDocument)}
+        />
+      );
+    },
+    { knobs: { escapeHTML: false } }
+  )
+  .add(
+    "Sorted by dateCreated, docs generated with random dates including some nulls",
+    () => {
+      var container = selectionStateContainer(
+        data.unsortedDocumentsWithNulls[0]
+      );
+
+      return (
+        <DocumentList
+          onSelected={container.onSelected}
+          documents={object("documents", data.unsortedDocumentsWithNulls)}
           selectedDoc={object("selectedDoc", container.selectedDocument)}
         />
       );
