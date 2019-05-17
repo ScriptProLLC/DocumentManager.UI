@@ -1,4 +1,13 @@
+@import "../../variables.scss";
+
 .document-list-container {
-  overflow-y: auto;
   height: calc(100% - 3.5rem);
+  overflow-y: auto;
+
+  .document-list-empty {
+    color: $grey;
+    font-style: italic;
+    padding-top: 1.5rem;
+    text-align: center;
+  }
 }

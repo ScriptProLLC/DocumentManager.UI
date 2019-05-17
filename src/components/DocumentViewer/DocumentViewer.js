@@ -17,7 +17,7 @@ function DocumentViewer(props) {
           data-testid="document_viewer_container_nodocs"
           className="document-viewer-container"
         >
-          No document present
+          <div className="document-viewer-empty">No documents present</div>
         </div>
       );
     } else {

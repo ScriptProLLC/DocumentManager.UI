@@ -1,3 +1,12 @@
+@import "../../variables.scss";
+
 .document-viewer-container {
   height: calc(100% - 7rem);
+
+  .document-viewer-empty {
+    color: $grey;
+    font-style: italic;
+    padding-top: 1.5rem;
+    text-align: center;
+  }
 }
