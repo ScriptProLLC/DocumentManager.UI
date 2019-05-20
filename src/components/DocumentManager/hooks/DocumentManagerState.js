@@ -10,6 +10,10 @@ function useDocumentManagerState(collectionId) {
 
   useEffect(() => {
     (async () => {
+      if (!collectionId) {
+        return;
+      }
+
       const collectionDocuments = await getCollectionDocuments(collectionId);
       setDocuments(collectionDocuments);
 

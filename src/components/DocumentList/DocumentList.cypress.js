@@ -3,7 +3,7 @@
 
 describe("DocumentList", () => {
   beforeEach(() => {
-    cy.visit("/");
+    cy.visit("?collection=d7a2add9-14bf-480e-9b97-96685a006431");
   });
 
   // https://on.cypress.io/interacting-with-elements

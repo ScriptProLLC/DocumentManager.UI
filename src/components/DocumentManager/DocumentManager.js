@@ -17,7 +17,7 @@ function DocumentManager(props) {
         <div className="header" data-testid="document_list_header">
           Documents
         </div>
-        {!documents ? (
+        {props.collectionId && !documents ? (
           <div>Loading ...</div>
         ) : (
           <DocumentList

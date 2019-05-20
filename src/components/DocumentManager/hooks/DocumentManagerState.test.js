@@ -6,6 +6,8 @@ import { cloneWithoutFile, tick } from "./../../../util/dataHelper";
 import * as mockApi from "./../../../api/DocManagerApi";
 
 jest.mock("./../../../api/DocManagerApi");
+
+const someCollectionId = "d7a2add9-14bf-480e-9b97-96685a006431";
 let configureApi = () => {};
 const renderCompletion = tick;
 
@@ -29,18 +31,21 @@ describe("useDocumentManagerState", () => {
         mockData.documents[0]
       );
 
-      const { result } = renderHook(() => useDocumentManagerState());
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
 
       await renderCompletion();
       expect(result.current.documents.map(cloneWithoutFile)).toEqual(
         mockData.documents.map(cloneWithoutFile)
       );
     });
+
     it("should make a call to get the first document file", async () => {
       configureApi(mockData.documents.map(cloneWithoutFile), {});
       var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
 
-      renderHook(() => useDocumentManagerState());
+      renderHook(() => useDocumentManagerState(someCollectionId));
 
       await renderCompletion();
       expect(getDocumentSpy).toHaveBeenCalledTimes(1);
@@ -52,7 +57,9 @@ describe("useDocumentManagerState", () => {
         mockData.documents[0]
       );
 
-      const { result } = renderHook(() => useDocumentManagerState());
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
       await renderCompletion();
 
       expect(result.current.selectedDocument).toEqual(mockData.documents[0]);
@@ -65,7 +72,9 @@ describe("useDocumentManagerState", () => {
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
-      const { result } = renderHook(() => useDocumentManagerState());
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
       configureApi([], mockData.documents[1]);
 
       await renderCompletion();
@@ -84,7 +93,9 @@ describe("useDocumentManagerState", () => {
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
-      const { result } = renderHook(() => useDocumentManagerState());
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
       configureApi([], mockData.documents[1]);
 
       await renderCompletion();
@@ -107,7 +118,9 @@ describe("useDocumentManagerState", () => {
       );
       var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
 
-      const { result } = renderHook(() => useDocumentManagerState());
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
 
       await renderCompletion();
       act(() => {
@@ -120,10 +133,59 @@ describe("useDocumentManagerState", () => {
   });
 
   describe("no documents state", () => {
+    it("should set the list of collection documents to null if the collection is null", async () => {
+      configureApi(
+        mockData.documents.map(cloneWithoutFile),
+        mockData.documents[0]
+      );
+
+      const { result } = renderHook(() => useDocumentManagerState(null));
+
+      await renderCompletion();
+      expect(result.current.documents).toBeNull();
+    });
+
+    it("should set the selected document to null if the collection is null", async () => {
+      configureApi(
+        mockData.documents.map(cloneWithoutFile),
+        mockData.documents[0]
+      );
+
+      const { result } = renderHook(() => useDocumentManagerState(null));
+
+      await renderCompletion();
+      expect(result.current.selectedDocument).toBeNull();
+    });
+
+    it("should not make a call to get the collection documents if the collection is null", async () => {
+      configureApi(mockData.documents.map(cloneWithoutFile), {});
+      var getDocumentCollectionsSpy = jest.spyOn(
+        mockApi,
+        "getCollectionDocuments"
+      );
+
+      renderHook(() => useDocumentManagerState(null));
+
+      await renderCompletion();
+      expect(getDocumentCollectionsSpy).not.toHaveBeenCalled();
+    });
+
+    it("should not make a call to get the first document file if the collection is null", async () => {
+      configureApi(mockData.documents.map(cloneWithoutFile), {});
+      var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
+
+      renderHook(() => useDocumentManagerState(null));
+
+      await renderCompletion();
+      expect(getDocumentSpy).not.toHaveBeenCalled();
+    });
+
     it("should initialize with an empty list if collection contains no documents", async () => {
       configureApi([], {});
 
-      const { result } = renderHook(() => useDocumentManagerState());
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
       await renderCompletion();
 
       expect(result.current.documents).toEqual([]);
