@@ -47,7 +47,12 @@ function ModalDialog(props) {
   };
 
   return (
-    <Modal isOpen={props.showDialog} toggle={toggle} data-testid="modal">
+    <Modal
+      isOpen={props.showDialog}
+      toggle={toggle}
+      data-testid="modal"
+      backdrop="static"
+    >
       <ModalHeader toggle={toggle} data-testid="modal-header">
         <i
           className={iconClass(iconStyle) + " mr-3"}
