@@ -1,6 +1,7 @@
 import React from "react";
 import DocumentListItem from "../DocumentListItem/DocumentListItem";
 import "./DocumentList.scss";
+import { byDateDescending } from "../../util/dateUtilities";
 
 function DocumentList(props) {
   let docs = props.documents;
@@ -23,19 +24,6 @@ function DocumentList(props) {
         }) !== undefined
       );
     }
-  }
-
-  function parseDateNoInvalid(stringDate) {
-    var dt = new Date(stringDate);
-
-    return isNaN(dt.getTime()) ? 0 : dt.getTime();
-  }
-
-  function byDateDescending(doc1, doc2) {
-    return (
-      parseDateNoInvalid(doc2.dateCreated) -
-      parseDateNoInvalid(doc1.dateCreated)
-    );
   }
 
   var children = docs

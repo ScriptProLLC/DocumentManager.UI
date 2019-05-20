@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { formatDate } from "./../../util/dateFormatter";
+import { formatDate } from "../../util/dateUtilities";
 import {
   Collapse,
   ListGroup,
