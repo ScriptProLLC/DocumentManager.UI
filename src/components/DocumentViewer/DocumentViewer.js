@@ -17,7 +17,12 @@ function DocumentViewer(props) {
           data-testid="document_viewer_container_nodocs"
           className="document-viewer-container"
         >
-          <div className="document-viewer-empty">No documents present</div>
+          <div
+            data-testid="document_viewer_no_documents"
+            className="document-viewer-empty"
+          >
+            No document selected
+          </div>
         </div>
       );
     } else {

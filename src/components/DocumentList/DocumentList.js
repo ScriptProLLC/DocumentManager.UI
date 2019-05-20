@@ -58,7 +58,7 @@ function DocumentList(props) {
     <div className="document-list-container">
       {!docs || docs.length === 0 ? (
         <div
-          data-testid="documentListNoDocuments"
+          data-testid="document_list_no_documents"
           className="document-list-empty"
         >
           No documents present

@@ -58,4 +58,52 @@ describe("DocumentManager component", () => {
 
     expect(getByTestId("document_viewer_header")).toBeTruthy();
   });
+
+  it("displays No Documents Present in the list for a collection with no documents", async () => {
+    mockAxios.setCollection([]);
+    const { getByTestId } = render(
+      <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006418"} />
+    );
+
+    const documentListNoDocuments = await waitForElement(() =>
+      getByTestId("document_list_no_documents")
+    );
+
+    expect(documentListNoDocuments).toBeTruthy();
+  });
+
+  it("displays No Documents Present in the list when no collection is passed", async () => {
+    mockAxios.setCollection(null);
+    const { getByTestId } = render(<DocumentManager />);
+
+    const documentListNoDocuments = await waitForElement(() =>
+      getByTestId("document_list_no_documents")
+    );
+
+    expect(documentListNoDocuments).toBeTruthy();
+  });
+
+  it("displays No Documents Present in the viewer for a collection with no documents", async () => {
+    mockAxios.setCollection([]);
+    const { getByTestId } = render(
+      <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006418"} />
+    );
+
+    const documentViewerNoDocuments = await waitForElement(() =>
+      getByTestId("document_viewer_no_documents")
+    );
+
+    expect(documentViewerNoDocuments).toBeTruthy();
+  });
+
+  it("displays No Documents Present in the viewer when no collection is passed", async () => {
+    mockAxios.setCollection(null);
+    const { getByTestId } = render(<DocumentManager />);
+
+    const documentViewerNoDocuments = await waitForElement(() =>
+      getByTestId("document_viewer_no_documents")
+    );
+
+    expect(documentViewerNoDocuments).toBeTruthy();
+  });
 });
