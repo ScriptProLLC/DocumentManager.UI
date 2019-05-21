@@ -7,8 +7,9 @@ function reportResult(result) {
   console.log(result);
 }
 
-// just a no-op for the toggle action as it has no real meaning here
-function toggle() {}
+function toggle() {
+  console.log("(x) button was clicked");
+}
 
 storiesOf("ModalDialog", module)
   .addDecorator(withKnobs)
