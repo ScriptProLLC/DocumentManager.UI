@@ -56,6 +56,16 @@ describe("ModalDialog component", () => {
       );
     });
 
+    it("header", () => {
+      const { getByTestId } = render(
+        <ModalDialog showDialog={true} header="test modal header" />
+      );
+
+      expect(getByTestId("modal_header").children[0].textContent).toBe(
+        "test modal header"
+      );
+    });
+
     it("confirm button text", () => {
       const { getByTestId } = render(
         <ModalDialog
@@ -163,8 +173,34 @@ describe("ModalDialog component", () => {
         });
 
         describe("close click", () => {
-          it("calls callback with default prompt", () => {});
-          it("calls callback with custom prompt", async () => {});
+          it("calls callback with default prompt", () => {
+            var mockResultCallback = jest.fn(r => r);
+            const { getByTestId } = render(
+              <ModalDialog
+                showDialog={true}
+                reportResult={mockResultCallback}
+              />
+            );
+
+            fireEvent.click(getByTestId("modal_header").children[1]);
+
+            expect(mockResultCallback).toBeCalledWith("Cancel");
+          });
+
+          it("calls callback with custom prompt", async () => {
+            var mockResultCallback = jest.fn(r => r);
+            const { getByTestId } = render(
+              <ModalDialog
+                showDialog={true}
+                cancelPrompt="Custom cancel prompt"
+                reportResult={mockResultCallback}
+              />
+            );
+
+            fireEvent.click(getByTestId("modal_header").children[1]);
+
+            expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
+          });
         });
       });
     });

@@ -9,7 +9,7 @@ describe("DocumentManager", () => {
   // https://on.cypress.io/interacting-with-elements
 
   it("clicking on a document in the list selects the document", () => {
-    cy.get("[data-testid=documentListItems]").then($selectedElement => {
+    cy.get("[data-testid=document_list_items]").then($selectedElement => {
       expect($selectedElement).to.be.not.null;
 
       var elemToClick = $selectedElement[0].children[1].querySelector(
@@ -22,7 +22,7 @@ describe("DocumentManager", () => {
         $selectedElement => {
           var elemToTest = $selectedElement[0];
 
-          cy.get("[data-testid=documentActionDocumentName]").then(
+          cy.get("[data-testid=document_action_documentName]").then(
             $selectedElement => {
               var spanName = $selectedElement[0].innerText;
 

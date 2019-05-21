@@ -10,7 +10,7 @@ describe("DocumentViewer", () => {
 
   it("selecting a document in the list renders the pdf", () => {
     //// should be at least one in list and a document rendered already
-    cy.get("[data-testid=documentListItems]").then($selectedElement => {
+    cy.get("[data-testid=document_list_items]").then($selectedElement => {
       expect($selectedElement).to.be.not.null;
 
       var elemToClick = $selectedElement[0].children[1].querySelector(
