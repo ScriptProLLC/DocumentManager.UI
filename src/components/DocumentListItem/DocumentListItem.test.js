@@ -17,7 +17,7 @@ describe("DocumentListItem component", () => {
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe(document.name);
+    expect(getByTestId("document_name").textContent).toBe(document.name);
   });
 
   it("renders the name of the document with unicode characters", () => {
@@ -25,7 +25,7 @@ describe("DocumentListItem component", () => {
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe("ओ");
+    expect(getByTestId("document_name").textContent).toBe("ओ");
   });
 
   it("renders a default name if the name is null", () => {
@@ -33,7 +33,7 @@ describe("DocumentListItem component", () => {
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe("Unnamed Document");
+    expect(getByTestId("document_name").textContent).toBe("Unnamed Document");
   });
 
   it("renders a default name if the name is empty", () => {
@@ -41,7 +41,7 @@ describe("DocumentListItem component", () => {
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("documentName").textContent).toBe("Unnamed Document");
+    expect(getByTestId("document_name").textContent).toBe("Unnamed Document");
   });
 
   it("renders the dateCreated of the document", () => {
@@ -61,7 +61,7 @@ describe("DocumentListItem component", () => {
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("attributesList").childElementCount).toBe(1);
+    expect(getByTestId("attributes_list").childElementCount).toBe(1);
   });
 
   it("renders a field for each attribute", () => {
@@ -72,7 +72,7 @@ describe("DocumentListItem component", () => {
 
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("attributesList").childElementCount).toBe(4);
+    expect(getByTestId("attributes_list").childElementCount).toBe(4);
   });
 
   it("renders the correct text for an attribute", () => {
@@ -103,7 +103,7 @@ describe("DocumentListItem component", () => {
       <DocumentListItem document={document} />
     );
 
-    fireEvent.click(getByTestId("collapseToggle"));
+    fireEvent.click(getByTestId("collapse_toggle"));
     await waitForDomChange(container);
     var elem = getByTestId("collapse");
 

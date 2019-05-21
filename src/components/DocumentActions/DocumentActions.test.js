@@ -13,12 +13,14 @@ describe("DocumentActions component", () => {
 
     const { getByTestId } = render(<DocumentActions document={doc} />);
 
-    expect(getByTestId("documentActionDocumentName").textContent).toBe(docName);
+    expect(getByTestId("document_action_document_name").textContent).toBe(
+      docName
+    );
   });
 
   it("has empty document management text if no document specified", () => {
     const { getByTestId } = render(<DocumentActions document={null} />);
 
-    expect(getByTestId("documentActionDocumentName").textContent).toBe("");
+    expect(getByTestId("document_action_document_name").textContent).toBe("");
   });
 });

@@ -52,7 +52,7 @@ function DocumentList(props) {
           No documents present
         </div>
       ) : (
-        <ul data-testid="documentListItems">{children}</ul>
+        <ul data-testid="document_list_items">{children}</ul>
       )}
     </div>
   );

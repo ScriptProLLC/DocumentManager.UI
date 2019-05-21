@@ -60,7 +60,7 @@ function DocumentListItem(props) {
           <Button
             className="btn document-list-expand-button"
             color="dark-grey"
-            data-testid="collapseToggle"
+            data-testid="collapse_toggle"
             onClick={toggle}
             outline
             size="sm"
@@ -72,7 +72,7 @@ function DocumentListItem(props) {
             />
           </Button>
           <div
-            data-testid="documentName"
+            data-testid="document_name"
             className="document-list-item-name"
             onClick={select}
           >
@@ -92,7 +92,7 @@ function DocumentListItem(props) {
       <Row>
         <Col>
           <Collapse isOpen={expanded} data-testid="collapse" onClick={select}>
-            <ListGroup data-testid="attributesList">
+            <ListGroup data-testid="attributes_list">
               {displayListItems()}
             </ListGroup>
           </Collapse>

@@ -23,7 +23,7 @@ describe("DocumentManager component", () => {
     );
 
     const documentList = await waitForElement(() =>
-      getByTestId("documentListItems")
+      getByTestId("document_list_items")
     );
 
     expect(documentList.childElementCount).toBe(2);
@@ -35,7 +35,7 @@ describe("DocumentManager component", () => {
     );
 
     const documentList = await waitForElement(() =>
-      getByTestId("documentListItems")
+      getByTestId("document_list_items")
     );
 
     expect(documentList).toBeTruthy();

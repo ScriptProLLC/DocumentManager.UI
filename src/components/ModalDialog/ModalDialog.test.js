@@ -19,19 +19,19 @@ describe("ModalDialog component", () => {
     it("header", () => {
       const { getByTestId } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal-header").textContent).toContain("Alert");
+      expect(getByTestId("modal_header").textContent).toContain("Alert");
     });
 
     it("confirm button text", () => {
       const { getByTestId } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal-confirm-prompt").textContent).toBe("Confirm");
+      expect(getByTestId("modal_confirm_prompt").textContent).toBe("Confirm");
     });
 
     it("cancel button text", () => {
       const { getByTestId } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal-cancel-prompt").textContent).toContain(
+      expect(getByTestId("modal_cancel_prompt").textContent).toContain(
         "Cancel"
       );
     });
@@ -39,7 +39,7 @@ describe("ModalDialog component", () => {
     it("icon", () => {
       const { getByTestId } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal-icon").classList).toContain(
+      expect(getByTestId("modal_icon").classList).toContain(
         "fa-exclamation-triangle"
       );
     });
@@ -51,7 +51,7 @@ describe("ModalDialog component", () => {
         <ModalDialog showDialog={true} prompt="test modal prompt" />
       );
 
-      expect(getByTestId("modal-prompt").textContent.trim()).toBe(
+      expect(getByTestId("modal_prompt").textContent.trim()).toBe(
         "test modal prompt"
       );
     });
@@ -64,7 +64,7 @@ describe("ModalDialog component", () => {
         />
       );
 
-      expect(getByTestId("modal-confirm-prompt").textContent.trim()).toBe(
+      expect(getByTestId("modal_confirm_prompt").textContent.trim()).toBe(
         "test modal confirm prompt"
       );
     });
@@ -77,7 +77,7 @@ describe("ModalDialog component", () => {
         />
       );
 
-      expect(getByTestId("modal-cancel-prompt").textContent.trim()).toBe(
+      expect(getByTestId("modal_cancel_prompt").textContent.trim()).toBe(
         "test modal cancel prompt"
       );
     });
@@ -87,7 +87,7 @@ describe("ModalDialog component", () => {
         <ModalDialog showDialog={true} iconStyle="Error" />
       );
 
-      expect(getByTestId("modal-icon").classList).toContain("fa-times");
+      expect(getByTestId("modal_icon").classList).toContain("fa-times");
     });
 
     it("info icon", () => {
@@ -95,7 +95,7 @@ describe("ModalDialog component", () => {
         <ModalDialog showDialog={true} iconStyle="Info" />
       );
 
-      expect(getByTestId("modal-icon").classList).toContain("fa-info-circle");
+      expect(getByTestId("modal_icon").classList).toContain("fa-info-circle");
     });
 
     describe("events", () => {
@@ -110,7 +110,7 @@ describe("ModalDialog component", () => {
               />
             );
 
-            fireEvent.click(getByTestId("modal-confirm-prompt"));
+            fireEvent.click(getByTestId("modal_confirm_prompt"));
 
             expect(mockResultCallback).toBeCalledWith("Confirm");
           });
@@ -125,7 +125,7 @@ describe("ModalDialog component", () => {
               />
             );
 
-            fireEvent.click(getByTestId("modal-confirm-prompt"));
+            fireEvent.click(getByTestId("modal_confirm_prompt"));
 
             expect(mockResultCallback).toBeCalledWith("Custom confirm propmpt");
           });
@@ -141,7 +141,7 @@ describe("ModalDialog component", () => {
               />
             );
 
-            fireEvent.click(getByTestId("modal-cancel-prompt"));
+            fireEvent.click(getByTestId("modal_cancel_prompt"));
 
             expect(mockResultCallback).toBeCalledWith("Cancel");
           });
@@ -156,7 +156,7 @@ describe("ModalDialog component", () => {
               />
             );
 
-            fireEvent.click(getByTestId("modal-cancel-prompt"));
+            fireEvent.click(getByTestId("modal_cancel_prompt"));
 
             expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
           });

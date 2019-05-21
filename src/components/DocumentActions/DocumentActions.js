@@ -7,7 +7,7 @@ function DocumentActions(props) {
 
   return (
     <div className="document-actions-container">
-      <span data-testid="documentActionDocumentName">{documentName}</span>
+      <span data-testid="document_action_document_name">{documentName}</span>
     </div>
   );
 }

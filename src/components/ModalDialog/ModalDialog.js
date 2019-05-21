@@ -53,28 +53,28 @@ function ModalDialog(props) {
       data-testid="modal"
       backdrop="static"
     >
-      <ModalHeader toggle={toggle} data-testid="modal-header">
+      <ModalHeader toggle={toggle} data-testid="modal_header">
         <i
           className={iconClass(iconStyle) + " mr-3"}
-          data-testid="modal-icon"
+          data-testid="modal_icon"
         />
         <strong className="modal-header-text">{header}</strong>
       </ModalHeader>
       <ModalBody>
-        <p data-testid="modal-prompt">{props.prompt}</p>
+        <p data-testid="modal_prompt">{props.prompt}</p>
       </ModalBody>
       <ModalFooter>
         <Button
           color="secondary"
           onClick={confirmClick}
-          data-testid="modal-confirm-prompt"
+          data-testid="modal_confirm_prompt"
         >
           {confirmPrompt}
         </Button>
         <Button
           color="grey"
           onClick={cancelClick}
-          data-testid="modal-cancel-prompt"
+          data-testid="modal_cancel_prompt"
         >
           {cancelPrompt}
         </Button>

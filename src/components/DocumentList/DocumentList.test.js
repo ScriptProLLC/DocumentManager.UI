@@ -46,6 +46,6 @@ describe("DocumentList component", () => {
 
     const { getByTestId } = render(<DocumentList documents={docs} />);
 
-    expect(getByTestId("documentListItems").childElementCount).toBe(2);
+    expect(getByTestId("document_list_items").childElementCount).toBe(2);
   });
 });
