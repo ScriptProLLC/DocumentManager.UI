@@ -22,7 +22,7 @@ describe("DocumentManager", () => {
         $selectedElement => {
           var elemToTest = $selectedElement[0];
 
-          cy.get("[data-testid=document_action_documentName]").then(
+          cy.get("[data-testid=document_action_document_name]").then(
             $selectedElement => {
               var spanName = $selectedElement[0].innerText;
 
