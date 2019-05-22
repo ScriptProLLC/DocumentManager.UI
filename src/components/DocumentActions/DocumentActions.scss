@@ -1,5 +1,17 @@
 @import "../../variables.scss";
 
+.delete-button {
+  display: inline-block;
+  font-size: 2rem;
+  padding-right: 0.5rem;
+
+  &:hover {
+    color: $dark;
+    cursor: pointer;
+    text-shadow: none;
+  }
+}
+
 .document-actions-container {
   @include background-gradient($primary, $secondary);
   @include inset-shadow(2rem, 0.25);
@@ -7,5 +19,4 @@
   border-top: solid 1px $light;
   font-size: 1.2rem;
   height: 3.5rem;
-  padding: 0.85rem 1rem;
 }

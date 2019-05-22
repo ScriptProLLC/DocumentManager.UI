@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import {
   getCollectionDocuments,
-  getDocument
+  getDocument,
+  deleteDocument
 } from "../../../api/DocManagerApi";
 
 function useDocumentManagerState(collectionId) {
@@ -41,7 +42,21 @@ function useDocumentManagerState(collectionId) {
     setSelectedDocument(documentWithFile);
   }
 
-  return { documents, selectedDocument, updateSelectedDocument };
+  async function deleteSelectedDocument() {
+    await deleteDocument(selectedDocument.id);
+
+    setDocuments(documents.filter(d => d.id !== selectedDocument.id));
+    setSelectedDocument(null);
+
+    return;
+  }
+
+  return {
+    documents,
+    selectedDocument,
+    updateSelectedDocument,
+    deleteSelectedDocument
+  };
 }
 
 export { useDocumentManagerState };

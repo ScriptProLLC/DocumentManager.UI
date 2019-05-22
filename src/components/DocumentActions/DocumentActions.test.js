@@ -21,6 +21,8 @@ describe("DocumentActions component", () => {
   it("has empty document management text if no document specified", () => {
     const { getByTestId } = render(<DocumentActions document={null} />);
 
-    expect(getByTestId("document_action_document_name").textContent).toBe("");
+    expect(getByTestId("document_action_document_name").textContent).toBe(
+      "Unnamed Document"
+    );
   });
 });

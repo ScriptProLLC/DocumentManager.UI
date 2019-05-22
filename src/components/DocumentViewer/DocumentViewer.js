@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PDFViewer from "./PDFViewer";
 import { DocumentViewerContext } from "./DocumentViewerContext";
-import DocumentActions from "../DocumentActions/DocumentActions";
 import "./DocumentViewer.scss";
 
 function DocumentViewer(props) {
   let pdfDocument = props.document;
   let documentFile = pdfDocument ? pdfDocument.documentFile : null;
-
-  useEffect(() => {}, [documentFile]);
 
   function render() {
     if (!pdfDocument || !pdfDocument.documentFile) {
@@ -37,7 +34,6 @@ function DocumentViewer(props) {
             className="document-viewer-container"
           >
             <PDFViewer />
-            <DocumentActions document={pdfDocument} />
           </div>
         </DocumentViewerContext.Provider>
       );

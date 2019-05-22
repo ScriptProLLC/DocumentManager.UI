@@ -15,4 +15,11 @@ const getDocument = async documentId => {
     .then(res => res.data);
 };
 
-export { getCollectionDocuments, getDocument };
+const deleteDocument = async documentId => {
+  var path = `/documents/${documentId}`;
+  return await axios
+    .delete(process.env.REACT_APP_API_URL + path)
+    .then(res => res.data);
+};
+
+export { getCollectionDocuments, getDocument, deleteDocument };
