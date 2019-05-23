@@ -1,5 +1,6 @@
 let mockGetCollectionDocuments;
 let mockGetDocument;
+let mockDeleteDocument;
 
 function setup(functionName, mock) {
   switch (functionName) {
@@ -9,6 +10,10 @@ function setup(functionName, mock) {
 
     case "getDocument":
       mockGetDocument = mock;
+      break;
+
+    case "deleteDocument":
+      mockDeleteDocument = mock;
       break;
 
     default:
@@ -21,4 +26,6 @@ const getCollectionDocuments = async collectionId =>
 
 const getDocument = async documentId => await mockGetDocument(documentId);
 
-export { setup, getCollectionDocuments, getDocument };
+const deleteDocument = async documentId => await mockDeleteDocument(documentId);
+
+export { setup, getCollectionDocuments, getDocument, deleteDocument };

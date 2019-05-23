@@ -3,8 +3,7 @@ import { render, cleanup, waitForElement } from "react-testing-library";
 import "jest-dom/extend-expect";
 import DocumentManager from "./DocumentManager";
 import mockAxios from "./../../../__mocks__/axios";
-import { act } from "react-dom/test-utils";
-import { tick } from "./../../util/dataHelper";
+import { renderCompletion } from "./../../util/testUtilities";
 
 const mockData = require("./../../../tools/mockData");
 
@@ -46,7 +45,7 @@ describe("DocumentManager component", () => {
   it("renders the document list header text", async () => {
     const { getByTestId } = render(<DocumentManager />);
 
-    await tick();
+    await renderCompletion();
 
     expect(getByTestId("document_list_header")).toBeTruthy();
   });
@@ -54,7 +53,7 @@ describe("DocumentManager component", () => {
   it("renders the document viewer header text", async () => {
     const { getByTestId } = render(<DocumentManager />);
 
-    await tick();
+    await renderCompletion();
 
     expect(getByTestId("document_viewer_header")).toBeTruthy();
   });

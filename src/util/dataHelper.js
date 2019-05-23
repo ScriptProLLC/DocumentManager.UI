@@ -74,9 +74,6 @@ function cloneWithoutFile(document) {
   clone.documentFile = null;
   return clone;
 }
-function tick(s = 1) {
-  return new Promise(r => setTimeout(r, s));
-}
 
 module.exports = {
   createTestDocument,
@@ -84,6 +81,5 @@ module.exports = {
   createTestDocumentList,
   createMixedDateDocumentList,
   createMixedDateDocumentListWithNulls,
-  cloneWithoutFile,
-  tick
+  cloneWithoutFile
 };

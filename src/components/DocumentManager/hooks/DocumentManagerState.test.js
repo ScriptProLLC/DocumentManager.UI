@@ -2,14 +2,14 @@ import { renderHook, act } from "react-hooks-testing-library";
 import { cleanup } from "react-testing-library";
 import { useDocumentManagerState } from "./../hooks/DocumentManagerState";
 import mockData from "./../../../../tools/mockData";
-import { cloneWithoutFile, tick } from "./../../../util/dataHelper";
+import { cloneWithoutFile } from "./../../../util/dataHelper";
+import { asyncAct, renderCompletion } from "./../../../util/testUtilities";
 import * as mockApi from "./../../../api/DocManagerApi";
 
 jest.mock("./../../../api/DocManagerApi");
 
 const someCollectionId = "d7a2add9-14bf-480e-9b97-96685a006431";
 let configureApi = () => {};
-const renderCompletion = tick;
 
 afterEach(() => {
   cleanup();
@@ -20,6 +20,7 @@ beforeEach(() => {
   configureApi = (collectionDocuments, document) => {
     mockApi.setup("getCollectionDocuments", async () => collectionDocuments);
     mockApi.setup("getDocument", async () => document);
+    mockApi.setup("deleteDocument", async () => {});
   };
 });
 
@@ -63,6 +64,44 @@ describe("useDocumentManagerState", () => {
       await renderCompletion();
 
       expect(result.current.selectedDocument).toEqual(mockData.documents[0]);
+    });
+  });
+
+  describe("on deleting a document", () => {
+    let currentState = {};
+    let deleteDocumentSpy;
+
+    beforeEach(async () => {
+      configureApi(
+        mockData.documents.map(cloneWithoutFile),
+        mockData.documents[0]
+      );
+
+      deleteDocumentSpy = jest.spyOn(mockApi, "deleteDocument");
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
+
+      currentState = result.current;
+
+      await renderCompletion();
+
+      asyncAct(async () => {
+        await result.current.deleteSelectedDocument();
+        currentState = result.current;
+      });
+
+      await renderCompletion();
+    });
+
+    it("should remove the document from the list", () => {
+      expect(currentState.documents).not.toContain(mockData.documents[0]);
+    });
+    it("should leave no document selected", () => {
+      expect(currentState.selectedDocument).toBeNull();
+    });
+    it("should make a call to delete the correct document", () => {
+      expect(deleteDocumentSpy).toHaveBeenCalledWith(mockData.documents[0].id);
     });
   });
 
