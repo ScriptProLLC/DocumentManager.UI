@@ -176,7 +176,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="SPCentral_Registry" ComponentId="{1916A2B9-595E-44A4-8115-A84F4D2AD416}" Directory_="APPDIR" Attributes="260" KeyPath="InstalledDateTime"/>
-    <ROW Component="chunk.css" ComponentId="{39ED7234-782E-40D6-9C23-EA1968C4D0B6}" Directory_="NewFolder_Dir" Attributes="0" KeyPath="chunk.css" Type="0"/>
+    <ROW Component="chunk.css" ComponentId="{39ED7234-782E-40D6-9C23-EA1968C4D0B6}" Directory_="NewFolder_Dir" Attributes="0" KeyPath="c0e08627.chunk.css" Type="0"/>
     <ROW Component="d071e673.chunk.js" ComponentId="{1261B22D-EBA8-43CC-9668-88B753F399FF}" Directory_="js_Dir" Attributes="0" KeyPath="runtimemain.d653cc00.js" Type="0"/>
     <ROW Component="favicon.ico" ComponentId="{50C2D7C2-E501-4F5C-9AB4-5D5AA16FDF3E}" Directory_="DocumentManagerUI_Dir" Attributes="0" KeyPath="favicon.ico" Type="0"/>
     <ROW Component="fontawesomewebfont.af7ae505.woff2" ComponentId="{14392C10-D679-474B-8C68-F9CED60A7E14}" Directory_="media_Dir" Attributes="0" KeyPath="fontawesomewebfont.af7ae505.woff2" Type="0"/>
@@ -185,7 +185,7 @@
     <ROW Component="pdfJS_Cmaps" ComponentId="{33B4D9D6-CD70-4F82-8DA8-0F6420F22060}" Directory_="cmaps_Dir" Attributes="0" KeyPath="EUCH.bcmap"/>
     <ROW Component="pdfJS_Images" ComponentId="{42E8757D-EC35-42E8-A117-DC7D92D20DAE}" Directory_="images_Dir" Attributes="0" KeyPath="annotationcheck.svg"/>
     <ROW Component="pdfJS_LICENSE" ComponentId="{9AF895A7-764C-47D2-A143-2C652C4B8E4D}" Directory_="pdfjs2.0.943dist_Dir" Attributes="0" KeyPath="LICENSE"/>
-    <ROW Component="pdfJS_Web" ComponentId="{DF2CEED8-3761-4440-BE19-ED407C9471EF}" Directory_="web_Dir" Attributes="0" KeyPath="debugger.js"/>
+    <ROW Component="pdfJS_Web" ComponentId="{DF2CEED8-3761-4440-BE19-ED407C9471EF}" Directory_="web_Dir" Attributes="0" KeyPath="viewer.html"/>
     <ROW Component="pdfJS_locale" ComponentId="{83AEE7DE-84CD-48F0-AF9A-0D29A813C92D}" Directory_="locale_Dir" Attributes="0" KeyPath="locale.properties"/>
     <ROW Component="pdfJS_properties" ComponentId="{50BC4227-49A9-4F2D-AFA9-C3032621C9F4}" Directory_="ach_Dir" Attributes="0" KeyPath="viewer.properties"/>
     <ROW Component="pdfJS_properties_1" ComponentId="{B772A458-6060-4744-94B9-5A6218FD4751}" Directory_="af_Dir" Attributes="0" KeyPath="viewer.properties_1"/>
@@ -490,9 +490,10 @@
     <ROW File="annotationnoicon.svg" Component_="pdfJS_Images" FileName="ANNOTA~7.SVG|annotation-noicon.svg" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\annotation-noicon.svg" SelfReg="false" NextFile="annotationnote.svg"/>
     <ROW File="annotationnote.svg" Component_="pdfJS_Images" FileName="ANNOTA~8.SVG|annotation-note.svg" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\annotation-note.svg" SelfReg="false" NextFile="annotationparagraph.svg"/>
     <ROW File="annotationparagraph.svg" Component_="pdfJS_Images" FileName="ANNOTA~9.SVG|annotation-paragraph.svg" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\annotation-paragraph.svg" SelfReg="false" NextFile="findbarButtonnextrtl.png"/>
-    <ROW File="chunk.css" Component_="chunk.css" FileName="206017~1.CSS|2.06017638.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\2.06017638.chunk.css" SelfReg="false" NextFile="runtimemain.d653cc00.js"/>
+    <ROW File="c0e08627.chunk.css" Component_="chunk.css" FileName="2C0E08~1.CSS|2.c0e08627.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\2.c0e08627.chunk.css" SelfReg="false" NextFile="main.d5e77917.chunk.css"/>
+    <ROW File="customviewerstyles.css" Component_="pdfJS_Web" FileName="CUSTOM~1.CSS|custom-viewer-styles.css" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\custom-viewer-styles.css" SelfReg="false"/>
     <ROW File="debugger.js" Component_="pdfJS_Web" FileName="debugger.js" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\debugger.js" SelfReg="false" NextFile="annotationcheck.svg"/>
-    <ROW File="f9e.chunk.js" Component_="d071e673.chunk.js" FileName="258920~1.JS|2.58920f9e.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\2.58920f9e.chunk.js" SelfReg="false" NextFile="main.911d087d.chunk.js"/>
+    <ROW File="ed108.chunk.js" Component_="d071e673.chunk.js" FileName="2788ED~1.JS|2.788ed108.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\2.788ed108.chunk.js" SelfReg="false" NextFile="main.de93e7dc.chunk.js"/>
     <ROW File="favicon.ico" Component_="favicon.ico" FileName="favicon.ico" Attributes="0" SourcePath="..\..\build\favicon.ico" SelfReg="false" NextFile="index.html"/>
     <ROW File="findbarButtonnext.png" Component_="pdfJS_Images" FileName="FINDBA~3.PNG|findbarButton-next.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\findbarButton-next.png" SelfReg="false" NextFile="findbarButtonnext2x.png"/>
     <ROW File="findbarButtonnext2x.png" Component_="pdfJS_Images" FileName="FINDBA~4.PNG|findbarButton-next@2x.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\findbarButton-next@2x.png" SelfReg="false" NextFile="findbarButtonpreviousrtl.png"/>
@@ -512,8 +513,8 @@
     <ROW File="loadingsmall.png" Component_="pdfJS_Images" FileName="LOADIN~1.PNG|loading-small.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\loading-small.png" SelfReg="false" NextFile="loadingsmall2x.png"/>
     <ROW File="loadingsmall2x.png" Component_="pdfJS_Images" FileName="LOADIN~2.PNG|loading-small@2x.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\loading-small@2x.png" SelfReg="false" NextFile="secondaryToolbarButtondocumentProperties.png"/>
     <ROW File="locale.properties" Component_="pdfJS_locale" FileName="LOCALE~1.PRO|locale.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\locale.properties" SelfReg="false" NextFile="viewer.properties_69"/>
-    <ROW File="main.911d087d.chunk.js" Component_="d071e673.chunk.js" FileName="MAIN91~1.JS|main.911d087d.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\main.911d087d.chunk.js" SelfReg="false"/>
-    <ROW File="main.aaf4d915.chunk.css" Component_="chunk.css" FileName="MAINAA~1.CSS|main.aaf4d915.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\main.aaf4d915.chunk.css" SelfReg="false" NextFile="precachemanifest.6a1403ef56b995e3aa61351c02c5a196.js"/>
+    <ROW File="main.d5e77917.chunk.css" Component_="chunk.css" FileName="MAIND5~1.CSS|main.d5e77917.chunk.css" Attributes="0" SourcePath="..\..\build\static\css\main.d5e77917.chunk.css" SelfReg="false" NextFile="ed108.chunk.js"/>
+    <ROW File="main.de93e7dc.chunk.js" Component_="d071e673.chunk.js" FileName="MAINDE~1.JS|main.de93e7dc.chunk.js" Attributes="0" SourcePath="..\..\build\static\js\main.de93e7dc.chunk.js" SelfReg="false" NextFile="customviewerstyles.css"/>
     <ROW File="msRKSJH.bcmap" Component_="pdfJS_Cmaps" FileName="78MS-R~1.BCM|78ms-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\78ms-RKSJ-H.bcmap" SelfReg="false" NextFile="msRKSJV.bcmap"/>
     <ROW File="msRKSJH.bcmap_1" Component_="pdfJS_Cmaps" FileName="90MS-R~1.BCM|90ms-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\90ms-RKSJ-H.bcmap" SelfReg="false" NextFile="msRKSJV.bcmap_1"/>
     <ROW File="msRKSJV.bcmap" Component_="pdfJS_Cmaps" FileName="78MS-R~2.BCM|78ms-RKSJ-V.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\78ms-RKSJ-V.bcmap" SelfReg="false" NextFile="pvRKSJH.bcmap"/>
@@ -524,7 +525,7 @@
     <ROW File="pdf.js.map" Component_="pdfJS" FileName="PDFJS~1.MAP|pdf.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\build\pdf.js.map" SelfReg="false" NextFile="pdf.worker.js"/>
     <ROW File="pdf.worker.js" Component_="pdfJS" FileName="PDFWOR~1.JS|pdf.worker.js" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\build\pdf.worker.js" SelfReg="false" NextFile="pdf.worker.js.map"/>
     <ROW File="pdf.worker.js.map" Component_="pdfJS" FileName="PDFWOR~1.MAP|pdf.worker.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\build\pdf.worker.js.map" SelfReg="false" NextFile="LICENSE"/>
-    <ROW File="precachemanifest.6a1403ef56b995e3aa61351c02c5a196.js" Component_="favicon.ico" FileName="PRECAC~1.JS|precache-manifest.6a1403ef56b995e3aa61351c02c5a196.js" Attributes="0" SourcePath="..\..\build\precache-manifest.6a1403ef56b995e3aa61351c02c5a196.js" SelfReg="false" NextFile="f9e.chunk.js"/>
+    <ROW File="precachemanifest.1a9827d8e52233a1d7f0a2d6b4fc33c3.js" Component_="favicon.ico" FileName="PRECAC~2.JS|precache-manifest.1a9827d8e52233a1d7f0a2d6b4fc33c3.js" Attributes="0" SourcePath="..\..\build\precache-manifest.1a9827d8e52233a1d7f0a2d6b4fc33c3.js" SelfReg="false" NextFile="c0e08627.chunk.css"/>
     <ROW File="pvRKSJH.bcmap" Component_="pdfJS_Cmaps" FileName="83PV-R~1.BCM|83pv-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\83pv-RKSJ-H.bcmap" SelfReg="false" NextFile="msRKSJH.bcmap_1"/>
     <ROW File="pvRKSJH.bcmap_1" Component_="pdfJS_Cmaps" FileName="90PV-R~1.BCM|90pv-RKSJ-H.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\90pv-RKSJ-H.bcmap" SelfReg="false" NextFile="pvRKSJV.bcmap"/>
     <ROW File="pvRKSJV.bcmap" Component_="pdfJS_Cmaps" FileName="90PV-R~2.BCM|90pv-RKSJ-V.bcmap" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\cmaps\90pv-RKSJ-V.bcmap" SelfReg="false" NextFile="AddH.bcmap"/>
@@ -555,7 +556,7 @@
     <ROW File="secondaryToolbarButtonspreadNone2x.png" Component_="pdfJS_Images" FileName="SECON~24.PNG|secondaryToolbarButton-spreadNone@2x.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\secondaryToolbarButton-spreadNone@2x.png" SelfReg="false" NextFile="secondaryToolbarButtonspreadOdd.png"/>
     <ROW File="secondaryToolbarButtonspreadOdd.png" Component_="pdfJS_Images" FileName="SECON~25.PNG|secondaryToolbarButton-spreadOdd.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\secondaryToolbarButton-spreadOdd.png" SelfReg="false" NextFile="secondaryToolbarButtonspreadOdd2x.png"/>
     <ROW File="secondaryToolbarButtonspreadOdd2x.png" Component_="pdfJS_Images" FileName="SECON~26.PNG|secondaryToolbarButton-spreadOdd@2x.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\secondaryToolbarButton-spreadOdd@2x.png" SelfReg="false" NextFile="shadow.png"/>
-    <ROW File="serviceworker.js" Component_="serviceworker.js" FileName="SERVIC~1.JS|service-worker.js" Attributes="0" SourcePath="..\..\build\service-worker.js" SelfReg="false" NextFile="chunk.css"/>
+    <ROW File="serviceworker.js" Component_="serviceworker.js" FileName="SERVIC~1.JS|service-worker.js" Attributes="0" SourcePath="..\..\build\service-worker.js" SelfReg="false" NextFile="runtimemain.d653cc00.js"/>
     <ROW File="shadow.png" Component_="pdfJS_Images" FileName="shadow.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\shadow.png" SelfReg="false" NextFile="texture.png"/>
     <ROW File="texture.png" Component_="pdfJS_Images" FileName="texture.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\texture.png" SelfReg="false" NextFile="toolbarButtonbookmark.png"/>
     <ROW File="toolbarButtonbookmark.png" Component_="pdfJS_Images" FileName="TOOLBA~1.PNG|toolbarButton-bookmark.png" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\images\toolbarButton-bookmark.png" SelfReg="false" NextFile="toolbarButtonbookmark2x.png"/>
@@ -609,7 +610,7 @@
     <ROW File="viewer.css" Component_="pdfJS_Web" FileName="viewer.css" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.css" SelfReg="false" NextFile="viewer.html"/>
     <ROW File="viewer.html" Component_="pdfJS_Web" FileName="VIEWER~1.HTM|viewer.html" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.html" SelfReg="false" NextFile="viewer.js"/>
     <ROW File="viewer.js" Component_="pdfJS_Web" FileName="viewer.js" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.js" SelfReg="false" NextFile="viewer.js.map"/>
-    <ROW File="viewer.js.map" Component_="pdfJS_Web" FileName="VIEWER~1.MAP|viewer.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.js.map" SelfReg="false" NextFile="main.aaf4d915.chunk.css"/>
+    <ROW File="viewer.js.map" Component_="pdfJS_Web" FileName="VIEWER~1.MAP|viewer.js.map" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\viewer.js.map" SelfReg="false" NextFile="precachemanifest.1a9827d8e52233a1d7f0a2d6b4fc33c3.js"/>
     <ROW File="viewer.properties" Component_="pdfJS_properties" FileName="VIEWER~1.PRO|viewer.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\ach\viewer.properties" SelfReg="false" NextFile="viewer.properties_1"/>
     <ROW File="viewer.properties_1" Component_="pdfJS_properties_1" FileName="VIEWER~1.PRO|viewer.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\af\viewer.properties" SelfReg="false" NextFile="viewer.properties_2"/>
     <ROW File="viewer.properties_10" Component_="pdfJS_properties_10" FileName="VIEWER~1.PRO|viewer.properties" Attributes="0" SourcePath="..\..\build\pdfjs-2.0.943-dist\web\locale\bn-BD\viewer.properties" SelfReg="false" NextFile="viewer.properties_11"/>

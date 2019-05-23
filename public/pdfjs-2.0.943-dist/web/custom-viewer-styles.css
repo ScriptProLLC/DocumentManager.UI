@@ -1,0 +1,75 @@
+/* Remove Unwanted PDFjs Buttons */
+#documentProperties,
+#download,
+#openFile,
+#presentationMode,
+#sidebarToggle,
+#spreadEven,
+#spreadNone,
+#spreadOdd,
+#viewBookmark,
+.horizontalToolbarSeparator.scrollModeButtons,
+.horizontalToolbarSeparator.spreadModeButtons {
+  display: none;
+}
+
+/* Move the findbar to rest underneath find button */
+html[dir="ltr"] .findbar {
+  left: 8px;
+}
+
+/* Vertically center default findbar checkboxes */
+.findbar .toolbarLabel {
+  margin-top: 5px;
+}
+
+.findbar .toolbarField[type="checkbox"] {
+  margin-top: 10px;
+}
+
+/* Fix Spacing Issue Caused By Button Removal */
+#toolbarViewerLeft {
+  padding-left: 0.65rem;
+}
+
+#toolbarViewerLeft .toolbarButtonSpacer {
+  display: none;
+}
+
+/* Slight padding adjustments to better align a couple default PDFjs elements */
+#scaleSelectContainer {
+  margin-top: 5px;
+}
+
+#pageNumber {
+  margin-top: 5px;
+}
+
+#numPages {
+  margin-left: 3px;
+  margin-top: 5px;
+}
+
+/* Change Mouse to Pointer for Buttons */
+.toolbarButton,
+.dropdownToolbarButton,
+.secondaryToolbarButton,
+.overlayButton {
+  cursor: pointer;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.5), 0 0 0.5rem rgba(0, 0, 0, 0.25);
+}
