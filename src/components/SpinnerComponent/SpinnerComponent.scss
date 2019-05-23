@@ -1,0 +1,87 @@
+/* Hide default modal styling */
+.modal-content.transparent-bg {
+  background-color: transparent;
+  border: none;
+}
+
+/* Message */
+.message {
+  color: white;
+  text-align: center;
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+/* Hate to use important here, but looking to stop the default modal transition of content */
+.modal.fade .modal-dialog {
+  transition-duration: 0s !important;
+}
+
+/* Spinner */
+.spinner {
+  height: 5rem;
+  margin: 2rem auto;
+  position: relative;
+  width: 5rem;
+
+  .dot {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &:before {
+      background-color: white;
+      border-radius: 100%;
+      content: "";
+      display: block;
+      height: 15%;
+      margin: 0 auto;
+      width: 15%;
+
+      -webkit-animation: dotFadeDelay 1.2s infinite ease-in-out both;
+      animation: dotFadeDelay 1.2s infinite ease-in-out both;
+    }
+  }
+
+  /* Loop through elements and apply different transition delay + rotation */
+  @for $i from 1 through 12 {
+    .dot:nth-of-type(#{$i}) {
+      $number: ($i) - 1;
+
+      -webkit-transform: rotate($number * 30deg);
+      -ms-transform: rotate($number * 30deg);
+      transform: rotate($number * 30deg);
+
+      &:before {
+        -webkit-animation-delay: (#{$i * 0.1s});
+        animation-delay: (#{$i * 0.1s});
+      }
+    }
+  }
+}
+
+/* Animations */
+@-webkit-keyframes dotFadeDelay {
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes dotFadeDelay {
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
