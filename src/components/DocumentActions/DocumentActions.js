@@ -34,7 +34,11 @@ function DocumentActions(props) {
           </span>
         </Col>
         <Col xs="4" className="my-auto text-right">
-          <div className="delete-button" onClick={onDeleteClick}>
+          <div
+            className="delete-button"
+            onClick={onDeleteClick}
+            data-testid="document_actions_delete_button"
+          >
             <i className="fa fa-trash-o" />
           </div>
         </Col>

@@ -58,7 +58,9 @@ function ModalDialog(props) {
           className={iconClass(iconStyle) + " mr-3"}
           data-testid="modal_icon"
         />
-        <strong className="modal-header-text">{header}</strong>
+        <strong className="modal-header-text" data-testid="modal_header_text">
+          {header}
+        </strong>
       </ModalHeader>
       <ModalBody>
         <p data-testid="modal_prompt">{props.prompt}</p>

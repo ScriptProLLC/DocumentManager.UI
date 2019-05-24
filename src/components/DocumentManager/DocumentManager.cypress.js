@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-expressions */
 /// <reference types="Cypress" />
 
-describe("DocumentManager", () => {
-  beforeEach(() => {
+describe("DocumentManager", function() {
+  beforeEach(function() {
     cy.visit("?collection=d7a2add9-14bf-480e-9b97-96685a006431");
   });
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("clicking on a document in the list selects the document", () => {
+  it("clicking on a document in the list selects the document", function() {
     cy.get("[data-testid=document_list_items]").then($selectedElement => {
       expect($selectedElement).to.be.not.null;
 
