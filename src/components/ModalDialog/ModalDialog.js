@@ -11,7 +11,8 @@ export default function ModalDialog({
   reportResult,
   toggle,
   showDialog,
-  prompt
+  prompt,
+  autoFocus
 }) {
   // Confirm
   function confirmClick() {
@@ -48,6 +49,7 @@ export default function ModalDialog({
 
   return (
     <Modal
+      autoFocus={false}
       isOpen={showDialog}
       toggle={onToggle}
       data-testid="modal"
@@ -64,6 +66,7 @@ export default function ModalDialog({
       </ModalBody>
       <ModalFooter>
         <Button
+          autoFocus={autoFocus === confirmPrompt}
           color="secondary"
           onClick={confirmClick}
           data-testid="modal_confirm_prompt"
@@ -71,6 +74,7 @@ export default function ModalDialog({
           {confirmPrompt}
         </Button>
         <Button
+          autoFocus={autoFocus === cancelPrompt}
           color="grey"
           onClick={cancelClick}
           data-testid="modal_cancel_prompt"
@@ -91,7 +95,8 @@ ModalDialog.propTypes = {
   iconStyle: PropTypes.string,
   reportResult: PropTypes.func,
   toggle: PropTypes.func,
-  showDialog: PropTypes.bool
+  showDialog: PropTypes.bool,
+  autoFocus: PropTypes.string
 };
 
 ModalDialog.defaultProps = {

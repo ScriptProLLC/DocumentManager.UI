@@ -48,6 +48,7 @@ export default function DocumentActions(props) {
 
       {/* Modal */}
       <ModalDialog
+        autoFocus="No"
         showDialog={showModalDialog}
         reportResult={onDeleteConfirmationReport}
         confirmPrompt="Yes"
