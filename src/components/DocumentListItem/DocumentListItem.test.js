@@ -52,7 +52,7 @@ describe("DocumentListItem component", () => {
     const { getByTestId } = render(<DocumentListItem document={document} />);
 
     expect(getByTestId("Date Created").textContent).toBe(
-      `Date Created: 01/01/1997 06:30 am`
+      "Date Created: 01/01/1997 6:30 AM"
     );
   });
 

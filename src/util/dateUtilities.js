@@ -1,7 +1,17 @@
-const moment = require("moment");
+export function formatDate(isoDateString) {
+  const date = new Date(isoDateString);
+  const formattedDate = date.toLocaleString([], {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric"
+  });
 
-function formatDate(date) {
-  return moment(date, "YYYY-MM-DDTHH:mm:ssZZ").format("MM/DD/YYYY hh:mm a");
+  const formattedTime = date.toLocaleString([], {
+    hour: "numeric",
+    minute: "2-digit"
+  });
+
+  return formattedDate + " " + formattedTime;
 }
 
 function parseDateNoInvalid(stringDate) {
@@ -10,13 +20,8 @@ function parseDateNoInvalid(stringDate) {
   return isNaN(dt.getTime()) ? 0 : dt.getTime();
 }
 
-function byDateDescending(doc1, doc2) {
+export function byDateDescending(doc1, doc2) {
   return (
     parseDateNoInvalid(doc2.dateCreated) - parseDateNoInvalid(doc1.dateCreated)
   );
 }
-
-module.exports = {
-  formatDate,
-  byDateDescending
-};

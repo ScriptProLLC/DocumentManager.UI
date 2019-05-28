@@ -118,7 +118,7 @@ describe("useDocumentManagerState", () => {
 
       await renderCompletion();
       act(() => {
-        result.current.updateSelectedDocument(
+        result.current.setSelectedDocument(
           cloneWithoutFile(mockData.documents[1])
         );
       });
@@ -139,7 +139,7 @@ describe("useDocumentManagerState", () => {
 
       await renderCompletion();
       act(() => {
-        result.current.updateSelectedDocument(
+        result.current.setSelectedDocument(
           cloneWithoutFile(mockData.documents[1])
         );
       });
@@ -163,7 +163,7 @@ describe("useDocumentManagerState", () => {
 
       await renderCompletion();
       act(() => {
-        result.current.updateSelectedDocument(mockData.documents[1]);
+        result.current.setSelectedDocument(mockData.documents[1]);
       });
 
       await renderCompletion();

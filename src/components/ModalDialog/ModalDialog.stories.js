@@ -1,34 +1,26 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, object } from "@storybook/addon-knobs";
+import { object, text, boolean } from "@storybook/addon-knobs";
 import ModalDialog from "./ModalDialog";
-
-function reportResult(result) {
-  console.log(result);
-}
-
-function toggle() {
-  console.log("(x) button was clicked");
-}
+import { action } from "@storybook/addon-actions";
 
 storiesOf("ModalDialog", module)
-  .addDecorator(withKnobs)
   .add("All params set", () => (
     <ModalDialog
-      showDialog={object("showDialog", true)}
-      toggle={toggle}
-      iconStyle={object("iconStyle", "Warning")}
-      cancelPrompt={object("cancelPrompt", "No")}
-      reportResult={reportResult}
-      confirmPrompt={object("confirmPrompt", "Yes")}
-      header={object("header", "Alert")}
-      prompt={object("prompt", "Are you sure you want to do this?")}
+      showDialog={boolean("showDialog", true)}
+      toggle={action("toggle")}
+      iconStyle={text("iconStyle", "Warning")}
+      cancelPrompt={text("cancelPrompt", "No")}
+      reportResult={action("reportResult")}
+      confirmPrompt={text("confirmPrompt", "Yes")}
+      header={text("header", "Alert")}
+      prompt={text("prompt", "Are you sure you want to do this?")}
     />
   ))
   .add("Use all available defaults", () => (
     <ModalDialog
-      showDialog={object("showDialog", true)}
-      reportResult={reportResult}
-      prompt={object("prompt", "Are you sure you want to do this?")}
+      showDialog={boolean("showDialog", true)}
+      reportResult={action("reportResult")}
+      prompt={text("prompt", "Are you sure you want to do this?")}
     />
   ));

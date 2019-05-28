@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import DocumentViewer from "./DocumentViewer";
 import { createTestDocument } from "../../util/dataHelper";
-import { withKnobs, object } from "@storybook/addon-knobs";
+import { object } from "@storybook/addon-knobs";
 
 const data = {
   generic: createTestDocument({ name: "DocumentViewer Document" }),
@@ -28,8 +28,7 @@ storiesOf("DocumentViewer", module).add(
   () => <DocumentViewer document={data.noFile} />
 );
 
-storiesOf("DocumentViewer", module)
-  .addDecorator(withKnobs)
-  .add("DocumentViewer, document to be removed", () => (
-    <DocumentViewer document={object("document", data.removeThis)} />
-  ));
+storiesOf("DocumentViewer", module).add(
+  "DocumentViewer, document to be removed",
+  () => <DocumentViewer document={object("document", data.removeThis)} />
+);

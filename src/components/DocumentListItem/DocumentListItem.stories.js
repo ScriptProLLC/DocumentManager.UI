@@ -3,7 +3,7 @@ import DocumentListItem from "./DocumentListItem.js";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, object } from "@storybook/addon-knobs";
+import { object } from "@storybook/addon-knobs";
 import { createTestCollectionDocument } from "../../util/dataHelper";
 
 const data = {
@@ -29,7 +29,6 @@ const data = {
 };
 
 storiesOf("Document List Item", module)
-  .addDecorator(withKnobs)
   .addDecorator(
     host({
       title: "DocumentListItem Component",

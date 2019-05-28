@@ -2,14 +2,14 @@ import React from "react";
 import DocumentListItem from "../DocumentListItem/DocumentListItem";
 import "./DocumentList.scss";
 import { byDateDescending } from "../../util/dateUtilities";
+import { documentPropType } from "../../propTypes";
+import PropTypes from "prop-types";
 
-function DocumentList(props) {
+export default function DocumentList(props) {
   let docs = props.documents;
 
   function onSelected(data) {
-    if (props.onSelected) {
-      props.onSelected(data);
-    }
+    props.onSelected(data);
   }
 
   function reportToggle(toggleState) {
@@ -58,4 +58,8 @@ function DocumentList(props) {
   );
 }
 
-export default DocumentList;
+DocumentList.propTypes = {
+  documents: PropTypes.arrayOf(documentPropType),
+  selectedDoc: documentPropType,
+  onSelected: PropTypes.func
+};

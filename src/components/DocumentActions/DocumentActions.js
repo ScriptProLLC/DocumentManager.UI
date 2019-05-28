@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { documentPropType } from "../../propTypes";
 import ModalDialog from "../ModalDialog/ModalDialog";
 import { Container, Row, Col } from "reactstrap";
 import "./DocumentActions.scss";
 
-function DocumentActions(props) {
+export default function DocumentActions(props) {
   let documentName =
     props.document && props.document.name
       ? props.document.name
@@ -56,4 +58,7 @@ function DocumentActions(props) {
   );
 }
 
-export default DocumentActions;
+DocumentActions.propTypes = {
+  document: documentPropType.isRequired,
+  dispatchDocumentAction: PropTypes.func
+};

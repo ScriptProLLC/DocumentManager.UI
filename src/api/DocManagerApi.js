@@ -1,25 +1,25 @@
 import axios from "axios";
 
-const getCollectionDocuments = async collectionId => {
+export async function getCollectionDocuments(collectionId) {
   var path = `/collections/${collectionId}/documents`;
 
   return await axios
     .get(process.env.REACT_APP_API_URL + path)
     .then(res => res.data);
-};
+}
 
-const getDocument = async documentId => {
+export async function getDocument(documentId) {
   var path = `/documents/${documentId}`;
+
   return await axios
     .get(process.env.REACT_APP_API_URL + path)
     .then(res => res.data);
-};
+}
 
-const deleteDocument = async documentId => {
+export async function deleteDocument(documentId) {
   var path = `/documents/${documentId}`;
+
   return await axios
     .delete(process.env.REACT_APP_API_URL + path)
     .then(res => res.data);
-};
-
-export { getCollectionDocuments, getDocument, deleteDocument };
+}

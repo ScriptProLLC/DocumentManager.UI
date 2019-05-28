@@ -11,28 +11,28 @@ import {
 } from "reactstrap";
 import "./DocumentListItem.scss";
 
-function DocumentListItem(props) {
+export default function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(props.expanded);
   let listItems = {
     ...{ "Date Created": formatDate(props.document.dateCreated) },
     ...props.document.attributes
   };
 
-  const toggle = () => {
+  function toggle() {
     if (props.reportToggle) {
       props.reportToggle(expanded ? "collapsed" : "open");
     }
 
     setExpanded(!expanded);
-  };
+  }
 
-  const select = () => {
+  function select() {
     if (props.onSelected) {
       props.onSelected(props.document);
     }
-  };
+  }
 
-  function displayListItems() {
+  function renderListItems() {
     return Object.entries(listItems).map(([key, value]) => (
       <ListGroupItem
         key={key}
@@ -93,7 +93,7 @@ function DocumentListItem(props) {
         <Col>
           <Collapse isOpen={expanded} data-testid="collapse" onClick={select}>
             <ListGroup data-testid="attributes_list">
-              {displayListItems()}
+              {renderListItems()}
             </ListGroup>
           </Collapse>
         </Col>
@@ -102,13 +102,14 @@ function DocumentListItem(props) {
   );
 }
 
-// Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
   document: PropTypes.shape({
     name: PropTypes.string,
     dateCreated: PropTypes.string.isRequired,
     attributes: PropTypes.object
-  })
+  }),
+  expanded: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  onSelected: PropTypes.func,
+  reportToggle: PropTypes.func
 };
-
-export default DocumentListItem;

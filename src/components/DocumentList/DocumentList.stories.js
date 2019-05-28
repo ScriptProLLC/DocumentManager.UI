@@ -9,7 +9,7 @@ import {
   createMixedDateDocumentListWithNulls
 } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, object } from "@storybook/addon-knobs";
+import { object, array } from "@storybook/addon-knobs";
 
 const data = {
   fewDocuments: createTestDocumentList(3),
@@ -47,7 +47,6 @@ const selectionStateContainer = defaultValue => {
 };
 
 storiesOf("Document List", module)
-  .addDecorator(withKnobs)
   .addDecorator(
     host({
       title: "DocumentList Component",
@@ -57,88 +56,66 @@ storiesOf("Document List", module)
       border: true
     })
   )
-  .add(
-    "No Documents",
-    () => <DocumentList onSelected={action("selected")} documents={[]} />,
-    { knobs: { escapeHTML: false } }
-  )
-  .add(
-    "Few Documents, one long name",
-    () => {
-      var container = selectionStateContainer(data.oneLongName[0]);
+  .add("No Documents", () => (
+    <DocumentList onSelected={action("selected")} documents={[]} />
+  ))
+  .add("Few Documents, one long name", () => {
+    var container = selectionStateContainer(data.oneLongName[0]);
 
-      return (
-        <DocumentList
-          onSelected={container.onSelected}
-          documents={object("documents", data.oneLongName)}
-          selectedDoc={object("selectedDoc", container.selectedDocument)}
-        />
-      );
-    },
-    { knobs: { escapeHTML: false } }
-  )
-  .add(
-    "Few Documents, one long attribute name",
-    () => {
-      var container = selectionStateContainer(data.oneLongAttributeName[0]);
+    return (
+      <DocumentList
+        onSelected={container.onSelected}
+        documents={array("documents", data.oneLongName)}
+        selectedDoc={object("selectedDoc", container.selectedDocument)}
+      />
+    );
+  })
+  .add("Few Documents, one long attribute name", () => {
+    var container = selectionStateContainer(data.oneLongAttributeName[0]);
 
-      return (
-        <DocumentList
-          onSelected={container.onSelected}
-          documents={object("documents", data.oneLongAttributeName)}
-          selectedDoc={object("selectedDoc", container.selectedDocument)}
-          expandedItems={[2]}
-        />
-      );
-    },
-    { knobs: { escapeHTML: false } }
-  )
+    return (
+      <DocumentList
+        onSelected={container.onSelected}
+        documents={array("documents", data.oneLongAttributeName)}
+        selectedDoc={object("selectedDoc", container.selectedDocument)}
+        expandedItems={[2]}
+      />
+    );
+  })
 
-  .add(
-    "Few Documents",
-    () => {
-      var container = selectionStateContainer(data.fewDocuments[0]);
+  .add("Few Documents", () => {
+    var container = selectionStateContainer(data.fewDocuments[0]);
 
-      return (
-        <DocumentList
-          onSelected={container.onSelected}
-          documents={object("documents", data.fewDocuments)}
-          selectedDoc={object("selectedDoc", container.selectedDocument)}
-        />
-      );
-    },
-    { knobs: { escapeHTML: false } }
-  )
-  .add(
-    "Many Documents",
-    () => {
-      var container = selectionStateContainer(data.manyDocuments[0]);
+    return (
+      <DocumentList
+        onSelected={container.onSelected}
+        documents={array("documents", data.fewDocuments)}
+        selectedDoc={object("selectedDoc", container.selectedDocument)}
+      />
+    );
+  })
+  .add("Many Documents", () => {
+    var container = selectionStateContainer(data.manyDocuments[0]);
 
-      return (
-        <DocumentList
-          onSelected={container.onSelected}
-          documents={object("documents", data.manyDocuments)}
-          selectedDoc={object("selectedDoc", container.selectedDocument)}
-        />
-      );
-    },
-    { knobs: { escapeHTML: false } }
-  )
-  .add(
-    "Sorted by dateCreated, docs generated with random dates",
-    () => {
-      var container = selectionStateContainer(data.unsortedDocuments[0]);
+    return (
+      <DocumentList
+        onSelected={container.onSelected}
+        documents={array("documents", data.manyDocuments)}
+        selectedDoc={object("selectedDoc", container.selectedDocument)}
+      />
+    );
+  })
+  .add("Sorted by dateCreated, docs generated with random dates", () => {
+    var container = selectionStateContainer(data.unsortedDocuments[0]);
 
-      return (
-        <DocumentList
-          onSelected={container.onSelected}
-          documents={object("documents", data.unsortedDocuments)}
-          selectedDoc={object("selectedDoc", container.selectedDocument)}
-        />
-      );
-    },
-    { knobs: { escapeHTML: false } }
-  )
+    return (
+      <DocumentList
+        onSelected={container.onSelected}
+        documents={array("documents", data.unsortedDocuments)}
+        selectedDoc={object("selectedDoc", container.selectedDocument)}
+      />
+    );
+  })
   .add(
     "Sorted by dateCreated, docs generated with random dates including some nulls",
     () => {
@@ -149,10 +126,9 @@ storiesOf("Document List", module)
       return (
         <DocumentList
           onSelected={container.onSelected}
-          documents={object("documents", data.unsortedDocumentsWithNulls)}
+          documents={array("documents", data.unsortedDocumentsWithNulls)}
           selectedDoc={object("selectedDoc", container.selectedDocument)}
         />
       );
-    },
-    { knobs: { escapeHTML: false } }
+    }
   );

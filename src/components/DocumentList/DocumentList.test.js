@@ -35,9 +35,9 @@ describe("DocumentList component", () => {
       const { getAllByTestId } = render(<DocumentList documents={docs} />);
 
       var items = getAllByTestId("Date Created");
-      expect(items[0].textContent).toBe("Date Created: 07/08/2018 06:14 am");
-      expect(items[1].textContent).toBe("Date Created: 12/31/1999 06:49 am");
-      expect(items[2].textContent).toBe("Date Created: 01/01/1997 06:30 am");
+      expect(items[0].textContent).toBe("Date Created: 07/08/2018 6:14 AM");
+      expect(items[1].textContent).toBe("Date Created: 12/31/1999 6:49 AM");
+      expect(items[2].textContent).toBe("Date Created: 01/01/1997 6:30 AM");
     });
   });
 

@@ -24,11 +24,10 @@ function useDocumentManagerState(collectionId) {
         setSelectedDocument(documentWithFile);
       }
     })();
-  }, []);
+  }, [collectionId]);
 
   function updateCollectionDocument(collection, document) {
-    const index = collection.findIndex(d => d.id === document.id);
-    collection[index] = document;
+    setDocuments(collection.map(d => (d.id === document.id ? document : d)));
   }
 
   async function updateSelectedDocument(document) {
@@ -54,7 +53,7 @@ function useDocumentManagerState(collectionId) {
   return {
     documents,
     selectedDocument,
-    updateSelectedDocument,
+    setSelectedDocument: updateSelectedDocument,
     deleteSelectedDocument
   };
 }

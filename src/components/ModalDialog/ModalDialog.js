@@ -3,38 +3,38 @@ import PropTypes from "prop-types";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./ModalDialog.scss";
 
-function ModalDialog(props) {
-  let header = props.header || "Alert";
-  let iconStyle = props.iconStyle || "Warning";
-  let cancelPrompt = props.cancelPrompt || "Cancel";
-  let confirmPrompt = props.confirmPrompt || "Confirm";
-
+export default function ModalDialog({
+  header,
+  iconStyle,
+  cancelPrompt,
+  confirmPrompt,
+  reportResult,
+  toggle,
+  showDialog,
+  prompt
+}) {
   // Confirm
   function confirmClick() {
-    if (props.reportResult) {
-      props.reportResult(confirmPrompt);
-    }
+    reportResult(confirmPrompt);
   }
 
   // Cancel
   function cancelClick() {
-    if (props.reportResult) {
-      props.reportResult(cancelPrompt);
-    }
+    reportResult(cancelPrompt);
   }
 
   // Toggle
-  const toggle = () => {
-    if (props.toggle) {
-      props.toggle();
+  function onToggle() {
+    if (toggle) {
+      toggle();
     } else {
-      props.reportResult(cancelPrompt);
+      reportResult(cancelPrompt);
     }
-  };
+  }
 
   // Determine Icon Classes
-  const iconClass = style => {
-    switch (style) {
+  function iconClass() {
+    switch (iconStyle) {
       case "Info":
         return "fa fa-lg fa-info-circle text-secondary";
       case "Warning":
@@ -44,26 +44,23 @@ function ModalDialog(props) {
       default:
         return;
     }
-  };
+  }
 
   return (
     <Modal
-      isOpen={props.showDialog}
-      toggle={toggle}
+      isOpen={showDialog}
+      toggle={onToggle}
       data-testid="modal"
       backdrop="static"
     >
-      <ModalHeader toggle={toggle} data-testid="modal_header">
-        <i
-          className={iconClass(iconStyle) + " mr-3"}
-          data-testid="modal_icon"
-        />
+      <ModalHeader toggle={onToggle} data-testid="modal_header">
+        <i className={iconClass() + " mr-3"} data-testid="modal_icon" />
         <strong className="modal-header-text" data-testid="modal_header_text">
           {header}
         </strong>
       </ModalHeader>
       <ModalBody>
-        <p data-testid="modal_prompt">{props.prompt}</p>
+        <p data-testid="modal_prompt">{prompt}</p>
       </ModalBody>
       <ModalFooter>
         <Button
@@ -90,7 +87,17 @@ ModalDialog.propTypes = {
   header: PropTypes.string,
   prompt: PropTypes.string,
   confirmPrompt: PropTypes.string,
-  cancelPrompt: PropTypes.string
+  cancelPrompt: PropTypes.string,
+  iconStyle: PropTypes.string,
+  reportResult: PropTypes.func,
+  toggle: PropTypes.func,
+  showDialog: PropTypes.bool
 };
 
-export default ModalDialog;
+ModalDialog.defaultProps = {
+  header: "Alert",
+  iconStyle: "Warning",
+  cancelPrompt: "Cancel",
+  confirmPrompt: "Confirm",
+  reportResult: null
+};

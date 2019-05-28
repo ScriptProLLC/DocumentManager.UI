@@ -4,14 +4,13 @@ import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
 import { createTestDocument } from "./../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
-import { withKnobs } from "@storybook/addon-knobs";
 
 const data = {
-  basic: createTestDocument()
+  basic: createTestDocument(),
+  noName: createTestDocument({ name: null })
 };
 
 storiesOf("Document Actions", module)
-  .addDecorator(withKnobs)
   .addDecorator(
     host({
       title: "DocumentActions Component",
@@ -21,5 +20,15 @@ storiesOf("Document Actions", module)
       border: true
     })
   )
-  .add("Basic", () => <DocumentActions document={data.basic} />)
-  .add("No document", () => <DocumentActions document={null} />);
+  .add("Basic", () => (
+    <DocumentActions
+      document={data.basic}
+      dispatchDocumentAction={action("dispatch")}
+    />
+  ))
+  .add("Document with no name", () => (
+    <DocumentActions
+      document={data.noName}
+      dispatchDocumentAction={action("dispatch")}
+    />
+  ));

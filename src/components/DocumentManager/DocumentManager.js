@@ -1,4 +1,5 @@
 import React from "react";
+import { string } from "prop-types";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
@@ -9,7 +10,7 @@ function DocumentManager(props) {
   const {
     documents,
     selectedDocument,
-    updateSelectedDocument,
+    setSelectedDocument,
     deleteSelectedDocument
   } = useDocumentManagerState(props.collectionId);
 
@@ -19,7 +20,7 @@ function DocumentManager(props) {
         await deleteSelectedDocument();
         break;
       case "selectAction":
-        await updateSelectedDocument(documentAction.document);
+        await setSelectedDocument(documentAction.document);
         break;
       default:
         console.log("no action");
@@ -37,7 +38,7 @@ function DocumentManager(props) {
         ) : (
           <DocumentList
             documents={documents}
-            onSelected={updateSelectedDocument}
+            onSelected={setSelectedDocument}
             selectedDoc={selectedDocument}
           />
         )}
@@ -65,3 +66,7 @@ function DocumentManager(props) {
 }
 
 export default DocumentManager;
+
+DocumentManager.propTypes = {
+  collectionId: string
+};
