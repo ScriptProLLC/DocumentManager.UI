@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { object, text, boolean } from "@storybook/addon-knobs";
-import ModalDialog from "./ModalDialog";
+import { text, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
+import ModalDialog from "./ModalDialog";
 
 storiesOf("ModalDialog", module)
   .add("All params set", () => (
@@ -19,6 +19,22 @@ storiesOf("ModalDialog", module)
   ))
   .add("Use all available defaults", () => (
     <ModalDialog
+      showDialog={boolean("showDialog", true)}
+      reportResult={action("reportResult")}
+      prompt={text("prompt", "Are you sure you want to do this?")}
+    />
+  ))
+  .add("Focus on the confirm button", () => (
+    <ModalDialog
+      autoFocus="Confirm"
+      showDialog={boolean("showDialog", true)}
+      reportResult={action("reportResult")}
+      prompt={text("prompt", "Are you sure you want to do this?")}
+    />
+  ))
+  .add("Focus on the cancel button", () => (
+    <ModalDialog
+      autoFocus="Cancel"
       showDialog={boolean("showDialog", true)}
       reportResult={action("reportResult")}
       prompt={text("prompt", "Are you sure you want to do this?")}
