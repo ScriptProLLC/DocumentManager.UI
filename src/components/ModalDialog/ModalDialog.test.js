@@ -108,6 +108,58 @@ describe("ModalDialog component", () => {
       expect(getByTestId("modal_icon").classList).toContain("fa-info-circle");
     });
 
+    it("autoFocus not set", () => {
+      const { getByTestId } = render(
+        <ModalDialog
+          showDialog={true}
+          iconStyle="Info"
+          confirmPrompt="Yes"
+          cancelPrompt="No"
+        />
+      );
+
+      expect(getByTestId("modal_confirm_prompt")).not.toBe(
+        document.activeElement
+      );
+      expect(getByTestId("modal_cancel_prompt")).not.toBe(
+        document.activeElement
+      );
+    });
+
+    it("autoFocus set to confirm button", () => {
+      const { getByTestId } = render(
+        <ModalDialog
+          showDialog={true}
+          iconStyle="Info"
+          confirmPrompt="Yes"
+          cancelPrompt="No"
+          autoFocus="Yes"
+        />
+      );
+
+      expect(getByTestId("modal_confirm_prompt")).toBe(document.activeElement);
+      expect(getByTestId("modal_cancel_prompt")).not.toBe(
+        document.activeElement
+      );
+    });
+
+    it("autoFocus set to cancel button", () => {
+      const { getByTestId } = render(
+        <ModalDialog
+          showDialog={true}
+          iconStyle="Info"
+          confirmPrompt="Yes"
+          cancelPrompt="No"
+          autoFocus="No"
+        />
+      );
+
+      expect(getByTestId("modal_confirm_prompt")).not.toBe(
+        document.activeElement
+      );
+      expect(getByTestId("modal_cancel_prompt")).toBe(document.activeElement);
+    });
+
     describe("events", () => {
       describe("result reporting", () => {
         describe("confirm click", () => {
