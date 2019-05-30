@@ -25,7 +25,7 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the default selected document
-    cy.get("[data-testid=document_actions_delete_button]").click();
+    cy.get("[data-testid=delete_button]").click();
 
     // Continue through Are you sure prompt
     cy.get("[data-testid=modal_confirm_prompt]").click();
@@ -58,7 +58,7 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the only document
-    cy.get("[data-testid=document_actions_delete_button]").click();
+    cy.get("[data-testid=delete_button]").click();
 
     // Continue through Are you sure prompt
     cy.get("[data-testid=modal_confirm_prompt]").click();
@@ -83,7 +83,7 @@ describe("DocumentActions", function() {
     );
 
     // Click delete to delete the selected document
-    cy.get("[data-testid=document_actions_delete_button]").click();
+    cy.get("[data-testid=delete_button]").click();
 
     // Click No on the Are you sure prompt
     cy.get("[data-testid=modal_cancel_prompt]").click();
@@ -107,7 +107,7 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the only document
-    cy.get("[data-testid=document_actions_delete_button]").click();
+    cy.get("[data-testid=delete_button]").click();
 
     // Click the X to close the Are you sure prompt
     cy.get("[data-testid=modal_header]").then(elem =>

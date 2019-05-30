@@ -5,7 +5,13 @@ export default function IconButton(props) {
   let { icon, onClick, color } = props;
   return (
     <button onClick={onClick}>
-      {<i className={icon} style={{ color: color }} />}
+      {
+        <i
+          data-testid={props["data-testid"]}
+          className={icon}
+          style={{ color: color }}
+        />
+      }
     </button>
   );
 }
@@ -13,5 +19,6 @@ export default function IconButton(props) {
 IconButton.propTypes = {
   icon: PropTypes.string,
   onClick: PropTypes.func,
-  color: PropTypes.string
+  color: PropTypes.string,
+  "data-testid": PropTypes.string
 };

@@ -3,7 +3,7 @@ import { string } from "prop-types";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
-import DocumentActions from "../DocumentActions/DocumentActions";
+import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPanel";
 import "./DocumentManager.scss";
 
 function DocumentManager(props) {
@@ -11,13 +11,17 @@ function DocumentManager(props) {
     documents,
     selectedDocument,
     setSelectedDocument,
-    deleteSelectedDocument
+    deleteSelectedDocument,
+    editDocument
   } = useDocumentManagerState(props.collectionId);
 
   async function dispatchDocumentAction(documentAction) {
     switch (documentAction.type) {
       case "deleteAction":
         await deleteSelectedDocument();
+        break;
+      case "editAction":
+        await editDocument(documentAction.document);
         break;
       case "selectAction":
         await setSelectedDocument(documentAction.document);
@@ -55,9 +59,9 @@ function DocumentManager(props) {
         {!documents || !selectedDocument ? (
           <></>
         ) : (
-          <DocumentActions
-            document={selectedDocument}
+          <DocumentControlsPanel
             dispatchDocumentAction={dispatchDocumentAction}
+            document={selectedDocument}
           />
         )}
       </div>

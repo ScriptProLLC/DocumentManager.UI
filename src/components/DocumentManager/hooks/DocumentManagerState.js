@@ -30,6 +30,11 @@ function useDocumentManagerState(collectionId) {
     setDocuments(collection.map(d => (d.id === document.id ? document : d)));
   }
 
+  async function editDocument(document) {
+    updateCollectionDocument(documents, document);
+    await updateSelectedDocument(document);
+  }
+
   async function updateSelectedDocument(document) {
     if (document.documentFile) {
       setSelectedDocument(document);
@@ -54,7 +59,8 @@ function useDocumentManagerState(collectionId) {
     documents,
     selectedDocument,
     setSelectedDocument: updateSelectedDocument,
-    deleteSelectedDocument
+    deleteSelectedDocument,
+    editDocument
   };
 }
 

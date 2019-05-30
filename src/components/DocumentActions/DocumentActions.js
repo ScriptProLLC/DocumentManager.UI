@@ -4,17 +4,17 @@ import { documentPropType } from "../../propTypes";
 import ModalDialog from "../ModalDialog/ModalDialog";
 import { Container, Row, Col } from "reactstrap";
 import "./DocumentActions.scss";
+import IconButton from "../IconButton/IconButton";
 
 export default function DocumentActions(props) {
-  let documentName =
-    props.document && props.document.name
-      ? props.document.name
-      : "Unnamed Document";
-
   const [showModalDialog, setShowModalDialog] = useState(false);
 
   const onDeleteClick = () => {
     setShowModalDialog(true);
+  };
+
+  const onEditClick = () => {
+    props.setInEditMode(true);
   };
 
   async function onDeleteConfirmationReport(report) {
@@ -32,17 +32,20 @@ export default function DocumentActions(props) {
       <Row className="h-100">
         <Col xs="8" className="my-auto">
           <span data-testid="document_action_document_name">
-            {documentName}
+            {props.document.name || "Unnamed Document"}
           </span>
         </Col>
-        <Col xs="4" className="my-auto text-right">
-          <div
-            className="delete-button"
+        <Col xs="3" className="my-auto text-right">
+          <IconButton
+            data-testid="edit_button"
+            icon="fa fa-pencil-square-o"
+            onClick={onEditClick}
+          />
+          <IconButton
+            data-testid="delete_button"
+            icon="fa fa-trash-o"
             onClick={onDeleteClick}
-            data-testid="document_actions_delete_button"
-          >
-            <i className="fa fa-trash-o" />
-          </div>
+          />
         </Col>
       </Row>
 
@@ -61,5 +64,6 @@ export default function DocumentActions(props) {
 
 DocumentActions.propTypes = {
   document: documentPropType.isRequired,
-  dispatchDocumentAction: PropTypes.func
+  dispatchDocumentAction: PropTypes.func,
+  setInEditMode: PropTypes.func
 };

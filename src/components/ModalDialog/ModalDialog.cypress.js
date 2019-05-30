@@ -26,7 +26,7 @@ describe("ModalDialog", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the default selected document
-    cy.get("[data-testid=document_actions_delete_button]").click();
+    cy.get("[data-testid=delete_button]").click();
 
     // Verify the Modal dialog is on screen
     cy.get("[data-testid=modal_header_text]").then(elem =>
@@ -34,7 +34,7 @@ describe("ModalDialog", function() {
     );
 
     // Attempt to click behind the modal dialog
-    cy.get("[data-testid=document_actions_delete_button]").click({
+    cy.get("[data-testid=delete_button]").click({
       force: true
     });
 
