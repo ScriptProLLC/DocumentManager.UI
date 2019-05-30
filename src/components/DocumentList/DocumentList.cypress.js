@@ -1,31 +1,35 @@
 /* eslint-disable no-unused-expressions */
 /// <reference types="Cypress" />
 
-describe("DocumentList", () => {
-  beforeEach(() => {
-    cy.visit("?collection=d7a2add9-14bf-480e-9b97-96685a006431");
+const mockData = require("../../../tools/mockData");
+
+describe("DocumentList", function() {
+  beforeEach(function() {
+    cy.addCollection().as("collectionId");
   });
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("document list header should have correct text", () => {
-    cy.get("[data-testid=document_list_header]").then($selectedElement => {
-      expect($selectedElement).to.be.not.null;
-
-      var headerText = $selectedElement[0];
-
-      expect(headerText.innerText).to.equal("Documents");
-    });
+  it("document list header should have correct text", function() {
+    // Open Application to the collection
+    cy.visit(`?collection=${this.collectionId}`);
+    cy.get("[data-testid=document_list_header]").should(
+      "have.text",
+      "Documents"
+    );
   });
 
-  it("document list scroll bar is functional", () => {
-    cy.get("[class=document-list-container]").then($selectedElement => {
-      expect($selectedElement).to.be.not.null;
+  it("document list scroll bar is functional", function() {
+    cy.addDocumentsToCollection(mockData.documents[1], this.collectionId, 30);
 
-      // right now, our test data is 5 lines, need to set the table with enough line to make this true...
-      var hasScrollbars =
-        $selectedElement[0].scrollHeight > $selectedElement[0].clientHeight;
-      expect(hasScrollbars).to.be.false;
-    });
+    cy.visit(`?collection=${this.collectionId}`);
+
+    const hasScrollBar = function(elem) {
+      return elem[0].scrollHeight > elem[0].clientHeight;
+    };
+
+    cy.get("[data-testid=document_list_container]")
+      .then(hasScrollBar)
+      .should("be.true");
   });
 });

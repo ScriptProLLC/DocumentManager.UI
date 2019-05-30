@@ -43,7 +43,10 @@ export default function DocumentList(props) {
     : null;
 
   return (
-    <div className="document-list-container">
+    <div
+      className="document-list-container"
+      data-testid="document_list_container"
+    >
       {!docs || docs.length === 0 ? (
         <div
           data-testid="document_list_no_documents"

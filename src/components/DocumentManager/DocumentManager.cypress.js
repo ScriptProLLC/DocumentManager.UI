@@ -1,36 +1,37 @@
 /* eslint-disable no-unused-expressions */
 /// <reference types="Cypress" />
 
+const mockData = require("../../../tools/mockData");
+
 describe("DocumentManager", function() {
   beforeEach(function() {
-    cy.visit("?collection=d7a2add9-14bf-480e-9b97-96685a006431");
+    cy.addCollection().as("collectionId");
   });
 
   // https://on.cypress.io/interacting-with-elements
 
   it("clicking on a document in the list selects the document", function() {
-    cy.get("[data-testid=document_list_items]").then($selectedElement => {
-      expect($selectedElement).to.be.not.null;
+    // Add new documents to collection
+    cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
+    cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
-      var elemToClick = $selectedElement[0].children[1].querySelector(
-        "[data-testid=collapse]"
-      );
+    // Open Application to the collection
+    cy.visit(`?collection=${this.collectionId}`);
 
-      elemToClick.click();
+    // Verify the selected document in Document 1
+    cy.get(".document-list-item-container.selected")
+      .children()
+      .first()
+      .should("contain.text", "Document 1");
 
-      cy.get("[class='document-list-item-container selected']").then(
-        $selectedElement => {
-          var elemToTest = $selectedElement[0];
+    // Click the bottom item in the document list
+    cy.get("[data-testid=document_name]")
+      .last()
+      .click();
 
-          cy.get("[data-testid=document_action_document_name]").then(
-            $selectedElement => {
-              var spanName = $selectedElement[0].innerText;
-
-              expect(elemToTest.innerText.trim()).to.equal(spanName.trim());
-            }
-          );
-        }
-      );
-    });
+    // Verify the selected document is Document 2
+    cy.get(
+      ".document-list-item-container.selected .document-list-item-name span"
+    ).should("contain.text", "Document 2");
   });
 });

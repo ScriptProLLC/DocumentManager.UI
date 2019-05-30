@@ -1,34 +1,26 @@
 /* eslint-disable no-unused-expressions */
 /// <reference types="Cypress" />
 
-describe("DocumentViewer", () => {
-  beforeEach(() => {
-    cy.visit("?collection=d7a2add9-14bf-480e-9b97-96685a006431");
+const mockData = require("../../../tools/mockData");
+
+describe("DocumentViewer", function() {
+  beforeEach(function() {
+    cy.addCollection().as("collectionId");
   });
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("selecting a document in the list renders the pdf", () => {
-    //// should be at least one in list and a document rendered already
-    cy.get("[data-testid=document_list_items]").then($selectedElement => {
-      expect($selectedElement).to.be.not.null;
+  it("selecting a document in the list renders the pdf", function() {
+    // Add new documents to collection
+    cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
+    cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
-      var elemToClick = $selectedElement[0].children[1].querySelector(
-        "[data-testid=collapse]"
-      );
+    cy.visit(`?collection=${this.collectionId}`);
 
-      elemToClick.click();
+    cy.get("[data-testid=document_name]")
+      .last()
+      .click();
 
-      cy.get("[data-testid=document_viewer_container_withdocs]").then(
-        $selectedElement => {
-          expect($selectedElement).to.be.not.null;
-          expect(
-            $selectedElement[0].children[0].querySelector(
-              "[data-testid=document_viewer_iframe]"
-            )
-          );
-        }
-      );
-    });
+    cy.get("[data-testid=document_viewer_iframe]").should("exist");
   });
 });
