@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { documentPropType } from "../../propTypes";
 import DocumentActions from "../DocumentActions/DocumentActions";
 import DocumentEdit from "../DocumentEdit/DocumentEdit";
 
-function DocumentControlsPanel(props) {
+export default function DocumentControlsPanel(props) {
   let [inEditMode, setInEditMode] = useState(false);
 
   return (
@@ -24,4 +26,7 @@ function DocumentControlsPanel(props) {
   );
 }
 
-export default DocumentControlsPanel;
+DocumentControlsPanel.propTypes = {
+  document: documentPropType,
+  dispatchDocumentAction: PropTypes.func
+};

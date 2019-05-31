@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { DocumentViewerContext } from "./DocumentViewerContext";
 import { decodeBase64 } from "../../util/base64Utilities";
 
-function PDFViewer() {
+export default function PDFViewer() {
   let iFrameRef = useRef();
   const [isFrameLoaded, setIsFrameLoaded] = useState(false);
 
@@ -32,5 +32,3 @@ function PDFViewer() {
     />
   );
 }
-
-export default PDFViewer;

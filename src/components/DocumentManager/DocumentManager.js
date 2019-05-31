@@ -8,7 +8,7 @@ import IconButton from "../IconButton/IconButton";
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import "./DocumentManager.scss";
 
-function DocumentManager(props) {
+export default function DocumentManager(props) {
   const {
     documents,
     setSelectedDocument,
@@ -75,8 +75,6 @@ function DocumentManager(props) {
     </div>
   );
 }
-
-export default DocumentManager;
 
 DocumentManager.propTypes = {
   collectionId: string

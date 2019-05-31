@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Modal } from "reactstrap";
 import "./SpinnerComponent.scss";
 
-function SpinnerComponent(props) {
+export default function SpinnerComponent(props) {
   return (
     <Modal isOpen={props.open} contentClassName="transparent-bg" centered>
       {/* Using conditional display logic here so that it doesn't render an element if no message exists */}
@@ -24,5 +24,3 @@ SpinnerComponent.propTypes = {
   open: PropTypes.bool.isRequired,
   message: PropTypes.string
 };
-
-export default SpinnerComponent;

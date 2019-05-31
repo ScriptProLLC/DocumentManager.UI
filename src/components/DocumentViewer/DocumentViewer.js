@@ -1,9 +1,11 @@
 import React from "react";
 import PDFViewer from "./PDFViewer";
 import { DocumentViewerContext } from "./DocumentViewerContext";
+import PropTypes from "prop-types";
+import { documentPropType } from "../../propTypes";
 import "./DocumentViewer.scss";
 
-function DocumentViewer(props) {
+export default function DocumentViewer(props) {
   let pdfDocument = props.document;
   let documentFile = pdfDocument ? pdfDocument.documentFile : null;
 
@@ -43,4 +45,6 @@ function DocumentViewer(props) {
   return render();
 }
 
-export default DocumentViewer;
+DocumentViewer.propTypes = {
+  document: documentPropType
+};

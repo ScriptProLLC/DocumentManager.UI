@@ -64,5 +64,6 @@ export default function DocumentList(props) {
 DocumentList.propTypes = {
   documents: PropTypes.arrayOf(documentPropType),
   selectedDoc: documentPropType,
-  onSelected: PropTypes.func
+  onSelected: PropTypes.func,
+  expandedItems: PropTypes.arrayOf(PropTypes.number)
 };

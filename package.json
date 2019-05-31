@@ -50,7 +50,7 @@
       "cypress/globals": true
     },
     "rules": {
-      "react/prop-types": "warn"
+      "react/prop-types": "error"
     }
   },
   "jest-junit": {
