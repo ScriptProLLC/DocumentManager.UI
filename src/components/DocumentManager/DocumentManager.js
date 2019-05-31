@@ -4,14 +4,17 @@ import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
 import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPanel";
+import IconButton from "../IconButton/IconButton";
+import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import "./DocumentManager.scss";
 
 function DocumentManager(props) {
   const {
     documents,
-    selectedDocument,
     setSelectedDocument,
     deleteSelectedDocument,
+    scanDocument,
+    activeDocument,
     editDocument
   } = useDocumentManagerState(props.collectionId);
 
@@ -26,6 +29,9 @@ function DocumentManager(props) {
       case "selectAction":
         await setSelectedDocument(documentAction.document);
         break;
+      case "scanAction":
+        scanDocument();
+        break;
       default:
         console.log("no action");
     }
@@ -37,13 +43,14 @@ function DocumentManager(props) {
         <div className="header" data-testid="document_list_header">
           Documents
         </div>
+        <DocumentListToolbar dispatchDocumentAction={dispatchDocumentAction} />
         {props.collectionId && !documents ? (
           <div>Loading ...</div>
         ) : (
           <DocumentList
             documents={documents}
             onSelected={setSelectedDocument}
-            selectedDoc={selectedDocument}
+            selectedDoc={activeDocument}
           />
         )}
       </div>
@@ -51,17 +58,17 @@ function DocumentManager(props) {
         <div className="header" data-testid="document_viewer_header">
           Document Viewer
         </div>
-        {props.collectionId && !documents ? (
+        {props.collectionId && !documents && !activeDocument ? (
           <div>Loading ...</div>
         ) : (
-          <DocumentViewer document={selectedDocument} />
+          <DocumentViewer document={activeDocument} />
         )}
-        {!documents || !selectedDocument ? (
+        {!documents || !activeDocument ? (
           <></>
         ) : (
           <DocumentControlsPanel
             dispatchDocumentAction={dispatchDocumentAction}
-            document={selectedDocument}
+            document={activeDocument}
           />
         )}
       </div>

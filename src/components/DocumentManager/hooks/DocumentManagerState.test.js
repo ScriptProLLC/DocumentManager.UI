@@ -48,6 +48,7 @@ describe("useDocumentManagerState", () => {
 
       renderHook(() => useDocumentManagerState(someCollectionId));
 
+      console.log("Get document Spy", getDocumentSpy);
       await renderCompletion();
       expect(getDocumentSpy).toHaveBeenCalledTimes(1);
     });
@@ -63,7 +64,7 @@ describe("useDocumentManagerState", () => {
       );
       await renderCompletion();
 
-      expect(result.current.selectedDocument).toEqual(mockData.documents[0]);
+      expect(result.current.activeDocument).toEqual(mockData.documents[0]);
     });
   });
 
@@ -98,7 +99,7 @@ describe("useDocumentManagerState", () => {
       expect(currentState.documents).not.toContain(mockData.documents[0]);
     });
     it("should leave no document selected", () => {
-      expect(currentState.selectedDocument).toBeNull();
+      expect(currentState.activeDocument).toBeNull();
     });
     it("should make a call to delete the correct document", () => {
       expect(deleteDocumentSpy).toHaveBeenCalledWith(mockData.documents[0].id);
@@ -124,7 +125,7 @@ describe("useDocumentManagerState", () => {
       });
 
       await renderCompletion();
-      expect(result.current.selectedDocument).toEqual(mockData.documents[1]);
+      expect(result.current.activeDocument).toEqual(mockData.documents[1]);
     });
 
     it("should make a call to get the document file if necessary", async () => {
@@ -193,7 +194,7 @@ describe("useDocumentManagerState", () => {
       const { result } = renderHook(() => useDocumentManagerState(null));
 
       await renderCompletion();
-      expect(result.current.selectedDocument).toBeNull();
+      expect(result.current.activeDocument).toBeNull();
     });
 
     it("should not make a call to get the collection documents if the collection is null", async () => {

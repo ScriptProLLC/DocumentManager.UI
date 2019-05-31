@@ -4,10 +4,12 @@ import {
   getDocument,
   deleteDocument
 } from "../../../api/DocManagerApi";
+import { scan } from "../../../api/ScanningApi";
 
 function useDocumentManagerState(collectionId) {
   let [documents, setDocuments] = useState(null);
   let [selectedDocument, setSelectedDocument] = useState(null);
+  let [activeDocument, setActiveDocument] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -22,6 +24,7 @@ function useDocumentManagerState(collectionId) {
         const documentWithFile = await getDocument(collectionDocuments[0].id);
         updateCollectionDocument(collectionDocuments, documentWithFile);
         setSelectedDocument(documentWithFile);
+        setActiveDocument(documentWithFile);
       }
     })();
   }, [collectionId]);
@@ -32,18 +35,20 @@ function useDocumentManagerState(collectionId) {
 
   async function editDocument(document) {
     updateCollectionDocument(documents, document);
-    await updateSelectedDocument(document);
+    await updateActiveDocument(document);
   }
 
-  async function updateSelectedDocument(document) {
+  async function updateActiveDocument(document) {
     if (document.documentFile) {
       setSelectedDocument(document);
+      setActiveDocument(document);
       return;
     }
     const documentWithFile = await getDocument(document.id);
 
     updateCollectionDocument(documents, documentWithFile);
     setSelectedDocument(documentWithFile);
+    setActiveDocument(documentWithFile);
   }
 
   async function deleteSelectedDocument() {
@@ -51,15 +56,29 @@ function useDocumentManagerState(collectionId) {
 
     setDocuments(documents.filter(d => d.id !== selectedDocument.id));
     setSelectedDocument(null);
+    setActiveDocument(null);
 
+    return;
+  }
+
+  async function scanDocument() {
+    let _scannedDocument = await scan();
+    setActiveDocument({
+      id: collectionId,
+      name: "_TempScan",
+      documentFile: _scannedDocument,
+      dateCreated: Date().toLocaleString(),
+      attributes: {}
+    });
     return;
   }
 
   return {
     documents,
-    selectedDocument,
-    setSelectedDocument: updateSelectedDocument,
+    setSelectedDocument: updateActiveDocument,
     deleteSelectedDocument,
+    scanDocument,
+    activeDocument,
     editDocument
   };
 }
