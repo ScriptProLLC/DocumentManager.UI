@@ -20,6 +20,14 @@ $dark: #272727;
 $black: #000;
 
 /* Mixins */
+@mixin psuedo-classes {
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}
+
 @mixin background-gradient($from, $to) {
   background: $from;
   background: -moz-linear-gradient(top, $from 0%, $to 100%);

@@ -37,16 +37,21 @@ export default function DocumentEdit(props) {
             onChange={onDocumentNameChange}
           />
         </Col>
-        <Col xs="3" className="my-auto text-right">
+        <Col xs="4" className="my-auto text-right">
           <IconButton
+            className="mr-3"
+            color="white"
             data-testid="save_button"
-            icon="fa fa-save"
+            icon="save"
             onClick={onSave}
+            size="lg"
           />
           <IconButton
+            color="white"
             data-testid="cancel_button"
-            icon="fa fa-times"
+            icon="times"
             onClick={onCancel}
+            size="lg"
           />
         </Col>
       </Row>

@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+
+.icon-button {
+  background: transparent;
+  outline: none;
+  border: none;
+
+  @include psuedo-classes {
+    @extend .icon-button;
+  }
+
+  &:hover {
+    color: $dark !important;
+  }
+}

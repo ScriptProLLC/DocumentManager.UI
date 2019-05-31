@@ -35,16 +35,21 @@ export default function DocumentActions(props) {
             {props.document.name || "Unnamed Document"}
           </span>
         </Col>
-        <Col xs="3" className="my-auto text-right">
+        <Col xs="4" className="my-auto text-right">
           <IconButton
+            className="mr-3"
+            color="white"
             data-testid="edit_button"
-            icon="fa fa-pencil-square-o"
+            icon="pencil"
             onClick={onEditClick}
+            size="lg"
           />
           <IconButton
+            color="white"
             data-testid="delete_button"
-            icon="fa fa-trash-o"
+            icon="trash-o"
             onClick={onDeleteClick}
+            size="lg"
           />
         </Col>
       </Row>
