@@ -33,7 +33,7 @@ export default function DocumentEdit(props) {
           <Input
             data-testid="document_edit_document_name"
             placeholder="Unnamed Document"
-            value={document.name}
+            value={document.name || ""}
             onChange={onDocumentNameChange}
           />
         </Col>
