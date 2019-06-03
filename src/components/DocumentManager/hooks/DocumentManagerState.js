@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  getCollectionDocuments,
-  getDocument,
-  deleteDocument
-} from "../../../api/DocManagerApi";
-import { scan } from "../../../api/ScanningApi";
+import * as docApi from "../../../api/DocManagerApi";
+import * as scanApi from "../../../api/ScanningApi";
 
 function useDocumentManagerState(collectionId) {
   let [documents, setDocuments] = useState(null);
@@ -17,11 +13,15 @@ function useDocumentManagerState(collectionId) {
         return;
       }
 
-      const collectionDocuments = await getCollectionDocuments(collectionId);
+      const collectionDocuments = await docApi.getCollectionDocuments(
+        collectionId
+      );
       setDocuments(collectionDocuments);
 
       if (collectionDocuments.length > 0) {
-        const documentWithFile = await getDocument(collectionDocuments[0].id);
+        const documentWithFile = await docApi.getDocument(
+          collectionDocuments[0].id
+        );
         updateCollectionDocument(collectionDocuments, documentWithFile);
         setSelectedDocument(documentWithFile);
         setActiveDocument(documentWithFile);
@@ -44,7 +44,7 @@ function useDocumentManagerState(collectionId) {
       setActiveDocument(document);
       return;
     }
-    const documentWithFile = await getDocument(document.id);
+    const documentWithFile = await docApi.getDocument(document.id);
 
     updateCollectionDocument(documents, documentWithFile);
     setSelectedDocument(documentWithFile);
@@ -52,7 +52,7 @@ function useDocumentManagerState(collectionId) {
   }
 
   async function deleteSelectedDocument() {
-    await deleteDocument(selectedDocument.id);
+    await docApi.deleteDocument(selectedDocument.id);
 
     setDocuments(documents.filter(d => d.id !== selectedDocument.id));
     setSelectedDocument(null);
@@ -62,12 +62,12 @@ function useDocumentManagerState(collectionId) {
   }
 
   async function scanDocument() {
-    let _scannedDocument = await scan();
+    let _scannedDocument = await scanApi.scan();
     setActiveDocument({
       id: collectionId,
       name: "_TempScan",
       documentFile: _scannedDocument,
-      dateCreated: Date().toLocaleString(),
+      dateCreated: null,
       attributes: {}
     });
     return;

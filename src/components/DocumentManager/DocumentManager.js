@@ -4,7 +4,6 @@ import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
 import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPanel";
-import IconButton from "../IconButton/IconButton";
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import "./DocumentManager.scss";
 

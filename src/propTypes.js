@@ -1,4 +1,4 @@
-import { string, shape } from "prop-types";
+import { string, shape, object } from "prop-types";
 
 export const documentPropType = shape({
   id: string,
@@ -6,8 +6,5 @@ export const documentPropType = shape({
   name: string,
   documentFile: string,
   dateCreated: string,
-  attributes: shape({
-    Pages: string,
-    "File Size": string
-  })
+  attributes: object
 });
