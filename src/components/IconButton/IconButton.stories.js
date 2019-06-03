@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "./IconButton";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
-import { object, text } from "@storybook/addon-knobs";
+import { text } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
 storiesOf("Icon Button", module)
@@ -26,7 +26,8 @@ storiesOf("Icon Button", module)
   .add("Scan Button", () => (
     <IconButton
       onClick={action("dispatch Scan")}
-      icon={object("icon", "file-image-o")}
-      color={object("color", "primary")}
+      icon={text("icon", "file-image-o")}
+      color={text("color", "primary")}
+      size={text("size", "3x")}
     />
   ));
