@@ -2,11 +2,8 @@ import React from "react";
 import IconButton from "./IconButton";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
-import { text } from "@storybook/addon-knobs";
-
-let buttonClick = () => {
-  console.log("Button Clicked");
-};
+import { object, text } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 
 storiesOf("Icon Button", module)
   .addDecorator(
@@ -20,9 +17,16 @@ storiesOf("Icon Button", module)
   )
   .add("Icon Button", () => (
     <IconButton
-      onClick={buttonClick}
+      onClick={action("dispatch Basic")}
       icon={text("icon", "home")}
       color={text("color", "primary")}
       size={text("size", "3x")}
+    />
+  ))
+  .add("Scan Button", () => (
+    <IconButton
+      onClick={action("dispatch Scan")}
+      icon={object("icon", "file-image-o")}
+      color={object("color", "primary")}
     />
   ));
