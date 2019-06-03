@@ -23,3 +23,16 @@ export async function deleteDocument(documentId) {
     .delete(process.env.REACT_APP_API_URL + path)
     .then(res => res.data);
 }
+
+export async function patchDocument(document) {
+  var path = `/documents/${document.id}`;
+  var patchBody = JSON.stringify([
+    { op: "replace", path: "/Name", value: document.name }
+  ]);
+
+  return await axios
+    .patch(process.env.REACT_APP_API_URL + path, patchBody, {
+      headers: { "Content-Type": "application/json-patch+json" }
+    })
+    .then(res => res.data);
+}

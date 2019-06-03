@@ -36,6 +36,7 @@ function useDocumentManagerState(collectionId) {
   async function editDocument(document) {
     updateCollectionDocument(documents, document);
     await updateActiveDocument(document);
+    await docApi.patchDocument(document);
   }
 
   async function updateActiveDocument(document) {
