@@ -30,12 +30,12 @@ export default function DocumentActions(props) {
   return (
     <Container fluid className="document-actions-container">
       <Row className="h-100">
-        <Col xs="8" className="my-auto">
+        <Col className="my-auto truncate">
           <span data-testid="document_action_document_name">
             {props.document.name || "Unnamed Document"}
           </span>
         </Col>
-        <Col xs="4" className="my-auto text-right">
+        <Col xs="auto" className="my-auto text-right">
           <IconButton
             className="mr-3"
             color="white"

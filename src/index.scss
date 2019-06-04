@@ -20,6 +20,14 @@ ul {
   list-style-type: none;
 }
 
+/* Truncate Text */
+.truncate {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 12px;
@@ -34,4 +42,21 @@ ul {
   @include inset-shadow(8px, 0.5);
   background: $light;
   border-radius: 0.5rem;
+}
+
+/* Placeholder Text Styling */
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+::-moz-placeholder {
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  font-style: italic;
+}
+
+:-moz-placeholder {
+  font-style: italic;
 }
