@@ -1,15 +1,18 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
+import { withKnobs, boolean, text } from "@storybook/addon-knobs";
 import SpinnerComponent from "./SpinnerComponent";
 
 storiesOf("Spinner Component", module)
   .addDecorator(withKnobs)
   .add("Renders empty spinner with no message", () => (
-    <SpinnerComponent open={true} />
+    <SpinnerComponent open={boolean("Spinner on", true)} />
   ))
   .add("Renders spinner with a custom message", () => (
-    <SpinnerComponent message="This is a custom message" open={true} />
+    <SpinnerComponent
+      message={text("Custom message", "This is a custom message")}
+      open={true}
+    />
   ))
   .add("Blocks UI while active", () => (
     <div>
