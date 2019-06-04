@@ -17,7 +17,7 @@ storiesOf("Icon Button", module)
   )
   .add("Icon Button", () => (
     <IconButton
-      onClick={action("dispatch Basic")}
+      onClick={action("dispatch basic")}
       icon={text("icon", "home")}
       color={text("color", "primary")}
       size={text("size", "3x")}
@@ -27,6 +27,30 @@ storiesOf("Icon Button", module)
     <IconButton
       onClick={action("dispatch Scan")}
       icon={text("icon", "file-image-o")}
+      color={text("color", "primary")}
+      size={text("size", "3x")}
+    />
+  ))
+  .add("Edit Button", () => (
+    <IconButton
+      onClick={action("dispatch edit")}
+      icon={text("icon", "pencil")}
+      color={text("color", "primary")}
+      size={text("size", "3x")}
+    />
+  ))
+  .add("Save Button", () => (
+    <IconButton
+      onClick={action("dispatch save")}
+      icon={text("icon", "save")}
+      color={text("color", "primary")}
+      size={text("size", "3x")}
+    />
+  ))
+  .add("Cancel Button", () => (
+    <IconButton
+      onClick={action("dispatch cancel")}
+      icon={text("icon", "times")}
       color={text("color", "primary")}
       size={text("size", "3x")}
     />
