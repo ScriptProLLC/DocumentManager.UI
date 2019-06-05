@@ -1,5 +1,6 @@
 import React from "react";
 import { string } from "prop-types";
+import ApplicationVersion from "../ApplicationVersion/ApplicationVersion";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
@@ -52,6 +53,7 @@ export default function DocumentManager(props) {
             selectedDoc={activeDocument}
           />
         )}
+        <ApplicationVersion />
       </div>
       <div className="document-viewer-pane">
         <div className="header" data-testid="document_viewer_header">
