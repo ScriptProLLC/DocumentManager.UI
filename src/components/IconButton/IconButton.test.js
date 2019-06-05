@@ -13,7 +13,7 @@ describe("IconButton component", () => {
 
   it("renders", () => {
     const { getByTestId } = render(
-      <IconButton onClick={mockFn} data-testid="test_icon_button" icon="home" />
+      <IconButton onClick={mockFn} data-testid="test_icon_button" icon="save" />
     );
 
     expect(getByTestId("test_icon_button")).toBeTruthy();
@@ -24,7 +24,7 @@ describe("IconButton component", () => {
       <IconButton
         onClick={mockFn}
         data-testid="test_icon_button"
-        icon="home"
+        icon="save"
         color="primary"
       />
     );
@@ -37,7 +37,7 @@ describe("IconButton component", () => {
       <IconButton
         onClick={mockFn}
         data-testid="test_icon_button"
-        icon="home"
+        icon="save"
         className="test-class-name"
       />
     );
@@ -49,14 +49,10 @@ describe("IconButton component", () => {
 
   it("renders the passed in fa icon", () => {
     const { getByTestId } = render(
-      <IconButton
-        onClick={mockFn}
-        data-testid="test_icon_button"
-        icon="save-o"
-      />
+      <IconButton onClick={mockFn} data-testid="test_icon_button" icon="save" />
     );
 
-    expect(getByTestId("test_icon_button").classList).toContain("fa-save-o");
+    expect(getByTestId("test_icon_button").classList).toContain("fa-save");
   });
 
   it("renders the passed in size", () => {
@@ -64,7 +60,7 @@ describe("IconButton component", () => {
       <IconButton
         onClick={mockFn}
         data-testid="test_icon_button"
-        icon="save-o"
+        icon="save"
         size="lg"
       />
     );
@@ -77,8 +73,8 @@ describe("IconButton component", () => {
       <IconButton
         onClick={mockFn}
         data-testid="test_icon_button"
-        icon="save-o"
-        size="small"
+        icon="save"
+        size="lg"
       />
     );
 
