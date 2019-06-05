@@ -4,12 +4,15 @@ import { useDocumentManagerState } from "./../hooks/DocumentManagerState";
 import mockData from "./../../../../tools/mockData";
 import { cloneWithoutFile } from "./../../../util/dataHelper";
 import { asyncAct, renderCompletion } from "./../../../util/testUtilities";
-import * as mockApi from "./../../../api/DocManagerApi";
+import * as mockDMApi from "./../../../api/DocManagerApi";
+import * as mockScanningApi from "./../../../api/ScanningApi";
 
 jest.mock("./../../../api/DocManagerApi");
+jest.mock("./../../../api/ScanningApi");
 
 const someCollectionId = "d7a2add9-14bf-480e-9b97-96685a006431";
-let configureApi = () => {};
+let configureDMApi = () => {};
+let configureScanningApi = () => {};
 
 afterEach(() => {
   cleanup();
@@ -17,17 +20,23 @@ afterEach(() => {
 });
 
 beforeEach(() => {
-  configureApi = (collectionDocuments, document) => {
-    mockApi.setup("getCollectionDocuments", async () => collectionDocuments);
-    mockApi.setup("getDocument", async () => document);
-    mockApi.setup("deleteDocument", async () => {});
+  configureDMApi = (collectionDocuments, document) => {
+    mockDMApi.setup("getCollectionDocuments", async () => collectionDocuments);
+    mockDMApi.setup("getDocument", async () => document);
+    mockDMApi.setup("deleteDocument", async () => {});
+  };
+
+  configureScanningApi = base64String => {
+    mockScanningApi.setup("scan", async () => {
+      return { scanFile: base64String };
+    });
   };
 });
 
 describe("useDocumentManagerState", () => {
   describe("on app startup", () => {
     it("should get the list of collection documents", async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
@@ -43,18 +52,17 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should make a call to get the first document file", async () => {
-      configureApi(mockData.documents.map(cloneWithoutFile), {});
-      var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
+      configureDMApi(mockData.documents.map(cloneWithoutFile), {});
+      var getDocumentSpy = jest.spyOn(mockDMApi, "getDocument");
 
       renderHook(() => useDocumentManagerState(someCollectionId));
 
-      console.log("Get document Spy", getDocumentSpy);
       await renderCompletion();
       expect(getDocumentSpy).toHaveBeenCalledTimes(1);
     });
 
     it("should select the first item in the list of collection documents by default", async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
@@ -73,12 +81,12 @@ describe("useDocumentManagerState", () => {
     let deleteDocumentSpy;
 
     beforeEach(async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
 
-      deleteDocumentSpy = jest.spyOn(mockApi, "deleteDocument");
+      deleteDocumentSpy = jest.spyOn(mockDMApi, "deleteDocument");
       const { result } = renderHook(() =>
         useDocumentManagerState(someCollectionId)
       );
@@ -108,14 +116,14 @@ describe("useDocumentManagerState", () => {
 
   describe("on selecting new document", () => {
     it("should update the selected document", async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
       const { result } = renderHook(() =>
         useDocumentManagerState(someCollectionId)
       );
-      configureApi([], mockData.documents[1]);
+      configureDMApi([], mockData.documents[1]);
 
       await renderCompletion();
       act(() => {
@@ -129,14 +137,14 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should make a call to get the document file if necessary", async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
       const { result } = renderHook(() =>
         useDocumentManagerState(someCollectionId)
       );
-      configureApi([], mockData.documents[1]);
+      configureDMApi([], mockData.documents[1]);
 
       await renderCompletion();
       act(() => {
@@ -152,11 +160,11 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should not make call to get the document file for documents that already have one", async () => {
-      configureApi(
+      configureDMApi(
         [cloneWithoutFile(mockData.documents[0]), mockData.documents[1]],
         mockData.documents[0]
       );
-      var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
+      var getDocumentSpy = jest.spyOn(mockDMApi, "getDocument");
 
       const { result } = renderHook(() =>
         useDocumentManagerState(someCollectionId)
@@ -174,7 +182,7 @@ describe("useDocumentManagerState", () => {
 
   describe("no documents state", () => {
     it("should set the list of collection documents to null if the collection is null", async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
@@ -186,7 +194,7 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should set the selected document to null if the collection is null", async () => {
-      configureApi(
+      configureDMApi(
         mockData.documents.map(cloneWithoutFile),
         mockData.documents[0]
       );
@@ -198,9 +206,9 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should not make a call to get the collection documents if the collection is null", async () => {
-      configureApi(mockData.documents.map(cloneWithoutFile), {});
+      configureDMApi(mockData.documents.map(cloneWithoutFile), {});
       var getDocumentCollectionsSpy = jest.spyOn(
-        mockApi,
+        mockDMApi,
         "getCollectionDocuments"
       );
 
@@ -211,8 +219,8 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should not make a call to get the first document file if the collection is null", async () => {
-      configureApi(mockData.documents.map(cloneWithoutFile), {});
-      var getDocumentSpy = jest.spyOn(mockApi, "getDocument");
+      configureDMApi(mockData.documents.map(cloneWithoutFile), {});
+      var getDocumentSpy = jest.spyOn(mockDMApi, "getDocument");
 
       renderHook(() => useDocumentManagerState(null));
 
@@ -221,7 +229,7 @@ describe("useDocumentManagerState", () => {
     });
 
     it("should initialize with an empty list if collection contains no documents", async () => {
-      configureApi([], {});
+      configureDMApi([], {});
 
       const { result } = renderHook(() =>
         useDocumentManagerState(someCollectionId)
@@ -229,6 +237,85 @@ describe("useDocumentManagerState", () => {
       await renderCompletion();
 
       expect(result.current.documents).toEqual([]);
+    });
+  });
+
+  describe("On Scan", () => {
+    it("should call the scan method on the scan api", async () => {
+      configureScanningApi("test");
+
+      var scanSpy = jest.spyOn(mockScanningApi, "scan");
+
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
+
+      await renderCompletion();
+
+      act(() => {
+        result.current.scanDocument();
+      });
+
+      await renderCompletion();
+
+      expect(scanSpy).toHaveBeenCalledTimes(1);
+    });
+    it("should set the active document with the new file", async () => {
+      configureScanningApi("Test document file");
+
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
+
+      await renderCompletion();
+
+      act(() => {
+        result.current.scanDocument();
+      });
+
+      await renderCompletion();
+
+      expect(result.current.activeDocument.documentFile).toBe(
+        "Test document file"
+      );
+    });
+
+    it("should set the active document with the name '_TempScan'", async () => {
+      configureScanningApi("Test document file");
+
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
+
+      await renderCompletion();
+
+      act(() => {
+        result.current.scanDocument();
+      });
+
+      await renderCompletion();
+
+      expect(result.current.activeDocument.name).toBe("_TempScan");
+    });
+
+    it("should set the active document with the active collectionId", async () => {
+      configureScanningApi("Test document file");
+
+      const { result } = renderHook(() =>
+        useDocumentManagerState(someCollectionId)
+      );
+
+      await renderCompletion();
+
+      act(() => {
+        result.current.scanDocument();
+      });
+
+      await renderCompletion();
+
+      expect(result.current.activeDocument.documentCollectionId).toBe(
+        someCollectionId
+      );
     });
   });
 });

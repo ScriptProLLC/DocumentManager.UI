@@ -65,7 +65,8 @@ function useDocumentManagerState(collectionId) {
   async function scanDocument() {
     let scannedDocument = await scanApi.scan();
     setActiveDocument({
-      id: collectionId,
+      id: null,
+      documentCollectionId: collectionId,
       name: "_TempScan",
       documentFile: scannedDocument.scanFile,
       dateCreated: null,

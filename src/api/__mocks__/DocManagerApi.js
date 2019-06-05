@@ -17,7 +17,7 @@ function setup(functionName, mock) {
       break;
 
     default:
-    // Throw some sort of error -- I'm getting linting problems when I throw a string.
+      throw new Error(`Invalid function name ${functionName}`);
   }
 }
 

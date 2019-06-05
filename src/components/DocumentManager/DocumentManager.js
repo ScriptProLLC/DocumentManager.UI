@@ -30,7 +30,7 @@ export default function DocumentManager(props) {
         await setSelectedDocument(documentAction.document);
         break;
       case "scanAction":
-        scanDocument();
+        await scanDocument();
         break;
       default:
         console.log("no action");
