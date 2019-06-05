@@ -63,11 +63,11 @@ function useDocumentManagerState(collectionId) {
   }
 
   async function scanDocument() {
-    let _scannedDocument = await scanApi.scan();
+    let scannedDocument = await scanApi.scan();
     setActiveDocument({
       id: collectionId,
       name: "_TempScan",
-      documentFile: _scannedDocument,
+      documentFile: scannedDocument.scanFile,
       dateCreated: null,
       attributes: {}
     });

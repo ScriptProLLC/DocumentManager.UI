@@ -14,16 +14,6 @@ const getRequestType = url => {
   }
 };
 
-const removeDocumentFiles = documents => {
-  var documentsNoFile = [];
-  for (var i = 0; i < documents.length; i++) {
-    var processedDoc = documents[i];
-    processedDoc.documentFile = null;
-    documentsNoFile.push(processedDoc);
-  }
-  return documentsNoFile;
-};
-
 module.exports = {
   get: url => {
     if (getRequestType(url) === requestType.GetCollectionDocuments) {
