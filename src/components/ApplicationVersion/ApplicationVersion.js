@@ -3,9 +3,8 @@ import "./ApplicationVersion.scss";
 
 export default function ApplicationVersion() {
   return (
-    <div>
-      <p>ScriptPro Document Manager</p>
-      <p>version {process.env.REACT_APP_VERSION}</p>
+    <div className="app-version-container">
+      <p>Version - {process.env.REACT_APP_VERSION}</p>
     </div>
   );
 }

@@ -8,7 +8,7 @@ storiesOf("Application Version", module)
     host({
       title: "Application Version Component",
       align: "center top",
-      height: 58,
+      height: 100,
       width: 400,
       border: true
     })
