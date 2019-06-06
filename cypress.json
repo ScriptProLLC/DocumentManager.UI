@@ -4,7 +4,7 @@
   "integrationFolder": "src/components",
   "testFiles": "**/*.cypress.js",
   "reporterOptions": {
-    "mochaFile": "test-results/cypress.xml"
+    "mochaFile": "test-results/cypress-[hash].xml"
   },
   "env": {
     "baseApiUrl": "http://localhost:13005/api/docmanager"
