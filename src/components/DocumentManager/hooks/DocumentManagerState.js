@@ -6,6 +6,7 @@ function useDocumentManagerState(collectionId) {
   let [documents, setDocuments] = useState(null);
   let [selectedDocument, setSelectedDocument] = useState(null);
   let [activeDocument, setActiveDocument] = useState(null);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -26,6 +27,8 @@ function useDocumentManagerState(collectionId) {
         setSelectedDocument(documentWithFile);
         setActiveDocument(documentWithFile);
       }
+
+      setLoading(false);
     })();
   }, [collectionId]);
 
@@ -45,7 +48,9 @@ function useDocumentManagerState(collectionId) {
       setActiveDocument(document);
       return;
     }
+    setLoading(true);
     const documentWithFile = await docApi.getDocument(document.id);
+    setLoading(false);
 
     updateCollectionDocument(documents, documentWithFile);
     setSelectedDocument(documentWithFile);
@@ -81,7 +86,8 @@ function useDocumentManagerState(collectionId) {
     deleteSelectedDocument,
     scanDocument,
     activeDocument,
-    editDocument
+    editDocument,
+    loading
   };
 }
 

@@ -6,6 +6,7 @@ import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerState } from "./hooks/DocumentManagerState";
 import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPanel";
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
+import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
 import "./DocumentManager.scss";
 
 export default function DocumentManager(props) {
@@ -15,7 +16,8 @@ export default function DocumentManager(props) {
     deleteSelectedDocument,
     scanDocument,
     activeDocument,
-    editDocument
+    editDocument,
+    loading
   } = useDocumentManagerState(props.collectionId);
 
   async function dispatchDocumentAction(documentAction) {
@@ -39,34 +41,26 @@ export default function DocumentManager(props) {
 
   return (
     <div className="document-manager-container">
+      <SpinnerComponent open={loading} />
       <div className="document-list-pane">
         <div className="header" data-testid="document_list_header">
           Documents
         </div>
         <DocumentListToolbar dispatchDocumentAction={dispatchDocumentAction} />
-        {props.collectionId && !documents ? (
-          <div>Loading ...</div>
-        ) : (
-          <DocumentList
-            documents={documents}
-            onSelected={setSelectedDocument}
-            selectedDoc={activeDocument}
-          />
-        )}
+
+        <DocumentList
+          documents={documents}
+          onSelected={setSelectedDocument}
+          selectedDoc={activeDocument}
+        />
         <ApplicationVersion />
       </div>
       <div className="document-viewer-pane">
         <div className="header" data-testid="document_viewer_header">
           Document Viewer
         </div>
-        {props.collectionId && !documents && !activeDocument ? (
-          <div>Loading ...</div>
-        ) : (
-          <DocumentViewer document={activeDocument} />
-        )}
-        {!documents || !activeDocument ? (
-          <></>
-        ) : (
+        <DocumentViewer document={activeDocument} />
+        {activeDocument && (
           <DocumentControlsPanel
             dispatchDocumentAction={dispatchDocumentAction}
             document={activeDocument}
