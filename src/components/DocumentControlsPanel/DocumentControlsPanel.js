@@ -5,20 +5,16 @@ import DocumentActions from "../DocumentActions/DocumentActions";
 import DocumentEdit from "../DocumentEdit/DocumentEdit";
 
 export default function DocumentControlsPanel(props) {
-  let [inEditMode, setInEditMode] = useState(false);
-
   return (
     <div>
-      {inEditMode ? (
+      {props.inEditMode ? (
         <DocumentEdit
           document={props.document}
-          setInEditMode={setInEditMode}
           dispatchDocumentAction={props.dispatchDocumentAction}
         />
       ) : (
         <DocumentActions
           document={props.document}
-          setInEditMode={setInEditMode}
           dispatchDocumentAction={props.dispatchDocumentAction}
         />
       )}
@@ -28,5 +24,6 @@ export default function DocumentControlsPanel(props) {
 
 DocumentControlsPanel.propTypes = {
   document: documentPropType,
-  dispatchDocumentAction: PropTypes.func
+  dispatchDocumentAction: PropTypes.func,
+  inEditMode: PropTypes.bool
 };

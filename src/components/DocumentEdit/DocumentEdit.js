@@ -10,15 +10,17 @@ export default function DocumentEdit(props) {
 
   const onSave = async () => {
     await props.dispatchDocumentAction({
-      type: "editAction",
+      type: "saveDocumentAction",
       document: document
     });
-    props.setInEditMode(false);
   };
 
-  const onCancel = () => {
-    props.setInEditMode(false);
-  };
+  async function onCancel() {
+    await props.dispatchDocumentAction({
+      type: "editAction",
+      mode: false
+    });
+  }
 
   const onDocumentNameChange = event => {
     var newDoc = Object.assign({}, document);
@@ -61,6 +63,5 @@ export default function DocumentEdit(props) {
 
 DocumentEdit.propTypes = {
   document: documentPropType.isRequired,
-  dispatchDocumentAction: PropTypes.func,
-  setInEditMode: PropTypes.func
+  dispatchDocumentAction: PropTypes.func
 };

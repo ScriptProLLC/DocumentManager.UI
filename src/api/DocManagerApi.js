@@ -36,3 +36,11 @@ export async function patchDocument(document) {
     })
     .then(res => res.data);
 }
+
+export async function postDocument(document) {
+  var path = "/documents";
+
+  return await axios
+    .post(process.env.REACT_APP_API_URL + path, document)
+    .then(res => res.data);
+}

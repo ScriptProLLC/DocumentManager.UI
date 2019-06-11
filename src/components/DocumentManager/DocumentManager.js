@@ -16,8 +16,11 @@ export default function DocumentManager(props) {
     deleteSelectedDocument,
     scanDocument,
     activeDocument,
-    editDocument,
-    loading
+    loading,
+    inEditMode,
+    updateEditMode,
+    modeMessage,
+    saveDocument
   } = useDocumentManagerState(props.collectionId);
 
   async function dispatchDocumentAction(documentAction) {
@@ -26,13 +29,16 @@ export default function DocumentManager(props) {
         await deleteSelectedDocument();
         break;
       case "editAction":
-        await editDocument(documentAction.document);
+        await updateEditMode(documentAction.mode);
         break;
       case "selectAction":
         await setSelectedDocument(documentAction.document);
         break;
       case "scanAction":
         await scanDocument();
+        break;
+      case "saveDocumentAction":
+        await saveDocument(documentAction.document);
         break;
       default:
         console.log("no action");
@@ -57,13 +63,14 @@ export default function DocumentManager(props) {
       </div>
       <div className="document-viewer-pane">
         <div className="header" data-testid="document_viewer_header">
-          Document Viewer
+          {modeMessage}
         </div>
         <DocumentViewer document={activeDocument} />
         {activeDocument && (
           <DocumentControlsPanel
             dispatchDocumentAction={dispatchDocumentAction}
             document={activeDocument}
+            inEditMode={inEditMode}
           />
         )}
       </div>

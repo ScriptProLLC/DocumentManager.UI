@@ -7,6 +7,8 @@ function useDocumentManagerState(collectionId) {
   let [selectedDocument, setSelectedDocument] = useState(null);
   let [activeDocument, setActiveDocument] = useState(null);
   let [loading, setLoading] = useState(true);
+  let [inEditMode, setInEditMode] = useState(false);
+  let [modeMessage, setModeMessage] = useState("Document Viewer");
 
   useEffect(() => {
     (async () => {
@@ -36,10 +38,13 @@ function useDocumentManagerState(collectionId) {
     setDocuments(collection.map(d => (d.id === document.id ? document : d)));
   }
 
-  async function editDocument(document) {
-    updateCollectionDocument(documents, document);
-    await updateActiveDocument(document);
-    await docApi.patchDocument(document);
+  async function updateEditMode(editMode) {
+    if (editMode === false) {
+      setActiveDocument(selectedDocument);
+      setModeMessage("Document Viewer");
+    }
+
+    setInEditMode(editMode);
   }
 
   async function updateActiveDocument(document) {
@@ -69,15 +74,39 @@ function useDocumentManagerState(collectionId) {
 
   async function scanDocument() {
     let scannedDocument = await scanApi.scan();
+    setModeMessage("Scan Preview");
+
     setActiveDocument({
       id: null,
       documentCollectionId: collectionId,
-      name: "_TempScan",
-      documentFile: scannedDocument.scanFile,
-      dateCreated: null,
-      attributes: {}
+      documentFile: scannedDocument.scanFile
     });
+    setSelectedDocument(null);
+    setInEditMode(true);
     return;
+  }
+
+  async function insertNewDocument(document) {
+    let clone = await docApi.postDocument(document);
+    clone.documentFile = document.documentFile;
+
+    updateCollectionDocument(documents, clone);
+    await updateActiveDocument(clone);
+
+    setDocuments([...documents, clone]);
+  }
+
+  async function saveDocument(document) {
+    if (document.id === null) {
+      insertNewDocument(document);
+    } else {
+      updateCollectionDocument(documents, document);
+      await docApi.patchDocument(document);
+    }
+
+    await updateActiveDocument(document);
+    setInEditMode(false);
+    setModeMessage("Document Viewer");
   }
 
   return {
@@ -86,8 +115,11 @@ function useDocumentManagerState(collectionId) {
     deleteSelectedDocument,
     scanDocument,
     activeDocument,
-    editDocument,
-    loading
+    loading,
+    inEditMode,
+    updateEditMode,
+    modeMessage,
+    saveDocument
   };
 }
 

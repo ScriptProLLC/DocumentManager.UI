@@ -13,9 +13,12 @@ export default function DocumentActions(props) {
     setShowModalDialog(true);
   };
 
-  const onEditClick = () => {
-    props.setInEditMode(true);
-  };
+  async function onEditClick() {
+    await props.dispatchDocumentAction({
+      type: "editAction",
+      mode: true
+    });
+  }
 
   async function onDeleteConfirmationReport(report) {
     setShowModalDialog(false);
@@ -69,6 +72,5 @@ export default function DocumentActions(props) {
 
 DocumentActions.propTypes = {
   document: documentPropType.isRequired,
-  dispatchDocumentAction: PropTypes.func,
-  setInEditMode: PropTypes.func
+  dispatchDocumentAction: PropTypes.func
 };

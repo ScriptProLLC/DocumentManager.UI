@@ -105,7 +105,7 @@ export default function DocumentListItem(props) {
 DocumentListItem.propTypes = {
   document: PropTypes.shape({
     name: PropTypes.string,
-    dateCreated: PropTypes.string.isRequired,
+    dateCreated: PropTypes.string,
     attributes: PropTypes.object
   }),
   expanded: PropTypes.bool,
