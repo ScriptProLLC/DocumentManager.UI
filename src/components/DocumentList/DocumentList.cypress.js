@@ -13,6 +13,8 @@ describe("DocumentList", function() {
   it("document list header should have correct text", function() {
     // Open Application to the collection
     cy.visit(`?collection=${this.collectionId}`);
+
+    // Check the text on the Document List Header
     cy.get("[data-testid=document_list_header]").should(
       "have.text",
       "Documents"
@@ -20,16 +22,21 @@ describe("DocumentList", function() {
   });
 
   it("document list scroll bar is functional", function() {
+    // Add enough documents to render a scroll bar
     cy.addDocumentsToCollection(mockData.documents[1], this.collectionId, 30);
 
+    // Open app to correct collection
     cy.visit(`?collection=${this.collectionId}`);
 
+    // Condition to check if scroll bar is on screen
     const hasScrollBar = function(elem) {
       return elem[0].scrollHeight > elem[0].clientHeight;
     };
 
-    cy.get("[data-testid=document_list_container]")
-      .then(hasScrollBar)
-      .should("be.true");
+    // Check the scroll bar shows up
+    cy.get("[data-testid=document_list_container]").should(
+      "satisfy",
+      hasScrollBar
+    );
   });
 });
