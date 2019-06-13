@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import IconButton from "../IconButton/IconButton";
 import "./DocumentListToolbar.scss";
+import { ActionTypes } from "../DocumentManager/Model/ActionTypes";
 
 export default function DocumentListToolbar(props) {
   const onScan = async () => {
     props.dispatchDocumentAction({
-      type: "scanAction"
+      type: ActionTypes.SCAN
     });
   };
 

@@ -17,9 +17,12 @@ describe("DocumentManager component", () => {
 
   it("renders the correct amount of items", async () => {
     mockAxios.setCollection(mockData.documents);
+
     const { getByTestId } = render(
       <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"} />
     );
+
+    await renderCompletion();
 
     const documentList = await waitForElement(() =>
       getByTestId("document_list_items")
@@ -32,6 +35,8 @@ describe("DocumentManager component", () => {
     const { getByTestId } = render(
       <DocumentManager collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"} />
     );
+
+    await renderCompletion();
 
     const documentList = await waitForElement(() =>
       getByTestId("document_list_items")

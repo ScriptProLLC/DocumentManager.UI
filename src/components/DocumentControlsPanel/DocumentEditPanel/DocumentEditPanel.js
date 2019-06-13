@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { documentPropType } from "../../propTypes";
+import { documentPropType } from "./../../../propTypes";
 import { Input, Container, Row, Col } from "reactstrap";
-import "./DocumentEdit.scss";
-import IconButton from "./../IconButton/IconButton";
+import "./DocumentEditPanel.scss";
+import IconButton from "./../../IconButton/IconButton";
+import { ActionTypes } from "../../DocumentManager/Model/ActionTypes";
 
-export default function DocumentEdit(props) {
+export default function DocumentEditPanel(props) {
   let [document, setDocument] = useState(props.document);
 
   const onSave = async () => {
     await props.dispatchDocumentAction({
-      type: "saveDocumentAction",
+      type: ActionTypes.SAVE_DOCUMENT,
       document: document
     });
   };
 
-  async function onCancel() {
+  const onCancel = async () => {
     await props.dispatchDocumentAction({
-      type: "editAction",
-      mode: false
+      type: ActionTypes.CANCEL_EDIT_DOCUMENT
     });
-  }
+  };
 
   const onDocumentNameChange = event => {
     var newDoc = Object.assign({}, document);
@@ -61,7 +61,7 @@ export default function DocumentEdit(props) {
   );
 }
 
-DocumentEdit.propTypes = {
+DocumentEditPanel.propTypes = {
   document: documentPropType.isRequired,
   dispatchDocumentAction: PropTypes.func
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { render, cleanup, fireEvent } from "react-testing-library";
 import "jest-dom/extend-expect";
 import DocumentListToolbar from "./DocumentListToolbar";
+import { ActionTypes } from "../DocumentManager/Model/ActionTypes";
 
 var mockFn = jest.fn(r => r);
 
@@ -35,7 +36,7 @@ describe("DocumentListToolbar component", () => {
 
       fireEvent.click(getByTestId("scan_icon_button"));
 
-      expect(mockFn).toHaveBeenCalledWith({ type: "scanAction" });
+      expect(mockFn).toHaveBeenCalledWith({ type: ActionTypes.SCAN });
     });
   });
 });

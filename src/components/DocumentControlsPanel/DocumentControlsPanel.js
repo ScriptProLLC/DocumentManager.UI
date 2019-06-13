@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { documentPropType } from "../../propTypes";
-import DocumentActions from "../DocumentActions/DocumentActions";
-import DocumentEdit from "../DocumentEdit/DocumentEdit";
+import DocumentActionsPanel from "./DocumentActionsPanel/DocumentActionsPanel";
+import DocumentEditPanel from "./DocumentEditPanel/DocumentEditPanel";
 
 export default function DocumentControlsPanel(props) {
   return (
     <div>
-      {props.inEditMode ? (
-        <DocumentEdit
+      {props.appState.isEditState ? (
+        <DocumentEditPanel
           document={props.document}
           dispatchDocumentAction={props.dispatchDocumentAction}
         />
       ) : (
-        <DocumentActions
+        <DocumentActionsPanel
           document={props.document}
           dispatchDocumentAction={props.dispatchDocumentAction}
         />
@@ -25,5 +25,5 @@ export default function DocumentControlsPanel(props) {
 DocumentControlsPanel.propTypes = {
   document: documentPropType,
   dispatchDocumentAction: PropTypes.func,
-  inEditMode: PropTypes.bool
+  appState: PropTypes.object
 };

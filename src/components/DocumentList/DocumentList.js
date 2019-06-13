@@ -4,13 +4,10 @@ import "./DocumentList.scss";
 import { byDateDescending } from "../../util/dateUtilities";
 import { documentPropType } from "../../propTypes";
 import PropTypes from "prop-types";
+import AppStates from "../DocumentManager/Model/AppStates";
 
 export default function DocumentList(props) {
   let docs = props.documents;
-
-  function onSelected(data) {
-    props.onSelected(data);
-  }
 
   function reportToggle(toggleState) {
     console.log(toggleState);
@@ -27,15 +24,13 @@ export default function DocumentList(props) {
   }
 
   var children = docs
-    ? docs.sort(byDateDescending).map((doc, index) => (
+    ? docs.map((doc, index) => (
         <li key={doc.id} data-testid={doc.id}>
           <DocumentListItem
             document={doc}
-            onSelected={onSelected}
+            dispatchDocumentAction={props.dispatchDocumentAction}
             reportToggle={reportToggle}
-            isSelected={
-              props.selectedDoc ? doc.id === props.selectedDoc.id : false
-            }
+            isSelected={props.activeDoc ? doc.id === props.activeDoc.id : false}
             expanded={isExpanded(index)}
           />
         </li>
@@ -47,7 +42,7 @@ export default function DocumentList(props) {
       className="document-list-container"
       data-testid="document_list_container"
     >
-      {!docs || docs.length === 0 ? (
+      {props.appState === AppStates.NO_DOCUMENTS ? (
         <div
           data-testid="document_list_no_documents"
           className="document-list-empty"
@@ -63,7 +58,8 @@ export default function DocumentList(props) {
 
 DocumentList.propTypes = {
   documents: PropTypes.arrayOf(documentPropType),
-  selectedDoc: documentPropType,
-  onSelected: PropTypes.func,
-  expandedItems: PropTypes.arrayOf(PropTypes.number)
+  activeDoc: documentPropType,
+  dispatchDocumentAction: PropTypes.func,
+  expandedItems: PropTypes.arrayOf(PropTypes.number),
+  appState: PropTypes.object
 };

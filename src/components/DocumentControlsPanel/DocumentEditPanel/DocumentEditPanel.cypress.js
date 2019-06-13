@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /// <reference types="Cypress" />
 
-const mockData = require("../../../tools/mockData");
+const mockData = require("../../../../tools/mockData");
 
 describe("DocumentEdit", function() {
   const modifiedDocName = "Modified doc name";

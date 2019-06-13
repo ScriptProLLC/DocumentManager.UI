@@ -1,10 +1,10 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
 import "jest-dom/extend-expect";
-import DocumentEdit from "./DocumentEdit";
-import { createTestDocument } from "./../../util/dataHelper";
+import DocumentEditPanel from "./DocumentEditPanel";
+import { createTestDocument } from "../../../util/dataHelper";
 
-describe("DocumentEdit component", () => {
+describe("DocumentEditPanel component", () => {
   var basicNamedDoc;
   var basicUnnamedDoc;
   var basicNamedDocName = "Test Document 001";
@@ -18,13 +18,17 @@ describe("DocumentEdit component", () => {
   });
 
   it("renders", () => {
-    const { getByTestId } = render(<DocumentEdit document={basicNamedDoc} />);
+    const { getByTestId } = render(
+      <DocumentEditPanel document={basicNamedDoc} />
+    );
 
     expect(getByTestId("document_edit_document_name")).toBeTruthy();
   });
 
   it("has the correct document name text if specified ", () => {
-    const { getByTestId } = render(<DocumentEdit document={basicNamedDoc} />);
+    const { getByTestId } = render(
+      <DocumentEditPanel document={basicNamedDoc} />
+    );
 
     expect(getByTestId("document_edit_document_name").value).toBe(
       basicNamedDocName
@@ -32,13 +36,17 @@ describe("DocumentEdit component", () => {
   });
 
   it("text value is null if name not specified ", () => {
-    const { getByTestId } = render(<DocumentEdit document={basicUnnamedDoc} />);
+    const { getByTestId } = render(
+      <DocumentEditPanel document={basicUnnamedDoc} />
+    );
 
     expect(getByTestId("document_edit_document_name").value).toBe("");
   });
 
   it("has the correct placeholder text if name not specified", () => {
-    const { getByTestId } = render(<DocumentEdit document={basicUnnamedDoc} />);
+    const { getByTestId } = render(
+      <DocumentEditPanel document={basicUnnamedDoc} />
+    );
 
     expect(getByTestId("document_edit_document_name").placeholder).toBe(
       unnamedDocPlaceholder

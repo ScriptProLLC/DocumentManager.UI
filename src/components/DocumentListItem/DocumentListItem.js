@@ -10,6 +10,7 @@ import {
   Col
 } from "reactstrap";
 import "./DocumentListItem.scss";
+import { ActionTypes } from "../DocumentManager/Model/ActionTypes";
 
 export default function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(props.expanded);
@@ -26,10 +27,11 @@ export default function DocumentListItem(props) {
     setExpanded(!expanded);
   }
 
-  function select() {
-    if (props.onSelected) {
-      props.onSelected(props.document);
-    }
+  async function select() {
+    await props.dispatchDocumentAction({
+      type: ActionTypes.SELECT_DOCUMENT,
+      document: props.document
+    });
   }
 
   function renderListItems() {
@@ -110,6 +112,6 @@ DocumentListItem.propTypes = {
   }),
   expanded: PropTypes.bool,
   isSelected: PropTypes.bool,
-  onSelected: PropTypes.func,
+  dispatchDocumentAction: PropTypes.func,
   reportToggle: PropTypes.func
 };

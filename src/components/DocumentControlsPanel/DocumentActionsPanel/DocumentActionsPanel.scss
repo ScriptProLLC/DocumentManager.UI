@@ -1,6 +1,6 @@
-@import "../../variables.scss";
+@import "../../../variables.scss";
 
-.save-button {
+.delete-button {
   display: inline-block;
   font-size: 2rem;
   padding-right: 0.5rem;
@@ -12,7 +12,7 @@
   }
 }
 
-.cancel-button {
+.edit-button {
   display: inline-block;
   font-size: 2rem;
   padding-right: 0.5rem;
@@ -24,7 +24,7 @@
   }
 }
 
-.document-edit-container {
+.document-actions-container {
   @include background-gradient($primary, $secondary);
   @include inset-shadow(2rem, 0.25);
   @include text-shadow(0.25rem, 0.5);

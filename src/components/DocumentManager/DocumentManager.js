@@ -3,74 +3,44 @@ import { string } from "prop-types";
 import ApplicationVersion from "../ApplicationVersion/ApplicationVersion";
 import DocumentList from "../DocumentList/DocumentList";
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
-import { useDocumentManagerState } from "./hooks/DocumentManagerState";
+import { useDocumentManagerModel } from "./Model/DocumentManagerModel";
 import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPanel";
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
 import "./DocumentManager.scss";
+import AppStates from "./Model/AppStates";
 
 export default function DocumentManager(props) {
-  const {
-    documents,
-    setSelectedDocument,
-    deleteSelectedDocument,
-    scanDocument,
-    activeDocument,
-    loading,
-    inEditMode,
-    updateEditMode,
-    modeMessage,
-    saveDocument
-  } = useDocumentManagerState(props.collectionId);
-
-  async function dispatchDocumentAction(documentAction) {
-    switch (documentAction.type) {
-      case "deleteAction":
-        await deleteSelectedDocument();
-        break;
-      case "editAction":
-        await updateEditMode(documentAction.mode);
-        break;
-      case "selectAction":
-        await setSelectedDocument(documentAction.document);
-        break;
-      case "scanAction":
-        await scanDocument();
-        break;
-      case "saveDocumentAction":
-        await saveDocument(documentAction.document);
-        break;
-      default:
-        console.log("no action");
-    }
-  }
+  const { state, dispatchDocumentAction } = useDocumentManagerModel(
+    props.collectionId
+  );
 
   return (
     <div className="document-manager-container">
-      <SpinnerComponent open={loading} />
+      <SpinnerComponent open={state.appState.isLoadingState} />
       <div className="document-list-pane">
         <div className="header" data-testid="document_list_header">
           Documents
         </div>
         <DocumentListToolbar dispatchDocumentAction={dispatchDocumentAction} />
-
         <DocumentList
-          documents={documents}
-          onSelected={setSelectedDocument}
-          selectedDoc={activeDocument}
+          appState={state.appState}
+          documents={state.documents}
+          dispatchDocumentAction={dispatchDocumentAction}
+          activeDoc={state.activeDocument}
         />
         <ApplicationVersion />
       </div>
       <div className="document-viewer-pane">
         <div className="header" data-testid="document_viewer_header">
-          {modeMessage}
+          {state.appState.headerText}
         </div>
-        <DocumentViewer document={activeDocument} />
-        {activeDocument && (
+        <DocumentViewer document={state.activeDocument} />
+        {state.activeDocument && (
           <DocumentControlsPanel
             dispatchDocumentAction={dispatchDocumentAction}
-            document={activeDocument}
-            inEditMode={inEditMode}
+            document={state.activeDocument}
+            appState={state.appState}
           />
         )}
       </div>

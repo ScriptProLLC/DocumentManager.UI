@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { documentPropType } from "../../propTypes";
-import ModalDialog from "../ModalDialog/ModalDialog";
+import { documentPropType } from "./../../../propTypes";
+import ModalDialog from "../../ModalDialog/ModalDialog";
 import { Container, Row, Col } from "reactstrap";
-import "./DocumentActions.scss";
-import IconButton from "../IconButton/IconButton";
+import "./DocumentActionsPanel.scss";
+import IconButton from "./../../IconButton/IconButton";
+import { ActionTypes } from "../../DocumentManager/Model/ActionTypes";
 
-export default function DocumentActions(props) {
+export default function DocumentActionsPanel(props) {
   const [showModalDialog, setShowModalDialog] = useState(false);
 
   const onDeleteClick = () => {
     setShowModalDialog(true);
   };
 
-  async function onEditClick() {
-    await props.dispatchDocumentAction({
-      type: "editAction",
-      mode: true
-    });
-  }
+  const onEditClick = () => {
+    props.dispatchDocumentAction({ type: ActionTypes.EDIT_DOCUMENT });
+  };
 
   async function onDeleteConfirmationReport(report) {
     setShowModalDialog(false);
 
     if (report === "Yes") {
       await props.dispatchDocumentAction({
-        type: "deleteAction"
+        type: ActionTypes.DELETE_ACTIVE_DOCUMENT
       });
     }
   }
@@ -70,7 +68,7 @@ export default function DocumentActions(props) {
   );
 }
 
-DocumentActions.propTypes = {
+DocumentActionsPanel.propTypes = {
   document: documentPropType.isRequired,
   dispatchDocumentAction: PropTypes.func
 };

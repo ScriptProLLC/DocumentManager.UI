@@ -1,20 +1,19 @@
 import React from "react";
-import DocumentEdit from "./DocumentEdit";
+import DocumentActionsPanel from "./DocumentActionsPanel";
 import { storiesOf } from "@storybook/react";
 import { host } from "storybook-host";
-import { createTestDocument } from "./../../util/dataHelper";
+import { createTestDocument } from "./../../../util/dataHelper";
 import { action } from "@storybook/addon-actions";
-import { object } from "@storybook/addon-knobs";
 
 const data = {
   basic: createTestDocument(),
   noName: createTestDocument({ name: null })
 };
 
-storiesOf("Document Edit", module)
+storiesOf("Document Actions Panel", module)
   .addDecorator(
     host({
-      title: "DocumentEdit Component",
+      title: "DocumentActions Component",
       align: "center top",
       height: 58,
       width: 900,
@@ -22,16 +21,14 @@ storiesOf("Document Edit", module)
     })
   )
   .add("Basic", () => (
-    <DocumentEdit
-      document={object("document", data.basic)}
-      setInEditMode={action("set edit mode")}
+    <DocumentActionsPanel
+      document={data.basic}
       dispatchDocumentAction={action("dispatch")}
     />
   ))
-  .add("No document name", () => (
-    <DocumentEdit
-      document={object("document", data.noName)}
-      setInEditMode={action("set edit mode")}
+  .add("Document with no name", () => (
+    <DocumentActionsPanel
+      document={data.noName}
       dispatchDocumentAction={action("dispatch")}
     />
   ));
