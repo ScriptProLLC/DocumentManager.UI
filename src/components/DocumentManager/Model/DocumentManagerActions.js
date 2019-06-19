@@ -114,6 +114,8 @@ function useDocumentManagerActions(collectionId, state, updateState) {
     let scannedDocument = await scanApi.scan();
     let pendingAttributes = {};
     pendingAttributes["File Size"] = formatBytes(scannedDocument.fileSize);
+    pendingAttributes.Initials = scannedDocument.initials;
+
     updateState({
       appState: AppStates.DOCUMENT_PREVIEW,
       activeDocument: {

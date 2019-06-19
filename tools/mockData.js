@@ -7,7 +7,8 @@ const documents = [
     dateCreated: "1997-01-11T06:30:16.25",
     attributes: {
       Pages: "3",
-      "File Size": "543 KB"
+      "File Size": "543 KB",
+      Initials: "MCD"
     }
   },
   {
@@ -656,7 +657,8 @@ QkZDQ0E+XSA+Pg0Kc3RhcnR4cmVmDQozMjEzOQ0KJSVFT0Y=`,
     dateCreated: "1997-01-09T09:37:15.25",
     attributes: {
       Pages: "4",
-      "File Size": "622 KB"
+      "File Size": "622 KB",
+      Initials: "KFC"
     }
   }
 ];
