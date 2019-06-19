@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { formatDate } from "../../util/dateUtilities";
+import { formatAttribute } from "../../util/attributesUtilities";
 import {
   Collapse,
   ListGroup,
@@ -43,7 +44,7 @@ export default function DocumentListItem(props) {
       >
         <span className="fa fa-level-up mr-3" />
         <strong>{key}: </strong>
-        {value}
+        {formatAttribute(key, value)}
       </ListGroupItem>
     ));
   }

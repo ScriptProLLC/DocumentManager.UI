@@ -3,7 +3,6 @@ import * as scanApi from "../../../api/ScanningApi";
 import AppStates from "../Model/AppStates";
 import { ActionTypes } from "./ActionTypes";
 import { byDateDescending } from "../../../util/dateUtilities";
-import { formatBytes } from "../../../util/fileHelper";
 
 function useDocumentManagerActions(collectionId, state, updateState) {
   async function loadCollection() {
@@ -113,7 +112,7 @@ function useDocumentManagerActions(collectionId, state, updateState) {
     updateState({ appState: AppStates.SCANNING });
     let scannedDocument = await scanApi.scan();
     let pendingAttributes = {};
-    pendingAttributes["File Size"] = formatBytes(scannedDocument.fileSize);
+    pendingAttributes["File Size"] = scannedDocument.fileByteSize;
     pendingAttributes.Initials = scannedDocument.initials;
 
     updateState({
