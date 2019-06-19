@@ -1,7 +1,6 @@
 import React from "react";
 import PDFViewer from "./PDFViewer";
 import { DocumentViewerContext } from "./DocumentViewerContext";
-import PropTypes from "prop-types";
 import { documentPropType } from "../../propTypes";
 import "./DocumentViewer.scss";
 

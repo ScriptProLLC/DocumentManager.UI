@@ -1,7 +1,6 @@
 import React from "react";
 import DocumentListItem from "../DocumentListItem/DocumentListItem";
 import "./DocumentList.scss";
-import { byDateDescending } from "../../util/dateUtilities";
 import { documentPropType } from "../../propTypes";
 import PropTypes from "prop-types";
 import AppStates from "../DocumentManager/Model/AppStates";

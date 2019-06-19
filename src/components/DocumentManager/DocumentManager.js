@@ -8,7 +8,6 @@ import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPane
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
 import "./DocumentManager.scss";
-import AppStates from "./Model/AppStates";
 
 export default function DocumentManager(props) {
   const { state, dispatchDocumentAction } = useDocumentManagerModel(
@@ -17,7 +16,10 @@ export default function DocumentManager(props) {
 
   return (
     <div className="document-manager-container">
-      <SpinnerComponent open={state.appState.isLoadingState} />
+      <SpinnerComponent
+        open={state.appState.isLoadingState}
+        message={state.appState.loadingMessage}
+      />
       <div className="document-list-pane">
         <div className="header" data-testid="document_list_header">
           Documents
