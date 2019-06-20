@@ -3,8 +3,7 @@ import {
   render,
   fireEvent,
   cleanup,
-  waitForDomChange,
-  getByTestId
+  waitForDomChange
 } from "react-testing-library";
 import DocumentListItem from "./DocumentListItem";
 import { createTestDocument } from "../../util/dataHelper";

@@ -42,14 +42,14 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // should have a visible spinner
-    cy.get("[data-testid=spinner]").should("be.visible");
+    cy.get("[aria-label='Spinner icon']").should("be.visible");
   });
 
   it("should hide Loading spinner when an empty collection is loaded", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // spinner should immediate disappear on empty collection
-    cy.get("[data-testid=spinner]").should("not.exist");
+    cy.get("[aria-label='Spinner icon']").should("not.exist");
   });
 
   it("should show Loading spinner when auto-selected document is loading", function() {
@@ -59,10 +59,10 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // we should have items in the list but nothing selected
-    cy.get("[data-testid=document_list_items]").should("exist");
+    cy.get("[aria-label='Document list with documents']").should("exist");
 
     // should appear when document selected
-    cy.get("[data-testid=spinner]").should("be.visible");
+    cy.get("[aria-label='Spinner icon']").should("be.visible");
   });
 
   it("should hide Loading spinner after auto-selected document is loaded", function() {
@@ -72,16 +72,16 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // viewer state when DOM loaded but no loaded document
-    cy.get("[data-testid=document_viewer_no_documents]").should("exist");
+    cy.get("[aria-label='Document viewer with no document']").should("exist");
 
     // should appear when document loading
-    cy.get("[data-testid=spinner]").should("be.visible");
+    cy.get("[aria-label='Spinner icon']").should("be.visible");
 
     // viewer state when document loaded
-    cy.get("[data-testid=document_viewer_container_withdocs]").should("exist");
+    cy.get("[aria-label='Document viewer frame']").should("exist");
 
     // should ago away after loading
-    cy.get("[data-testid=spinner]").should("not.exist");
+    cy.get("[aria-label='Spinner icon']").should("not.exist");
   });
 
   it("should show Loading spinner when manually selected document is loading", function() {
@@ -91,15 +91,15 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // wait until spinner goes away
-    cy.get("[data-testid=spinner]").should("not.exist");
+    cy.get("[aria-label='Spinner icon']").should("not.exist");
 
     // Click the bottom item in the document list
-    cy.get("[data-testid=document_name]")
+    cy.get("[aria-label='Document name for the document in the list']")
       .last()
       .click();
 
     // spinner should be present after clicking
-    cy.get("[data-testid=spinner]").should("be.visible");
+    cy.get("[aria-label='Spinner icon']").should("be.visible");
   });
 
   it("should hide Loading spinner after a manually selected document is loaded", function() {
@@ -109,18 +109,18 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // wait until spinner goes away
-    cy.get("[data-testid=spinner]").should("not.exist");
+    cy.get("[aria-label='Spinner icon']").should("not.exist");
 
     // Click the bottom item in the document list
-    cy.get("[data-testid=document_name]")
+    cy.get("[aria-label='Document name for the document in the list']")
       .last()
       .click();
 
     // viewer state when document loaded
-    cy.get("[data-testid=document_viewer_container_withdocs]").should("exist");
+    cy.get("[aria-label='Document viewer frame']").should("exist");
 
     // should ago away after loading
-    cy.get("[data-testid=spinner]").should("not.exist");
+    cy.get("[aria-label='Spinner icon']").should("not.exist");
   });
 
   it("basic scanning", function() {
@@ -128,30 +128,32 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click the scan button
-    cy.get("[data-testid=scan_icon_button]").click();
+    cy.get("[aria-label='Scan button']").click();
 
     // Check header says scan preview
-    cy.get("[data-testid=document_viewer_header]").should(
+    cy.get("[aria-label='Document viewer header']").should(
       "have.text",
       "Scan Preview"
     );
 
     // Check edit component is active
-    cy.get("[data-testid=document_edit_document_name]").should("exist");
+    cy.get("[aria-label='Document name in document edit panel']").should(
+      "exist"
+    );
 
     // Check no documents are selected
     cy.get(".document-list-item-container.selected").should("not.exist");
 
     // Change the document name
-    cy.get("[data-testid=document_edit_document_name]").type(
+    cy.get("[aria-label='Document name in document edit panel']").type(
       "New Test Document"
     );
 
     // Save
-    cy.get("[data-testid=save_button]").click();
+    cy.get("[aria-label='Save button']").click();
 
     // Check the document is in the list
-    cy.get("[data-testid=document_list_container]")
+    cy.get("[aria-label='Document list container']")
       .children()
       .children()
       .should("have.length", 1);
@@ -163,7 +165,7 @@ describe("DocumentManager", function() {
       .should("contain.text", "New Test Document");
 
     // Make sure the header changes back to Document Viewer
-    cy.get("[data-testid=document_viewer_header]").should(
+    cy.get("[aria-label='Document viewer header']").should(
       "have.text",
       "Document Viewer"
     );
@@ -174,13 +176,13 @@ describe("DocumentManager", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click the scan button
-    cy.get("[data-testid=scan_icon_button]").click();
+    cy.get("[aria-label='Scan button']").click();
 
     // Cancel
-    cy.get("[data-testid=cancel_button]").click();
+    cy.get("[aria-label='Cancel button']").click();
 
     // List did not have new document added
-    cy.get("[data-testid=document_list_container]")
+    cy.get("[aria-label='Document list container']")
       .children()
       .children()
       .should("have.length", 0);

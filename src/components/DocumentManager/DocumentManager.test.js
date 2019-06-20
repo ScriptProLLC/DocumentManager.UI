@@ -125,7 +125,7 @@ describe("DocumentManager component", () => {
       mockAxios.setScannedDocument(mockScanData.scan);
       mockAxios.setCollection(mockData.documents);
 
-      const { container, getByTestId } = render(
+      const { container, getByLabelText } = render(
         <DocumentManager
           collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"}
         />
@@ -133,11 +133,11 @@ describe("DocumentManager component", () => {
 
       await renderCompletion();
 
-      fireEvent.click(getByTestId("scan_icon_button"));
+      fireEvent.click(getByLabelText("Scan button"));
 
       await waitForDomChange(container);
 
-      expect(getByTestId("document_viewer_header").textContent).toBe(
+      expect(getByLabelText("Document viewer header").textContent).toBe(
         "Scan Preview"
       );
     });
@@ -146,7 +146,7 @@ describe("DocumentManager component", () => {
       mockAxios.setScannedDocument(mockScanData.scan);
       mockAxios.setCollection(mockData.documents);
 
-      const { container, getByTestId } = render(
+      const { container, getByLabelText } = render(
         <DocumentManager
           collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"}
         />
@@ -154,18 +154,20 @@ describe("DocumentManager component", () => {
 
       await renderCompletion();
 
-      fireEvent.click(getByTestId("scan_icon_button"));
+      fireEvent.click(getByLabelText("Scan button"));
 
       await waitForDomChange(container);
 
-      expect(getByTestId("document_edit_document_name")).toBeTruthy();
+      expect(
+        getByLabelText("Document name in document edit panel")
+      ).toBeTruthy();
     });
 
     it("no documents are selected in the list", async () => {
       mockAxios.setScannedDocument(mockScanData.scan);
       mockAxios.setCollection([mockData.documents[0]]);
 
-      const { container, getByTestId } = render(
+      const { container, getByLabelText } = render(
         <DocumentManager
           collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"}
         />
@@ -173,15 +175,17 @@ describe("DocumentManager component", () => {
 
       await renderCompletion();
 
-      fireEvent.click(getByTestId("scan_icon_button"));
+      fireEvent.click(getByLabelText("Scan button"));
 
       await waitForDomChange(container);
 
       expect(
-        getByTestId("document_list_items").children[0].children[0].classList
+        getByLabelText("Document list with documents").children[0].children[0]
+          .classList
       ).toContain("document-list-item-container");
       expect(
-        getByTestId("document_list_items").children[0].children[0].classList
+        getByLabelText("Document list with documents").children[0].children[0]
+          .classList
       ).not.toContain("selected");
     });
   });
