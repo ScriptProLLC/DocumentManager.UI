@@ -1,11 +1,18 @@
 import React from "react";
-import { render, cleanup, waitForElement } from "react-testing-library";
-import "jest-dom/extend-expect";
+import {
+  render,
+  fireEvent,
+  cleanup,
+  waitForDomChange,
+  waitForElement
+} from "react-testing-library";
 import DocumentManager from "./DocumentManager";
 import mockAxios from "./../../../__mocks__/axios";
 import { renderCompletion } from "./../../util/testUtilities";
+import "jest-dom/extend-expect";
 
 const mockData = require("./../../../tools/mockData");
+const mockScanData = require("./../../../tools/mockScanData");
 
 jest.mock("axios");
 
@@ -60,7 +67,9 @@ describe("DocumentManager component", () => {
 
     await renderCompletion();
 
-    expect(getByLabelText("Document viewer header")).toBeTruthy();
+    expect(getByLabelText("Document viewer header").textContent).toBe(
+      "Document Viewer"
+    );
   });
 
   it("displays No Documents Present in the list for a collection with no documents", async () => {
@@ -109,5 +118,71 @@ describe("DocumentManager component", () => {
     );
 
     expect(documentViewerNoDocuments).toBeTruthy();
+  });
+
+  describe("on scan", () => {
+    it("changes the header text to Scan Preview", async () => {
+      mockAxios.setScannedDocument(mockScanData.scan);
+      mockAxios.setCollection(mockData.documents);
+
+      const { container, getByTestId } = render(
+        <DocumentManager
+          collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"}
+        />
+      );
+
+      await renderCompletion();
+
+      fireEvent.click(getByTestId("scan_icon_button"));
+
+      await waitForDomChange(container);
+
+      expect(getByTestId("document_viewer_header").textContent).toBe(
+        "Scan Preview"
+      );
+    });
+
+    it("switches to edit mode", async () => {
+      mockAxios.setScannedDocument(mockScanData.scan);
+      mockAxios.setCollection(mockData.documents);
+
+      const { container, getByTestId } = render(
+        <DocumentManager
+          collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"}
+        />
+      );
+
+      await renderCompletion();
+
+      fireEvent.click(getByTestId("scan_icon_button"));
+
+      await waitForDomChange(container);
+
+      expect(getByTestId("document_edit_document_name")).toBeTruthy();
+    });
+
+    it("no documents are selected in the list", async () => {
+      mockAxios.setScannedDocument(mockScanData.scan);
+      mockAxios.setCollection([mockData.documents[0]]);
+
+      const { container, getByTestId } = render(
+        <DocumentManager
+          collectionId={"d7a2add9-14bf-480e-9b97-96685a006431"}
+        />
+      );
+
+      await renderCompletion();
+
+      fireEvent.click(getByTestId("scan_icon_button"));
+
+      await waitForDomChange(container);
+
+      expect(
+        getByTestId("document_list_items").children[0].children[0].classList
+      ).toContain("document-list-item-container");
+      expect(
+        getByTestId("document_list_items").children[0].children[0].classList
+      ).not.toContain("selected");
+    });
   });
 });

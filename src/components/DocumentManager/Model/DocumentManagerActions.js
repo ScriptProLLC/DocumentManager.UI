@@ -111,6 +111,11 @@ function useDocumentManagerActions(collectionId, state, updateState) {
   async function scanDocument() {
     updateState({ appState: AppStates.SCANNING });
     let scannedDocument = await scanApi.scan();
+    let pendingAttributes = {};
+    pendingAttributes.Pages = scannedDocument.pages;
+    pendingAttributes["File Size"] = scannedDocument.fileByteSize;
+    pendingAttributes.Initials = scannedDocument.initials;
+
     updateState({
       appState: AppStates.DOCUMENT_PREVIEW,
       activeDocument: {
@@ -118,7 +123,7 @@ function useDocumentManagerActions(collectionId, state, updateState) {
         documentCollectionId: collectionId,
         name: "",
         documentFile: scannedDocument.scanFile,
-        attributes: {}
+        attributes: pendingAttributes
       }
     });
     return;

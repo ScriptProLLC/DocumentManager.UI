@@ -34,7 +34,12 @@ beforeEach(() => {
 
   configureScanningApi = base64String => {
     mockScanningApi.setup("scan", async () => {
-      return { scanFile: base64String };
+      return {
+        fileByteSize: ((base64String.length * 3) / 4).toString(),
+        scanFile: base64String,
+        initials: "TBD",
+        pages: "12"
+      };
     });
   };
 });

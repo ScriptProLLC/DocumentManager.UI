@@ -5,7 +5,8 @@ export default {
     headerText: "Document Viewer"
   },
   SCANNING: {
-    isLoadingState: false,
+    isLoadingState: true,
+    loadingMessage: "Scanning...",
     isEditState: false,
     headerText: "Document Viewer"
   },

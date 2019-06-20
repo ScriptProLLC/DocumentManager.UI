@@ -17,7 +17,10 @@ export default function DocumentManager(props) {
 
   return (
     <main className="document-manager-container">
-      <SpinnerComponent open={state.appState.isLoadingState} />
+      <SpinnerComponent
+        open={state.appState.isLoadingState}
+        message={state.appState.loadingMessage}
+      />
 
       {/* Document List */}
       <section className="document-list-pane">
