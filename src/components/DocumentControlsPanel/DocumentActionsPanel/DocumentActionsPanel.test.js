@@ -11,19 +11,19 @@ describe("DocumentActionsPanel component", () => {
     const docName = "Test Document 001";
     const doc = createTestDocument({ name: docName });
 
-    const { getByTestId } = render(<DocumentActionsPanel document={doc} />);
+    const { getByLabelText } = render(<DocumentActionsPanel document={doc} />);
 
-    expect(getByTestId("document_action_document_name").textContent).toBe(
-      docName
-    );
+    expect(
+      getByLabelText("Document name in document actions panel").textContent
+    ).toBe(docName);
   });
 
   it("has empty document management text if no document name is specified", () => {
     const doc = createTestDocument({ name: null });
-    const { getByTestId } = render(<DocumentActionsPanel document={doc} />);
+    const { getByLabelText } = render(<DocumentActionsPanel document={doc} />);
 
-    expect(getByTestId("document_action_document_name").textContent).toBe(
-      "Unnamed Document"
-    );
+    expect(
+      getByLabelText("Document name in document actions panel").textContent
+    ).toBe("Unnamed Document");
   });
 });

@@ -17,10 +17,10 @@ describe("DocumentViewer", function() {
 
     cy.visit(`?collection=${this.collectionId}`);
 
-    cy.get("[data-testid=document_name]")
+    cy.get("[aria-label='Document name for the document in the list']")
       .last()
       .click();
 
-    cy.get("[data-testid=document_viewer_iframe]").should("exist");
+    cy.get("[aria-label='Document viewer frame']").should("exist");
   });
 });

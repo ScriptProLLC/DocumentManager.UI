@@ -19,18 +19,18 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the default selected document
-    cy.get("[data-testid=delete_button]").click();
+    cy.get("[aria-label='Delete button']").click();
 
     // Continue through Are you sure prompt
-    cy.get("[data-testid=modal_confirm_prompt]").click();
+    cy.get("[aria-label='Modal confirm button']").click();
 
     // Verify the list now contains only one item
-    cy.get("[data-testid=document_list_items]")
+    cy.get("[aria-label='Document list with documents']")
       .children()
       .should("have.length", 1);
 
     // Verify the document is the one that was not deleted
-    cy.get("[data-testid=document_name]").should(
+    cy.get("[aria-label='Document name for the document in the list']").should(
       "have.text",
       mockData.documents[1].name
     );
@@ -50,13 +50,13 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the only document
-    cy.get("[data-testid=delete_button]").click();
+    cy.get("[aria-label='Delete button']").click();
 
     // Continue through Are you sure prompt
-    cy.get("[data-testid=modal_confirm_prompt]").click();
+    cy.get("[aria-label='Modal confirm button']").click();
 
     // Verify the No documents present message displays
-    cy.get("[data-testid=document_list_no_documents]").should(
+    cy.get("[aria-label='Document list with no documents']").should(
       "have.text",
       "No documents present"
     );
@@ -71,24 +71,24 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Verify that the correct document is selected in the list
-    cy.get("[data-testid=document_action_document_name]").should(
+    cy.get("[aria-label='Document name in document actions panel']").should(
       "have.text",
       mockData.documents[0].name
     );
 
     // Click delete to delete the selected document
-    cy.get("[data-testid=delete_button]").click();
+    cy.get("[aria-label='Delete button']").click();
 
     // Click No on the Are you sure prompt
-    cy.get("[data-testid=modal_cancel_prompt]").click();
+    cy.get("[aria-label='Modal cancel button']").click();
 
     // Verify no documents were removed from the list
-    cy.get("[data-testid=document_list_items]")
+    cy.get("[aria-label='Document list with documents']")
       .children()
       .should("have.length", 2);
 
     // Verify the selected document has not changed
-    cy.get("[data-testid=document_action_document_name]").should(
+    cy.get("[aria-label='Document name in document actions panel']").should(
       "have.text",
       mockData.documents[0].name
     );
@@ -102,16 +102,16 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the only document
-    cy.get("[data-testid=delete_button]").click();
+    cy.get("[aria-label='Delete button']").click();
 
     // Click the X to close the Are you sure prompt
-    cy.get("[data-testid=modal_header]")
+    cy.get("[aria-label='Modal header']")
       .children()
       .last()
       .click();
 
     // Verify the documetn was not deleted
-    cy.get("[data-testid=document_list_items]")
+    cy.get("[aria-label='Document list with documents']")
       .children()
       .should("have.length", 1);
   });

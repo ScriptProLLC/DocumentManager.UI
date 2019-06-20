@@ -1,25 +1,25 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
-import "jest-dom/extend-expect";
 import ApplicationVersion from "./ApplicationVersion";
+import "jest-dom/extend-expect";
 
 describe("DocumentActions component", () => {
   afterEach(cleanup);
 
   it("formats the version number correctly", () => {
-    const { getByTestId } = render(<ApplicationVersion />);
+    const { getByLabelText } = render(<ApplicationVersion />);
 
     expect(
       /Version\s-\s\d+\.\d+\.\d+/.test(
-        getByTestId("application_version").textContent
+        getByLabelText("Application version number").textContent
       )
     ).toBe(true);
   });
 
   it("uses the version number from package.json", () => {
-    const { getByTestId } = render(<ApplicationVersion />);
+    const { getByLabelText } = render(<ApplicationVersion />);
 
-    expect(getByTestId("application_version").textContent).toBe(
+    expect(getByLabelText("Application version number").textContent).toBe(
       `Version - ${process.env.REACT_APP_VERSION}`
     );
   });

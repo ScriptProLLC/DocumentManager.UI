@@ -10,9 +10,9 @@ describe("DocumentList component", () => {
     it("shows the no documents text when not passed a document", () => {
       var doc = null;
 
-      const { getByTestId } = render(<DocumentViewer document={doc} />);
+      const { getByLabelText } = render(<DocumentViewer document={doc} />);
 
-      expect(getByTestId("document_viewer_no_documents")).toBeTruthy();
+      expect(getByLabelText("Document viewer with no document")).toBeTruthy();
     });
   });
 });

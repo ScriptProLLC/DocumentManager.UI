@@ -8,20 +8,22 @@ import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPane
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
 import "./DocumentManager.scss";
-import AppStates from "./Model/AppStates";
 
 export default function DocumentManager(props) {
+  // Handle State via Collection ID
   const { state, dispatchDocumentAction } = useDocumentManagerModel(
     props.collectionId
   );
 
   return (
-    <div className="document-manager-container">
+    <main className="document-manager-container">
       <SpinnerComponent open={state.appState.isLoadingState} />
-      <div className="document-list-pane">
-        <div className="header" data-testid="document_list_header">
+
+      {/* Document List */}
+      <section className="document-list-pane">
+        <header className="header" aria-label="Document list header">
           Documents
-        </div>
+        </header>
         <DocumentListToolbar dispatchDocumentAction={dispatchDocumentAction} />
         <DocumentList
           appState={state.appState}
@@ -30,11 +32,13 @@ export default function DocumentManager(props) {
           activeDoc={state.activeDocument}
         />
         <ApplicationVersion />
-      </div>
-      <div className="document-viewer-pane">
-        <div className="header" data-testid="document_viewer_header">
+      </section>
+
+      {/* Document Viewer */}
+      <section className="document-viewer-pane">
+        <header className="header" aria-label="Document viewer header">
           {state.appState.headerText}
-        </div>
+        </header>
         <DocumentViewer document={state.activeDocument} />
         {state.activeDocument && (
           <DocumentControlsPanel
@@ -43,11 +47,12 @@ export default function DocumentManager(props) {
             appState={state.appState}
           />
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
+// Define PropTypes For Document Manager
 DocumentManager.propTypes = {
   collectionId: string
 };

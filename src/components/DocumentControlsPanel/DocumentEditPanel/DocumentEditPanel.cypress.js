@@ -12,7 +12,7 @@ describe("DocumentEdit", function() {
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("DocumentEdit Save click should update document user-friendly name", function() {
+  it("Document Edit Panel Save click should update document user-friendly name", function() {
     // Add new documents to collection
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
@@ -20,18 +20,20 @@ describe("DocumentEdit", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // // Click delete to delete the default selected document
-    cy.get("[data-testid=edit_button]")
+    cy.get("[aria-label='Edit button']")
       .should("exist")
       .click();
 
-    cy.get("[data-testid=document_edit_document_name").clear();
+    cy.get("[aria-label='Document name in document edit panel'").clear();
 
-    cy.get("[data-testid=document_edit_document_name").type(modifiedDocName);
+    cy.get("[aria-label='Document name in document edit panel'").type(
+      modifiedDocName
+    );
 
-    cy.get("[data-testid=save_button]").click();
+    cy.get("[aria-label='Save button']").click();
 
     // verify that the DOM elements are changed
-    cy.get("[data-testid=document_action_document_name]").should(
+    cy.get("[aria-label='Document name in document actions panel']").should(
       "have.text",
       modifiedDocName
     );
@@ -48,7 +50,7 @@ describe("DocumentEdit", function() {
       .should("equal", modifiedDocName);
   });
 
-  it("DocumentEdit Cancel click should retain old information", function() {
+  it("Document Edit Panel Cancel click should retain old information", function() {
     // Add new documents to collection
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
@@ -56,18 +58,20 @@ describe("DocumentEdit", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // // Click delete to delete the default selected document
-    cy.get("[data-testid=edit_button]")
+    cy.get("[aria-label='Edit button']")
       .should("exist")
       .click();
 
-    cy.get("[data-testid=document_edit_document_name").clear();
+    cy.get("[aria-label='Document name in document edit panel'").clear();
 
-    cy.get("[data-testid=document_edit_document_name").type(modifiedDocName);
+    cy.get("[aria-label='Document name in document edit panel'").type(
+      modifiedDocName
+    );
 
-    cy.get("[data-testid=cancel_button]").click();
+    cy.get("[aria-label='Cancel button']").click();
 
     // verify that the DOM elements are not changed
-    cy.get("[data-testid=document_action_document_name]").should(
+    cy.get("[aria-label='Document name in document actions panel']").should(
       "have.text",
       mockData.documents[0].name
     );

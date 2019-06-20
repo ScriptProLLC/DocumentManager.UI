@@ -15,7 +15,7 @@ describe("DocumentList", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Check the text on the Document List Header
-    cy.get("[data-testid=document_list_header]").should(
+    cy.get("[aria-label='Document list header']").should(
       "have.text",
       "Documents"
     );
@@ -34,7 +34,7 @@ describe("DocumentList", function() {
     };
 
     // Check the scroll bar shows up
-    cy.get("[data-testid=document_list_container]").should(
+    cy.get("[aria-label='Document list container']").should(
       "satisfy",
       hasScrollBar
     );

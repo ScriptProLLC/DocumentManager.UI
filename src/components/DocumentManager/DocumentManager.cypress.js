@@ -25,7 +25,7 @@ describe("DocumentManager", function() {
       .should("contain.text", "Document 1");
 
     // Click the bottom item in the document list
-    cy.get("[data-testid=document_name]")
+    cy.get("[aria-label='Document name for the document in the list']")
       .last()
       .click();
 

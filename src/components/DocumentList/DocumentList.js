@@ -1,18 +1,19 @@
 import React from "react";
 import DocumentListItem from "../DocumentListItem/DocumentListItem";
-import "./DocumentList.scss";
-import { byDateDescending } from "../../util/dateUtilities";
 import { documentPropType } from "../../propTypes";
 import PropTypes from "prop-types";
 import AppStates from "../DocumentManager/Model/AppStates";
+import "./DocumentList.scss";
 
 export default function DocumentList(props) {
   let docs = props.documents;
 
+  // Log State
   function reportToggle(toggleState) {
     console.log(toggleState);
   }
 
+  // Return Expanded Items
   function isExpanded(index) {
     if (props.expandedItems) {
       return (
@@ -23,6 +24,7 @@ export default function DocumentList(props) {
     }
   }
 
+  // Render Document List Items
   var children = docs
     ? docs.map((doc, index) => (
         <li key={doc.id} data-testid={doc.id}>
@@ -38,24 +40,25 @@ export default function DocumentList(props) {
     : null;
 
   return (
-    <div
+    <section
       className="document-list-container"
-      data-testid="document_list_container"
+      aria-label="Document list container"
     >
       {props.appState === AppStates.NO_DOCUMENTS ? (
         <div
-          data-testid="document_list_no_documents"
+          aria-label="Document list with no documents"
           className="document-list-empty"
         >
           No documents present
         </div>
       ) : (
-        <ul data-testid="document_list_items">{children}</ul>
+        <ul aria-label="Document list with documents">{children}</ul>
       )}
-    </div>
+    </section>
   );
 }
 
+// Define PropTypes For Document List
 DocumentList.propTypes = {
   documents: PropTypes.arrayOf(documentPropType),
   activeDoc: documentPropType,

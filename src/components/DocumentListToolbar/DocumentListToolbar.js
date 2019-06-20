@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import IconButton from "../IconButton/IconButton";
-import "./DocumentListToolbar.scss";
 import { ActionTypes } from "../DocumentManager/Model/ActionTypes";
+import "./DocumentListToolbar.scss";
 
 export default function DocumentListToolbar(props) {
+  // Dispatch Actions
   const onScan = async () => {
     props.dispatchDocumentAction({
       type: ActionTypes.SCAN
@@ -12,18 +13,19 @@ export default function DocumentListToolbar(props) {
   };
 
   return (
-    <div className="document-list-toolbar">
+    <section className="document-list-toolbar">
       <IconButton
         color="primary"
         onClick={onScan}
         icon="upload"
         size="2x"
-        data-testid="scan_icon_button"
+        aria-label="Scan button"
       />
-    </div>
+    </section>
   );
 }
 
+// Define PropTypes For Document List Toolbar
 DocumentListToolbar.propTypes = {
   dispatchDocumentAction: PropTypes.func
 };

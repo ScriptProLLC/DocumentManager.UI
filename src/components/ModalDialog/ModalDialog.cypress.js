@@ -17,18 +17,18 @@ describe("ModalDialog", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the default selected document
-    cy.get("[data-testid=delete_button]").click();
+    cy.get("[aria-label='Delete button']").click();
 
     // Verify the Modal dialog is on screen
-    cy.get("[data-testid=modal_header_text]").should("have.text", "Alert");
+    cy.get("[aria-label='Modal header text']").should("have.text", "Alert");
 
     // Attempt to click behind the modal dialog
-    cy.get("[data-testid=document_list_header]").click({
+    cy.get("[aria-label='Document list header']").click({
       force: true
     });
 
     // Verify the Modal dialog is still on screen
-    cy.get("[data-testid=modal_header_text]").should("have.text", "Alert");
+    cy.get("[aria-label='Modal header text']").should("have.text", "Alert");
   });
 
   it("focuses the cancel button", function() {
@@ -40,9 +40,9 @@ describe("ModalDialog", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to open the modal dialog
-    cy.get("[data-testid=delete_button]").click();
+    cy.get("[aria-label='Delete button']").click();
 
     // Verify the cancel button has focus
-    cy.focused().should("have.attr", "data-testid", "modal_cancel_prompt");
+    cy.focused().should("have.attr", "aria-label", "Modal cancel button");
   });
 });

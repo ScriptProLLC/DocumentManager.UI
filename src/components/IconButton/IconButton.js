@@ -42,7 +42,7 @@ export default function IconButton({
   return (
     <button
       className={classList()}
-      data-testid={props["data-testid"]}
+      aria-label={props["aria-label"]}
       onClick={onClick}
     />
   );
@@ -52,7 +52,7 @@ export default function IconButton({
 IconButton.propTypes = {
   className: PropTypes.string,
   color: PropTypes.oneOf(COLOR_TYPES),
-  "data-testid": PropTypes.string,
+  "aria-label": PropTypes.string,
   icon: PropTypes.oneOf(ICON_TYPES).isRequired,
   onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOf(SIZE_TYPES)

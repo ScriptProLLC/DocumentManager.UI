@@ -5,7 +5,6 @@ import { decodeBase64 } from "../../util/base64Utilities";
 export default function PDFViewer() {
   let iFrameRef = useRef();
   const [isFrameLoaded, setIsFrameLoaded] = useState(false);
-
   const { documentFile } = useContext(DocumentViewerContext);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export default function PDFViewer() {
       title="Document Viewer"
       className="d-block"
       src="./pdfjs-2.0.943-dist/web/viewer.html?file="
-      data-testid="document_viewer_iframe"
+      aria-label="Document viewer frame"
       frameBorder="0"
       width="100%"
       height="100%"

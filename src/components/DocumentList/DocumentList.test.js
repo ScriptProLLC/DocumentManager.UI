@@ -1,28 +1,30 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
-import "jest-dom/extend-expect";
 import DocumentList from "./DocumentList";
 import { createTestDocumentList } from "../../util/dataHelper";
 import AppStates from "../DocumentManager/Model/AppStates";
+import "jest-dom/extend-expect";
 
 describe("DocumentList component", () => {
   afterEach(cleanup);
 
   describe("No documents present", () => {
     it("shows the no documents text if in the no documents app state", () => {
-      const { getByTestId } = render(
+      const { getByLabelText } = render(
         <DocumentList appState={AppStates.NO_DOCUMENTS} />
       );
 
-      expect(getByTestId("document_list_no_documents")).toBeTruthy();
+      expect(getByLabelText("Document list with no documents")).toBeTruthy();
     });
   });
 
   it("has the correct count after adding items", () => {
     var docs = createTestDocumentList(2);
 
-    const { getByTestId } = render(<DocumentList documents={docs} />);
+    const { getByLabelText } = render(<DocumentList documents={docs} />);
 
-    expect(getByTestId("document_list_items").childElementCount).toBe(2);
+    expect(
+      getByLabelText("Document list with documents").childElementCount
+    ).toBe(2);
   });
 });

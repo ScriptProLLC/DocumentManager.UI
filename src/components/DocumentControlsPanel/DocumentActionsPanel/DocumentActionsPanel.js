@@ -3,21 +3,24 @@ import PropTypes from "prop-types";
 import { documentPropType } from "./../../../propTypes";
 import ModalDialog from "../../ModalDialog/ModalDialog";
 import { Container, Row, Col } from "reactstrap";
-import "./DocumentActionsPanel.scss";
 import IconButton from "./../../IconButton/IconButton";
 import { ActionTypes } from "../../DocumentManager/Model/ActionTypes";
+import "./DocumentActionsPanel.scss";
 
 export default function DocumentActionsPanel(props) {
   const [showModalDialog, setShowModalDialog] = useState(false);
 
+  // Handle Delete Click
   const onDeleteClick = () => {
     setShowModalDialog(true);
   };
 
+  // Edit
   const onEditClick = () => {
     props.dispatchDocumentAction({ type: ActionTypes.EDIT_DOCUMENT });
   };
 
+  // Delete Dispatch Action
   async function onDeleteConfirmationReport(report) {
     setShowModalDialog(false);
 
@@ -32,7 +35,7 @@ export default function DocumentActionsPanel(props) {
     <Container fluid className="document-actions-container">
       <Row className="h-100">
         <Col className="my-auto truncate">
-          <span data-testid="document_action_document_name">
+          <span aria-label="Document name in document actions panel">
             {props.document.name || "Unnamed Document"}
           </span>
         </Col>
@@ -40,14 +43,14 @@ export default function DocumentActionsPanel(props) {
           <IconButton
             className="mr-3"
             color="white"
-            data-testid="edit_button"
+            aria-label="Edit button"
             icon="pencil"
             onClick={onEditClick}
             size="lg"
           />
           <IconButton
             color="white"
-            data-testid="delete_button"
+            aria-label="Delete button"
             icon="trash-o"
             onClick={onDeleteClick}
             size="lg"
@@ -68,6 +71,7 @@ export default function DocumentActionsPanel(props) {
   );
 }
 
+// Define PropTypes For Document Actions Panel
 DocumentActionsPanel.propTypes = {
   document: documentPropType.isRequired,
   dispatchDocumentAction: PropTypes.func
