@@ -57,9 +57,9 @@ describe("DocumentListItem component", () => {
       dateCreated: "1997-01-01T06:30:16.25"
     });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { getByLabelText } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("Date Created").textContent).toBe(
+    expect(getByLabelText("Date Created").textContent).toBe(
       "Date Created: 01/01/1997 6:30 AM"
     );
   });
@@ -92,9 +92,9 @@ describe("DocumentListItem component", () => {
       attributes: { attr1: "Hello", attr2: "World" }
     });
 
-    const { getByTestId } = render(<DocumentListItem document={document} />);
+    const { getByLabelText } = render(<DocumentListItem document={document} />);
 
-    expect(getByTestId("attr1").textContent).toBe(
+    expect(getByLabelText("attr1").textContent).toBe(
       `attr1: ${document.attributes.attr1}`
     );
   });

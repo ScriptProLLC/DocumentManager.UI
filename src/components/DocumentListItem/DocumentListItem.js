@@ -43,7 +43,7 @@ export default function DocumentListItem(props) {
       <ListGroupItem
         key={key}
         className="document-list-expanded-item"
-        data-testid={key}
+        aria-label={key}
       >
         <span className="fa fa-level-up mr-3" />
         <strong>{key}: </strong>
