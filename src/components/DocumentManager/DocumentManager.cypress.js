@@ -122,4 +122,70 @@ describe("DocumentManager", function() {
     // should ago away after loading
     cy.get("[data-testid=spinner]").should("not.exist");
   });
+
+  it("basic scanning", function() {
+    // Open Application to the collection
+    cy.visit(`?collection=${this.collectionId}`);
+
+    // Click the scan button
+    cy.get("[data-testid=scan_icon_button]").click();
+
+    // Check header says scan preview
+    cy.get("[data-testid=document_viewer_header]").should(
+      "have.text",
+      "Scan Preview"
+    );
+
+    // Check edit component is active
+    cy.get("[data-testid=document_edit_document_name]").should("exist");
+
+    // Check no documents are selected
+    cy.get(".document-list-item-container.selected").should("not.exist");
+
+    // Change the document name
+    cy.get("[data-testid=document_edit_document_name]").type(
+      "New Test Document"
+    );
+
+    // Save
+    cy.get("[data-testid=save_button]").click();
+
+    // Check the document is in the list
+    cy.get("[data-testid=document_list_container]")
+      .children()
+      .children()
+      .should("have.length", 1);
+
+    // Check the new document is active/selected and has the correct name
+    cy.get(".document-list-item-container.selected")
+      .children()
+      .first()
+      .should("contain.text", "New Test Document");
+
+    // Make sure the header changes back to Document Viewer
+    cy.get("[data-testid=document_viewer_header]").should(
+      "have.text",
+      "Document Viewer"
+    );
+  });
+
+  it("cancelling a scan", function() {
+    // Open Application to the collection
+    cy.visit(`?collection=${this.collectionId}`);
+
+    // Click the scan button
+    cy.get("[data-testid=scan_icon_button]").click();
+
+    // Cancel
+    cy.get("[data-testid=cancel_button]").click();
+
+    // List did not have new document added
+    cy.get("[data-testid=document_list_container]")
+      .children()
+      .children()
+      .should("have.length", 0);
+
+    // No selected documents
+    cy.get(".document-list-item-container.selected").should("not.exist");
+  });
 });
