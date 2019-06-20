@@ -37,7 +37,8 @@ beforeEach(() => {
       return {
         fileByteSize: ((base64String.length * 3) / 4).toString(),
         scanFile: base64String,
-        initials: "TBD"
+        initials: "TBD",
+        pages: "12"
       };
     });
   };
