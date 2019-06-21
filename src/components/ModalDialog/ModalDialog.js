@@ -29,7 +29,7 @@ export default function ModalDialog({
     if (toggle) {
       toggle();
     } else {
-      reportResult(cancelPrompt);
+      reportResult(cancelPrompt || confirmPrompt);
     }
   }
 
@@ -73,14 +73,16 @@ export default function ModalDialog({
         >
           {confirmPrompt}
         </Button>
-        <Button
-          autoFocus={autoFocus === cancelPrompt}
-          color="grey"
-          onClick={cancelClick}
-          data-testid="modal_cancel_prompt"
-        >
-          {cancelPrompt}
-        </Button>
+        {cancelPrompt !== null && (
+          <Button
+            autoFocus={autoFocus === cancelPrompt}
+            color="grey"
+            onClick={cancelClick}
+            data-testid="modal_cancel_prompt"
+          >
+            {cancelPrompt}
+          </Button>
+        )}
       </ModalFooter>
     </Modal>
   );
@@ -102,7 +104,7 @@ ModalDialog.propTypes = {
 ModalDialog.defaultProps = {
   header: "Alert",
   iconStyle: "Warning",
-  cancelPrompt: "Cancel",
   confirmPrompt: "Confirm",
+  cancelPrompt: "Cancel",
   reportResult: null
 };

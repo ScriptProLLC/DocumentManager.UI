@@ -92,6 +92,14 @@ describe("ModalDialog component", () => {
       );
     });
 
+    it("cancel prompt null", () => {
+      const { queryByTestId } = render(
+        <ModalDialog showDialog={true} cancelPrompt={null} />
+      );
+
+      expect(queryByTestId("modal_cancel_prompt")).toBeNull();
+    });
+
     it("error icon", () => {
       const { getByTestId } = render(
         <ModalDialog showDialog={true} iconStyle="Error" />
@@ -252,6 +260,21 @@ describe("ModalDialog component", () => {
             fireEvent.click(getByTestId("modal_header").children[1]);
 
             expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
+          });
+
+          it("calls callback with no cancel prompt", () => {
+            var mockResultCallback = jest.fn(r => r);
+            const { getByTestId } = render(
+              <ModalDialog
+                showDialog={true}
+                cancelPrompt={null}
+                reportResult={mockResultCallback}
+              />
+            );
+
+            fireEvent.click(getByTestId("modal_header").children[1]);
+
+            expect(mockResultCallback).toBeCalledWith("Confirm");
           });
         });
       });

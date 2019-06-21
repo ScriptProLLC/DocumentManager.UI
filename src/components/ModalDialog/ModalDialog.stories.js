@@ -39,4 +39,12 @@ storiesOf("ModalDialog", module)
       reportResult={action("reportResult")}
       prompt={text("prompt", "Are you sure you want to do this?")}
     />
+  ))
+  .add("Single button", () => (
+    <ModalDialog
+      showDialog={boolean("showDialog", true)}
+      cancelPrompt={null}
+      reportResult={action("reportResult")}
+      prompt={text("prompt", "Are you sure you want to do this?")}
+    />
   ));
