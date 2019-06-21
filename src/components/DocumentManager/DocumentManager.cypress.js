@@ -123,6 +123,31 @@ describe("DocumentManager", function() {
     cy.get("[data-testid=spinner]").should("not.exist");
   });
 
+  it("should show Loading spinner when scanning a document", function() {
+    // Open Application to the collection
+    cy.visit(`?collection=${this.collectionId}`);
+
+    // Click the scan button
+    cy.get("[data-testid=scan_icon_button]").click();
+
+    // spinner should be present after clicking
+    cy.get("[data-testid=spinner]").should("be.visible");
+  });
+
+  it("should hide Loading spinner after scan has completed", function() {
+    // Open Application to the collection
+    cy.visit(`?collection=${this.collectionId}`);
+
+    // Click the scan button
+    cy.get("[data-testid=scan_icon_button]").click();
+
+    // viewer state when document loaded
+    cy.get("[data-testid=document_viewer_container_withdocs]").should("exist");
+
+    // should ago away after loading
+    cy.get("[data-testid=spinner]").should("not.exist");
+  });
+
   it("basic scanning", function() {
     // Open Application to the collection
     cy.visit(`?collection=${this.collectionId}`);
