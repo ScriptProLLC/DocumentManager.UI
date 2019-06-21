@@ -6,8 +6,12 @@ import DocumentViewer from "../DocumentViewer/DocumentViewer";
 import { useDocumentManagerModel } from "./Model/DocumentManagerModel";
 import DocumentControlsPanel from "../DocumentControlsPanel/DocumentControlsPanel";
 import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
+import ModalDialog from "../ModalDialog/ModalDialog";
 import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
+import { ActionTypes } from "./Model/ActionTypes";
+
 import "./DocumentManager.scss";
+import AppStates from "./Model/AppStates";
 
 export default function DocumentManager(props) {
   const { state, dispatchDocumentAction } = useDocumentManagerModel(
@@ -19,6 +23,17 @@ export default function DocumentManager(props) {
       <SpinnerComponent
         open={state.appState.isLoadingState}
         message={state.appState.loadingMessage}
+      />
+      <ModalDialog
+        showDialog={state.errorMessage !== null}
+        iconStyle="Error"
+        header="Error"
+        prompt={state.errorMessage}
+        confirmPrompt="OK"
+        cancelPrompt={null}
+        reportResult={() =>
+          dispatchDocumentAction({ type: ActionTypes.CLEAR_ERROR })
+        }
       />
       <div className="document-list-pane">
         <div className="header" data-testid="document_list_header">

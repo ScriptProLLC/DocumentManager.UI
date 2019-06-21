@@ -7,32 +7,49 @@ import { byDateDescending } from "../../../util/dateUtilities";
 function useDocumentManagerActions(collectionId, state, updateState) {
   async function loadCollection() {
     if (!collectionId) {
-      updateState({ appState: AppStates.NO_DOCUMENTS });
+      updateState({
+        appState: AppStates.NO_DOCUMENTS,
+        documents: null,
+        activeDocument: null
+      });
       return;
     }
 
-    const documents = await docApi
+    updateState({ appState: AppStates.LIST_LOADING });
+
+    let documents = await docApi
       .getCollectionDocuments(collectionId)
       .then(res => res.sort(byDateDescending));
 
-    let activeDocument;
-
-    if (documents.length > 0) {
-      const documentWithFile = await docApi.getDocument(documents[0].id);
-
-      for (let i = 0; i < documents.length; i++) {
-        if (documents[i].id === documentWithFile.id) {
-          documents[i] = documentWithFile;
-        }
-      }
-
-      activeDocument = documentWithFile;
+    if (documents.length === 0) {
+      updateState({
+        appState: AppStates.NO_DOCUMENTS,
+        documents: [],
+        activeDocument: null
+      });
+      return;
     }
 
-    let appState =
-      documents.length > 0 ? AppStates.ACTIVE_DOCUMENT : AppStates.NO_DOCUMENTS;
+    updateState({
+      appState: AppStates.DOCUMENT_LOADING,
+      documents: documents,
+      activeDocument: null
+    });
 
-    updateState({ appState, documents, activeDocument });
+    try {
+      const documentWithFile = await docApi.getDocument(documents[0].id);
+
+      updateState({
+        appState: AppStates.ACTIVE_DOCUMENT,
+        documents: swapUpdatedDocument(documents, documentWithFile),
+        activeDocument: documentWithFile
+      });
+    } catch (error) {
+      updateState({
+        appState: AppStates.NO_ACTIVE_DOCUMENT,
+        errorMessage: getErrorMessage(error)
+      });
+    }
   }
 
   async function saveDocument(document) {
@@ -49,11 +66,9 @@ function useDocumentManagerActions(collectionId, state, updateState) {
       await docApi.patchDocument(document);
 
       updateState({
-        documents: state.documents.map(d =>
-          d.id === document.id ? document : d
-        ),
-        activeDocument: document,
-        appState: AppStates.ACTIVE_DOCUMENT
+        appState: AppStates.ACTIVE_DOCUMENT,
+        documents: swapUpdatedDocument(state.documents, document),
+        activeDocument: document
       });
     }
   }
@@ -61,17 +76,18 @@ function useDocumentManagerActions(collectionId, state, updateState) {
   async function setActiveDocument(document) {
     if (document.documentFile) {
       updateState({
+        appState: AppStates.ACTIVE_DOCUMENT,
         activeDocument: document
       });
       return;
     }
+
     updateState({ appState: AppStates.DOCUMENT_LOADING });
+
     const documentWithFile = await docApi.getDocument(document.id);
 
     updateState({
-      documents: state.documents.map(d =>
-        d.id === documentWithFile.id ? documentWithFile : d
-      ),
+      documents: swapUpdatedDocument(state.documents, documentWithFile),
       activeDocument: documentWithFile,
       appState: AppStates.ACTIVE_DOCUMENT
     });
@@ -110,6 +126,7 @@ function useDocumentManagerActions(collectionId, state, updateState) {
 
   async function scanDocument() {
     updateState({ appState: AppStates.SCANNING });
+
     let scannedDocument = await scanApi.scan();
     let pendingAttributes = {};
     pendingAttributes.Pages = scannedDocument.pages;
@@ -129,31 +146,66 @@ function useDocumentManagerActions(collectionId, state, updateState) {
     return;
   }
 
+  function clearError() {
+    updateState({
+      errorMessage: null
+    });
+  }
+
+  function getErrorMessage(error) {
+    if (!error) {
+      return "An unknown error occurred.";
+    } else if (typeof error === "string") {
+      return error;
+    } else if (error.message) {
+      return error.message;
+    } else {
+      return "An unknown error occurred.";
+    }
+  }
+
+  function swapUpdatedDocument(documents, updatedDocument) {
+    return documents.map(d =>
+      d.id === updatedDocument.id ? updatedDocument : d
+    );
+  }
+
   async function dispatchDocumentAction(documentAction) {
-    switch (documentAction.type) {
-      case ActionTypes.DELETE_ACTIVE_DOCUMENT:
-        await deleteActiveDocument();
-        break;
-      case ActionTypes.SAVE_DOCUMENT:
-        await saveDocument(documentAction.document);
-        break;
-      case ActionTypes.SELECT_DOCUMENT:
-        await setActiveDocument(documentAction.document);
-        break;
-      case ActionTypes.SCAN:
-        await scanDocument();
-        break;
-      case ActionTypes.CANCEL_EDIT_DOCUMENT:
-        await exitEditMode();
-        break;
-      case ActionTypes.EDIT_DOCUMENT:
-        await enterEditMode();
-        break;
-      case ActionTypes.LOAD_COLLECTION:
-        await loadCollection();
-        break;
-      default:
-        throw new Error(`Action: ${documentAction.type.name} does not exist`);
+    try {
+      switch (documentAction.type) {
+        case ActionTypes.DELETE_ACTIVE_DOCUMENT:
+          await deleteActiveDocument();
+          break;
+        case ActionTypes.SAVE_DOCUMENT:
+          await saveDocument(documentAction.document);
+          break;
+        case ActionTypes.SELECT_DOCUMENT:
+          await setActiveDocument(documentAction.document);
+          break;
+        case ActionTypes.SCAN:
+          await scanDocument();
+          break;
+        case ActionTypes.CANCEL_EDIT_DOCUMENT:
+          await exitEditMode();
+          break;
+        case ActionTypes.EDIT_DOCUMENT:
+          await enterEditMode();
+          break;
+        case ActionTypes.LOAD_COLLECTION:
+          await loadCollection();
+          break;
+        case ActionTypes.CLEAR_ERROR:
+          clearError();
+          break;
+        default:
+          throw new Error(`Action: ${documentAction.type.name} does not exist`);
+      }
+    } catch (error) {
+      // Revert to state when the action was initiated
+      updateState({
+        ...state,
+        errorMessage: getErrorMessage(error)
+      });
     }
   }
   return {

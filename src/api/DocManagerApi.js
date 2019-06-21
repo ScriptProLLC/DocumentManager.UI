@@ -1,11 +1,15 @@
 import axios from "axios";
+import { ApiError } from "./ApiError";
 
 export async function getCollectionDocuments(collectionId) {
   var path = `/collections/${collectionId}/documents`;
 
   return await axios
     .get(process.env.REACT_APP_API_URL + path)
-    .then(res => res.data);
+    .then(res => res.data)
+    .catch(error => {
+      throw new ApiError("Error retrieving document list.", error);
+    });
 }
 
 export async function getDocument(documentId) {
@@ -13,7 +17,10 @@ export async function getDocument(documentId) {
 
   return await axios
     .get(process.env.REACT_APP_API_URL + path)
-    .then(res => res.data);
+    .then(res => res.data)
+    .catch(error => {
+      throw new ApiError("Error retrieving document.", error);
+    });
 }
 
 export async function deleteDocument(documentId) {
@@ -21,7 +28,10 @@ export async function deleteDocument(documentId) {
 
   return await axios
     .delete(process.env.REACT_APP_API_URL + path)
-    .then(res => res.data);
+    .then(res => res.data)
+    .catch(error => {
+      throw new ApiError("Error deleting document.", error);
+    });
 }
 
 export async function patchDocument(document) {
@@ -34,7 +44,10 @@ export async function patchDocument(document) {
     .patch(process.env.REACT_APP_API_URL + path, patchBody, {
       headers: { "Content-Type": "application/json-patch+json" }
     })
-    .then(res => res.data);
+    .then(res => res.data)
+    .catch(error => {
+      throw new ApiError("Error saving document.", error);
+    });
 }
 
 export async function postDocument(document) {
@@ -42,5 +55,8 @@ export async function postDocument(document) {
 
   return await axios
     .post(process.env.REACT_APP_API_URL + path, document)
-    .then(res => res.data);
+    .then(res => res.data)
+    .catch(error => {
+      throw new ApiError("Error saving document.", error);
+    });
 }

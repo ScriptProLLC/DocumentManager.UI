@@ -3,13 +3,14 @@ import AppStates from "./AppStates";
 
 function useDocumentManagerState() {
   let [state, setState] = useState({
-    appState: AppStates.LIST_LOADING,
+    appState: AppStates.NO_DOCUMENTS,
     documents: null,
-    activeDocument: null
+    activeDocument: null,
+    errorMessage: null
   });
 
   function updateState(update) {
-    setState({ ...state, ...update });
+    setState(s => ({ ...s, ...update }));
   }
 
   return { state, updateState };

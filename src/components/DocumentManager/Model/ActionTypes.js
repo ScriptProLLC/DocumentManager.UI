@@ -26,5 +26,9 @@ export const ActionTypes = {
   LOAD_COLLECTION: {
     name: "LOAD_COLLECTION",
     description: "Loads the specified collection into the app"
+  },
+  CLEAR_ERROR: {
+    name: "CLEAR_ERROR",
+    description: "Clears an error state"
   }
 };
