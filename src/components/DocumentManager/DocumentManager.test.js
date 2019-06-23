@@ -5,7 +5,7 @@ import {
   cleanup,
   waitForDomChange,
   waitForElement
-} from "react-testing-library";
+} from "@testing-library/react";
 import DocumentManager from "./DocumentManager";
 import mockAxios from "./../../../__mocks__/axios";
 import { renderCompletion } from "./../../util/testUtilities";

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup } from "react-testing-library";
+import { render, cleanup } from "@testing-library/react";
 import DocumentEditPanel from "./DocumentEditPanel";
 import { createTestDocument } from "../../../util/dataHelper";
 import "jest-dom/extend-expect";
