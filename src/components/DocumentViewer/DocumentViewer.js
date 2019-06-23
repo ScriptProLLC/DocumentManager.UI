@@ -4,7 +4,7 @@ import { documentPropType } from "../../propTypes";
 import "./DocumentViewer.scss";
 
 export default function DocumentViewer({ document }) {
-  const file = document ? document.documentFile : null;
+  const base64String = document ? document.documentFile : null;
 
   return (
     <section
@@ -19,7 +19,7 @@ export default function DocumentViewer({ document }) {
           No document selected
         </span>
       ) : (
-        <PDFViewer file={file} />
+        <PDFViewer base64String={base64String} />
       )}
     </section>
   );
