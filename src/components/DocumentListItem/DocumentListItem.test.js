@@ -4,7 +4,7 @@ import {
   fireEvent,
   cleanup,
   waitForDomChange
-} from "react-testing-library";
+} from "@testing-library/react";
 import DocumentListItem from "./DocumentListItem";
 import { createTestDocument } from "../../util/dataHelper";
 import "jest-dom/extend-expect";

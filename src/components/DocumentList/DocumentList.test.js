@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup } from "react-testing-library";
+import { render, cleanup } from "@testing-library/react";
 import DocumentList from "./DocumentList";
 import { createTestDocumentList } from "../../util/dataHelper";
 import AppStates from "../DocumentManager/Model/AppStates";

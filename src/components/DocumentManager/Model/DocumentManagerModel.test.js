@@ -1,6 +1,6 @@
 import { useDocumentManagerModel } from "./DocumentManagerModel";
 import { renderHook, act } from "react-hooks-testing-library";
-import { cleanup } from "react-testing-library";
+import { cleanup } from "@testing-library/react";
 import "jest-dom/extend-expect";
 import { asyncAct, renderCompletion } from "./../../../util/testUtilities";
 import {
