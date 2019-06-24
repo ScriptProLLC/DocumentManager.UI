@@ -1,21 +1,20 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { DocumentViewerContext } from "./DocumentViewerContext";
+import React, { useEffect, useRef, useState } from "react";
 import { decodeBase64 } from "../../util/base64Utilities";
+import PropTypes from "prop-types";
 
-export default function PDFViewer() {
+export default function PDFViewer({ base64String }) {
   let iFrameRef = useRef();
   const [isFrameLoaded, setIsFrameLoaded] = useState(false);
-  const { documentFile } = useContext(DocumentViewerContext);
 
   useEffect(() => {
     if (!isFrameLoaded) {
       return;
     }
 
-    var pdf = decodeBase64(documentFile);
+    var pdf = decodeBase64(base64String);
 
     iFrameRef.current.contentWindow.PDFViewerApplication.open(pdf);
-  }, [isFrameLoaded, documentFile]);
+  }, [isFrameLoaded, base64String]);
 
   return (
     <iframe
@@ -31,3 +30,7 @@ export default function PDFViewer() {
     />
   );
 }
+
+PDFViewer.propTypes = {
+  base64String: PropTypes.string.isRequired
+};
