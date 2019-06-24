@@ -4,7 +4,7 @@ import AppStates from "../Model/AppStates";
 import { ActionTypes } from "./ActionTypes";
 import { byDateDescending } from "../../../util/dateUtilities";
 
-function useDocumentManagerActions(collectionId, state, updateState) {
+function useDocumentManagerActions(collectionId, initials, state, updateState) {
   async function loadCollection() {
     if (!collectionId) {
       updateState({
@@ -131,7 +131,8 @@ function useDocumentManagerActions(collectionId, state, updateState) {
     let pendingAttributes = {};
     pendingAttributes.Pages = scannedDocument.pages;
     pendingAttributes["File Size"] = scannedDocument.fileByteSize;
-    pendingAttributes.Initials = scannedDocument.initials;
+
+    pendingAttributes.Initials = initials;
 
     updateState({
       appState: AppStates.DOCUMENT_PREVIEW,

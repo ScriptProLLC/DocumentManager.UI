@@ -7,10 +7,13 @@ import "font-awesome/css/font-awesome.min.css";
 import "./bootstrap-theme.scss";
 import "./index.scss";
 
+import queryString from "query-string";
+
 ReactDOM.render(
   <ErrorBoundary>
     <DocumentManager
-      collectionId={getCollectionFromUrl(document.location.href)}
+      collectionId={findUrlSearchParameter("collection")}
+      initials={findUrlSearchParameter("initials")}
     />
   </ErrorBoundary>,
   document.getElementById("root")
@@ -21,6 +24,6 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-function getCollectionFromUrl(url) {
-  return url.includes("?collection=") ? url.split("=")[1] : null;
+function findUrlSearchParameter(parameterName) {
+  return queryString.parse(window.location.search)[parameterName];
 }

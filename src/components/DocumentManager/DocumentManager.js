@@ -15,7 +15,8 @@ import AppStates from "./Model/AppStates";
 
 export default function DocumentManager(props) {
   const { state, dispatchDocumentAction } = useDocumentManagerModel(
-    props.collectionId
+    props.collectionId,
+    props.initials
   );
 
   return (
@@ -66,5 +67,6 @@ export default function DocumentManager(props) {
 }
 
 DocumentManager.propTypes = {
-  collectionId: string
+  collectionId: string,
+  initials: string
 };

@@ -3,10 +3,11 @@ import { useDocumentManagerState } from "./DocumentManagerState";
 import { ActionTypes } from "./ActionTypes";
 import { useDocumentManagerActions } from "./DocumentManagerActions";
 
-function useDocumentManagerModel(collectionId) {
+function useDocumentManagerModel(collectionId, initials) {
   const { state, updateState } = useDocumentManagerState();
   const { dispatchDocumentAction } = useDocumentManagerActions(
     collectionId,
+    initials,
     state,
     updateState
   );
