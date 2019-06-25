@@ -62,6 +62,7 @@ export default function ModalDialog({
         </strong>
       </ModalHeader>
       <ModalBody>
+        {/* Why not target the p text in tests instead of using aria-label? */}
         <p aria-label="Modal prompt">{prompt}</p>
       </ModalBody>
       <ModalFooter>
@@ -69,7 +70,6 @@ export default function ModalDialog({
           autoFocus={autoFocus === confirmPrompt}
           color="secondary"
           onClick={confirmClick}
-          aria-label="Modal confirm button"
         >
           {confirmPrompt}
         </Button>
@@ -77,7 +77,7 @@ export default function ModalDialog({
           autoFocus={autoFocus === cancelPrompt}
           color="grey"
           onClick={cancelClick}
-          aria-label="Modal cancel button"
+          // The cancelPrompt is the label.
         >
           {cancelPrompt}
         </Button>
