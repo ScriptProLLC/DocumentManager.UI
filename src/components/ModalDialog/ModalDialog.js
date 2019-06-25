@@ -62,7 +62,7 @@ export default function ModalDialog({
         </strong>
       </ModalHeader>
       <ModalBody>
-        <p data-testid="modal_prompt">{prompt}</p>
+        <div data-testid="modal_prompt">{prompt}</div>
       </ModalBody>
       <ModalFooter>
         <Button
@@ -91,7 +91,7 @@ export default function ModalDialog({
 // Define PropTypes For Modal Dialog
 ModalDialog.propTypes = {
   header: PropTypes.string,
-  prompt: PropTypes.string,
+  prompt: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   confirmPrompt: PropTypes.string,
   cancelPrompt: PropTypes.string,
   iconStyle: PropTypes.string,

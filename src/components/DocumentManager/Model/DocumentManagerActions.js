@@ -3,6 +3,7 @@ import * as scanApi from "../../../api/ScanningApi";
 import AppStates from "../Model/AppStates";
 import { ActionTypes } from "./ActionTypes";
 import { byDateDescending } from "../../../util/dateUtilities";
+import { formatErrorMessage } from "./ErrorMessage";
 
 function useDocumentManagerActions(collectionId, initials, state, updateState) {
   async function loadCollection() {
@@ -47,7 +48,7 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
     } catch (error) {
       updateState({
         appState: AppStates.NO_ACTIVE_DOCUMENT,
-        errorMessage: getErrorMessage(error)
+        errorMessage: formatErrorMessage(error)
       });
     }
   }
@@ -153,18 +154,6 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
     });
   }
 
-  function getErrorMessage(error) {
-    if (!error) {
-      return "An unknown error occurred.";
-    } else if (typeof error === "string") {
-      return error;
-    } else if (error.message) {
-      return error.message;
-    } else {
-      return "An unknown error occurred.";
-    }
-  }
-
   function swapUpdatedDocument(documents, updatedDocument) {
     return documents.map(d =>
       d.id === updatedDocument.id ? updatedDocument : d
@@ -205,7 +194,7 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
       // Revert to state when the action was initiated
       updateState({
         ...state,
-        errorMessage: getErrorMessage(error)
+        errorMessage: formatErrorMessage(error)
       });
     }
   }

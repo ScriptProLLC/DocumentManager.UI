@@ -1,31 +1,21 @@
-class ApiError extends Error {
+class ApiError {
   constructor(message, error) {
-    super(createApiErrorMessage(message, error));
+    this.message = message;
 
-    function createApiErrorMessage(message, error) {
-      let details = "";
-
-      // Error Code
-      if (error.response && error.response.status) {
-        details += `Error Code: ${error.response.status}`;
-      }
-
-      // Correlation ID
-      if (
-        error.response &&
-        error.response.headers &&
-        error.response.headers["x-correlation-id"]
-      ) {
-        details += `; Log Correlation ID: ${
-          error.response.headers["x-correlation-id"]
-        }`;
-      }
-
-      return message + " " + parenthesizeIfNotEmpty(details);
+    // Error Code
+    this.errorCode = null;
+    if (error.response && error.response.status) {
+      this.errorCode = `${error.response.status}`;
     }
 
-    function parenthesizeIfNotEmpty(s) {
-      return s === "" ? "" : `(${s})`;
+    // Correlation ID
+    this.correlationId = null;
+    if (
+      error.response &&
+      error.response.headers &&
+      error.response.headers["x-correlation-id"]
+    ) {
+      this.correlationId = `${error.response.headers["x-correlation-id"]}`;
     }
   }
 }
