@@ -30,7 +30,7 @@
     "cy": "run-p start cy-open",
     "cy-open": "cypress open",
     "cy-run": "cypress run",
-    "cy-api": "run-p start-api seed-api",
+    "cy-api": "run-p start-json-server start-api seed-api",
     "cy-test": "run-p -r cy-run cy-api",
     "lint": "run-p lint-js lint-css lint-scss",
     "lint-js": "eslint src/**/*.js tools/**/*.js",
