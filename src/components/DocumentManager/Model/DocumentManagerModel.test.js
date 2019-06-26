@@ -8,6 +8,7 @@ import {
   createTestDocumentList
 } from "./../../../util/dataHelper";
 import mockData from "./../../../../tools/mockData";
+import mockScanData from "./../../../../tools/mockScanData";
 import * as mockDMApi from "./../../../api/DocManagerApi";
 import * as mockScanningApi from "./../../../api/ScanningApi";
 import { ActionTypes } from "./ActionTypes";
@@ -30,16 +31,12 @@ beforeEach(() => {
     mockDMApi.setup("getCollectionDocuments", async () => collectionDocuments);
     mockDMApi.setup("getDocument", async () => document);
     mockDMApi.setup("deleteDocument", async () => {});
+    mockDMApi.setup("postDocument", async () => document);
   };
 
-  configureScanningApi = base64String => {
+  configureScanningApi = () => {
     mockScanningApi.setup("scan", async () => {
-      return {
-        fileByteSize: ((base64String.length * 3) / 4).toString(),
-        scanFile: base64String,
-        initials: "TBD",
-        pages: "12"
-      };
+      return mockScanData.scan;
     });
   };
 });
@@ -240,9 +237,10 @@ describe("DocumentManagerModel", () => {
   });
 
   describe("on scan", () => {
+    beforeEach(() => {
+      configureScanningApi();
+    });
     it("should call the scan method on the scan api", async () => {
-      configureScanningApi("test");
-
       var scanSpy = jest.spyOn(mockScanningApi, "scan");
 
       const { result } = renderHook(() =>
@@ -263,8 +261,6 @@ describe("DocumentManagerModel", () => {
     });
 
     it("should set the active document with the new file", async () => {
-      configureScanningApi("Test document file");
-
       const { result } = renderHook(() =>
         useDocumentManagerModel(someCollectionId)
       );
@@ -280,13 +276,11 @@ describe("DocumentManagerModel", () => {
       await renderCompletion();
 
       expect(result.current.state.activeDocument.documentFile).toBe(
-        "Test document file"
+        mockScanData.scan.scanFile
       );
     });
 
     it("should default the document name to the empty string", async () => {
-      configureScanningApi("Test document file");
-
       const { result } = renderHook(() =>
         useDocumentManagerModel(someCollectionId)
       );
@@ -305,8 +299,6 @@ describe("DocumentManagerModel", () => {
     });
 
     it("should set the active document with the active collectionId", async () => {
-      configureScanningApi("Test document file");
-
       const { result } = renderHook(() =>
         useDocumentManagerModel(someCollectionId)
       );
@@ -324,6 +316,42 @@ describe("DocumentManagerModel", () => {
       expect(result.current.state.activeDocument.documentCollectionId).toBe(
         someCollectionId
       );
+    });
+
+    describe("on new scan save", () => {
+      it("should post to the document manager api with the correct default attributes", async () => {
+        configureScanningApi();
+        configureDMApi([], {});
+
+        var postSpy = jest.spyOn(mockDMApi, "postDocument");
+
+        const { result } = renderHook(() =>
+          useDocumentManagerModel(someCollectionId, "TBD")
+        );
+
+        await renderCompletion();
+
+        act(() => {
+          result.current.dispatchDocumentAction({
+            type: ActionTypes.SCAN
+          });
+        });
+
+        await renderCompletion();
+
+        act(() => {
+          result.current.dispatchDocumentAction({
+            type: ActionTypes.SAVE_DOCUMENT,
+            document: result.current.state.activeDocument
+          });
+        });
+
+        expect(postSpy.mock.calls[0][0].attributes).toEqual({
+          "File Size": "800000",
+          Initials: "TBD",
+          Pages: "8"
+        });
+      });
     });
   });
 

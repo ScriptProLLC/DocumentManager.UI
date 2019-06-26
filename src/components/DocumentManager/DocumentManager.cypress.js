@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /// <reference types="Cypress" />
-
+const elements = require("./../../../cypress/support/elements.js");
 const mockData = require("../../../tools/mockData");
 
 describe("DocumentManager", function() {
@@ -150,7 +150,7 @@ describe("DocumentManager", function() {
 
   it("basic scanning", function() {
     // Open Application to the collection
-    cy.visit(`?collection=${this.collectionId}`);
+    cy.visit(`?collection=${this.collectionId}&initials=TBD`);
 
     // Click the scan button
     cy.get("[data-testid=scan_icon_button]").click();
@@ -186,6 +186,20 @@ describe("DocumentManager", function() {
       .children()
       .first()
       .should("contain.text", "New Test Document");
+
+    // Check that the document has the correct default attributes
+    cy.get(elements.selectedItem.dateCreated).should($date => {
+      const text = $date.text();
+
+      expect(text).to.match(
+        /Date Created: \d{2}\/\d{2}\/\d{4}\s\d{1,2}:\d{1,2}\s\w{2}/g
+      );
+    });
+    cy.get(elements.selectedItem.fileSize).should(
+      "have.text",
+      "File Size: 781 KB"
+    );
+    cy.get(elements.selectedItem.initials).should("have.text", "Initials: TBD");
 
     // Make sure the header changes back to Document Viewer
     cy.get("[data-testid=document_viewer_header]").should(

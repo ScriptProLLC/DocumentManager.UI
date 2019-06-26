@@ -1,6 +1,7 @@
 let mockGetCollectionDocuments;
 let mockGetDocument;
 let mockDeleteDocument;
+let mockPostDocument;
 
 function setup(functionName, mock) {
   switch (functionName) {
@@ -16,6 +17,10 @@ function setup(functionName, mock) {
       mockDeleteDocument = mock;
       break;
 
+    case "postDocument":
+      mockPostDocument = mock;
+      break;
+
     default:
       throw new Error(`Invalid function name ${functionName}`);
   }
@@ -28,4 +33,12 @@ const getDocument = async documentId => await mockGetDocument(documentId);
 
 const deleteDocument = async documentId => await mockDeleteDocument(documentId);
 
-export { setup, getCollectionDocuments, getDocument, deleteDocument };
+const postDocument = async documentId => await mockPostDocument(documentId);
+
+export {
+  setup,
+  getCollectionDocuments,
+  getDocument,
+  deleteDocument,
+  postDocument
+};

@@ -28,10 +28,12 @@ module.exports = {
     }
   },
   post: () => {
-    return Promise.resolve({ data: collection });
+    return Promise.resolve({ data: document });
   },
   patch: () => {},
-  delete: () => {},
+  delete: () => {
+    return Promise.resolve({ data: {} });
+  },
   setDocument: d => {
     document = d;
   },
