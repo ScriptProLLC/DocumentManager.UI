@@ -18,9 +18,24 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
 
     updateState({ appState: AppStates.LIST_LOADING });
 
-    let documents = await docApi
-      .getCollectionDocuments(collectionId)
-      .then(res => res.sort(byDateDescending));
+    let documents;
+    try {
+      documents = await docApi
+        .getCollectionDocuments(collectionId)
+        .then(res => res.sort(byDateDescending));
+    } catch (err) {
+      if (err.errorCode === "404") {
+        updateState({
+          appState: AppStates.NO_DOCUMENTS,
+          documents: [],
+          activeDocument: null,
+          newCollection: true
+        });
+        return;
+      }
+
+      throw err;
+    }
 
     if (documents.length === 0) {
       updateState({
@@ -54,14 +69,23 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
   }
 
   async function saveDocument(document) {
+    updateState({
+      appState: AppStates.UPLOADING_DOCUMENT
+    });
+
     if (state.appState === AppStates.DOCUMENT_PREVIEW) {
+      if (state.newCollection) {
+        await docApi.postCollection(collectionId);
+      }
+
       let savedDocument = await docApi.postDocument(document);
       savedDocument.documentFile = document.documentFile;
 
       updateState({
         documents: [savedDocument, ...state.documents],
         activeDocument: savedDocument,
-        appState: AppStates.ACTIVE_DOCUMENT
+        appState: AppStates.ACTIVE_DOCUMENT,
+        newCollection: false
       });
     } else {
       await docApi.patchDocument(document);

@@ -60,3 +60,14 @@ export async function postDocument(document) {
       throw new ApiError("Error saving document.", error);
     });
 }
+
+export async function postCollection(collectionId) {
+  var path = "/collections";
+
+  return await axios
+    .post(process.env.REACT_APP_API_URL + path, { id: collectionId })
+    .then(res => res.data)
+    .catch(error => {
+      throw new ApiError("Error creating collection.", error);
+    });
+}

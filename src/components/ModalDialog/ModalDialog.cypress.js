@@ -183,7 +183,7 @@ describe("ModalDialog", function() {
     cy.route({
       method: "GET",
       url: `**/collections/**`,
-      status: 404,
+      status: 400,
       response: {},
       headers: {
         "x-correlation-id": "867-5309"

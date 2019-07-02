@@ -21,7 +21,7 @@ function formatApiErrorMessage(apiError) {
       )}
       {apiError.correlationId && (
         <p className="mb-1 small">
-          <strong>Correlation ID: </strong>
+          <strong>Log Correlation ID: </strong>
           {apiError.correlationId}
         </p>
       )}
