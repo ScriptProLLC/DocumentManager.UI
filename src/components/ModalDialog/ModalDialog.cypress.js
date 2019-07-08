@@ -3,6 +3,8 @@
 
 const mockData = require("../../../tools/mockData");
 
+const errorTypes = require("../../api/ApiErrorTypes");
+
 describe("ModalDialog", function() {
   beforeEach(function() {
     cy.addCollection().as("collectionId");
@@ -46,137 +48,6 @@ describe("ModalDialog", function() {
     cy.focused().should("have.attr", "data-testid", "modal_cancel_prompt");
   });
 
-  it("shows error retrieving document list", function() {
-    // Open Application to the collection
-    cy.visit(`?collection=${"invalid collection Id"}`);
-
-    // Verify "Error retrieving document list" displays
-    cy.get("[data-testid=modal_prompt").should(
-      "contain",
-      "Error retrieving document list"
-    );
-  });
-
-  it("shows error retrieving document", function() {
-    // Add new documents to collection
-    cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
-    cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
-
-    // // Open Application to the collection
-    cy.visit(`?collection=${this.collectionId}`);
-
-    cy.server();
-
-    cy.route({
-      method: "GET",
-      url: `**/documents/*`,
-      status: 404,
-      response: {},
-      headers: {
-        "x-correlation-id": "867-5309"
-      }
-    });
-
-    cy.get("[data-testid=document_name]")
-      .last()
-      .click({
-        force: true
-      });
-
-    // Verify "Error Retrieving Document" displays
-    cy.get("[data-testid=modal_prompt").should(
-      "contain",
-      "Error retrieving document"
-    );
-  });
-
-  it("shows error scanning document", function() {
-    // // Open Application to the collection
-    cy.visit(`?collection=${this.collectionId}`);
-
-    cy.server();
-
-    cy.route({
-      method: "GET",
-      url: `**/scan`,
-      status: 404,
-      response: {},
-      headers: {
-        "x-correlation-id": "867-5309"
-      }
-    });
-
-    cy.get("[data-testid=scan_icon_button]").click();
-
-    // Verify "Error scanning Document' displays
-    cy.get("[data-testid=modal_prompt").should(
-      "contain",
-      "Error scanning document"
-    );
-  });
-
-  it("shows error saving document", function() {
-    // // Open Application to the collection
-    cy.visit(`?collection=${this.collectionId}`);
-
-    cy.server();
-
-    cy.route({
-      method: "POST",
-      url: `**/documents*`,
-      status: 404,
-      response: {},
-      headers: {
-        "x-correlation-id": "867-5309"
-      }
-    });
-
-    cy.get("[data-testid=scan_icon_button]").click();
-
-    cy.get("[data-testid=save_button]").click();
-
-    // Verify "Error scanning Document" displays
-    cy.get("[data-testid=modal_prompt").should(
-      "contain",
-      "Error saving document"
-    );
-  });
-
-  it("shows error deleting document", function() {
-    // Add new documents to collection
-    cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
-    cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
-
-    // // Open Application to the collection
-    cy.visit(`?collection=${this.collectionId}`);
-
-    cy.server();
-
-    cy.route({
-      method: "DELETE",
-      url: `**/documents/*`,
-      status: 404,
-      response: {},
-      headers: {
-        "x-correlation-id": "867-5309"
-      }
-    });
-
-    cy.get("[data-testid=document_name]")
-      .last()
-      .click({ force: true });
-
-    cy.get("[data-testid=delete_button]").click();
-
-    cy.get("[data-testid=modal_confirm_prompt]").click();
-
-    // Verify "Error deleting Document" displays
-    cy.get("[data-testid=modal_prompt").should(
-      "contain",
-      "Error deleting document"
-    );
-  });
-
   it("error dialog shows correlation id", function() {
     cy.server();
 
@@ -198,5 +69,163 @@ describe("ModalDialog", function() {
       "contain",
       "Log Correlation ID: 867-5309"
     );
+  });
+
+  describe("Error Messages", function() {
+    it("Shows the correct error for failing to load documents", function() {
+      // Open Application to the collection
+      cy.visit(`?collection=${"invalid collection Id"}`);
+
+      // Verify "There was an error retrieving the list of documents." displays
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Get_Collection_Documents.message
+      );
+
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Get_Collection_Documents.instructions
+      );
+    });
+
+    it("shows error retrieving document", function() {
+      // Add new documents to collection
+      cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
+      cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
+
+      // // Open Application to the collection
+      cy.visit(`?collection=${this.collectionId}`);
+
+      cy.server();
+
+      cy.route({
+        method: "GET",
+        url: `**/documents/*`,
+        status: 404,
+        response: {},
+        headers: {
+          "x-correlation-id": "867-5309"
+        }
+      });
+
+      cy.get("[data-testid=document_name]")
+        .last()
+        .click({
+          force: true
+        });
+
+      // Verify "There was an error retrieving the document." displays
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Get_Document.message
+      );
+
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Get_Document.message
+      );
+    });
+
+    it("shows error scanning document", function() {
+      // // Open Application to the collection
+      cy.visit(`?collection=${this.collectionId}`);
+
+      cy.server();
+
+      cy.route({
+        method: "GET",
+        url: `**/scan`,
+        status: 404,
+        response: {},
+        headers: {
+          "x-correlation-id": "867-5309"
+        }
+      });
+
+      cy.get("[data-testid=scan_icon_button]").click();
+
+      // Verify "Error scanning Document' displays
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Scan_Document.message
+      );
+
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Scan_Document.message
+      );
+    });
+
+    it("shows error saving document", function() {
+      // // Open Application to the collection
+      cy.visit(`?collection=${this.collectionId}`);
+
+      cy.server();
+
+      cy.route({
+        method: "POST",
+        url: `**/documents*`,
+        status: 404,
+        response: {},
+        headers: {
+          "x-correlation-id": "867-5309"
+        }
+      });
+
+      cy.get("[data-testid=scan_icon_button]").click();
+
+      cy.get("[data-testid=save_button]").click();
+
+      // Verify "Error scanning Document" displays
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Save_Document.message
+      );
+
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Save_Document.message
+      );
+    });
+
+    it("shows error deleting document", function() {
+      // Add new documents to collection
+      cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
+      cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
+
+      // // Open Application to the collection
+      cy.visit(`?collection=${this.collectionId}`);
+
+      cy.server();
+
+      cy.route({
+        method: "DELETE",
+        url: `**/documents/*`,
+        status: 404,
+        response: {},
+        headers: {
+          "x-correlation-id": "867-5309"
+        }
+      });
+
+      cy.get("[data-testid=document_name]")
+        .last()
+        .click({ force: true });
+
+      cy.get("[data-testid=delete_button]").click();
+
+      cy.get("[data-testid=modal_confirm_prompt]").click();
+
+      // Verify "Error deleting Document" displays
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Delete_Document.message
+      );
+
+      cy.get("[data-testid=modal_prompt").should(
+        "contain",
+        errorTypes.Delete_Document.message
+      );
+    });
   });
 });
