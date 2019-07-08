@@ -6,7 +6,7 @@ function useDocumentManagerState() {
     appState: AppStates.NO_DOCUMENTS,
     documents: null,
     activeDocument: null,
-    errorMessage: null,
+    error: { errorMessage: null, autoRefresh: false },
     newCollection: false
   });
 

@@ -11,7 +11,6 @@ import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
 import { ActionTypes } from "./Model/ActionTypes";
 
 import "./DocumentManager.scss";
-import AppStates from "./Model/AppStates";
 
 export default function DocumentManager(props) {
   const { state, dispatchDocumentAction } = useDocumentManagerModel(
@@ -26,11 +25,11 @@ export default function DocumentManager(props) {
         message={state.appState.loadingMessage}
       />
       <ModalDialog
-        showDialog={state.errorMessage !== null}
+        showDialog={state.error.errorMessage !== null}
         iconStyle="Error"
         header="Error"
-        prompt={state.errorMessage}
-        confirmPrompt="OK"
+        prompt={state.error.errorMessage}
+        confirmPrompt={state.error.autoRefresh ? "Refresh" : "OK"}
         cancelPrompt={null}
         reportResult={() =>
           dispatchDocumentAction({ type: ActionTypes.CLEAR_ERROR })

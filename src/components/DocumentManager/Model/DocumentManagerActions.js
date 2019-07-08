@@ -63,7 +63,7 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
     } catch (error) {
       updateState({
         appState: AppStates.NO_ACTIVE_DOCUMENT,
-        errorMessage: formatErrorMessage(error)
+        error: { errorMessage: formatErrorMessage(error), autoRefresh: false }
       });
     }
   }
@@ -133,10 +133,14 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
   }
 
   async function exitEditMode() {
+    let nextState =
+      state.documents.length === 0
+        ? AppStates.NO_DOCUMENTS
+        : AppStates.NO_ACTIVE_DOCUMENT;
     if (state.appState === AppStates.DOCUMENT_PREVIEW) {
       updateState({
         activeDocument: null,
-        appState: AppStates.NO_ACTIVE_DOCUMENT
+        appState: nextState
       });
     } else {
       updateState({
@@ -173,8 +177,14 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
   }
 
   function clearError() {
+    if (state.error.autoRefresh) {
+      document.location.reload(true);
+    }
     updateState({
-      errorMessage: null
+      error: {
+        errorMessage: null,
+        autoRefresh: false
+      }
     });
   }
 
@@ -218,7 +228,10 @@ function useDocumentManagerActions(collectionId, initials, state, updateState) {
       // Revert to state when the action was initiated
       updateState({
         ...state,
-        errorMessage: formatErrorMessage(error)
+        error: {
+          errorMessage: formatErrorMessage(error),
+          autoRefresh: error.autoRefresh
+        }
       });
     }
   }

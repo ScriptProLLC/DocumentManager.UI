@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ApiError } from "./ApiError";
+import ApiErrorTypes from "./ApiErrorTypes";
 
 export async function getCollectionDocuments(collectionId) {
   var path = `/collections/${collectionId}/documents`;
@@ -8,7 +9,7 @@ export async function getCollectionDocuments(collectionId) {
     .get(process.env.REACT_APP_API_URL + path)
     .then(res => res.data)
     .catch(error => {
-      throw new ApiError("Error retrieving document list.", error);
+      throw new ApiError(ApiErrorTypes.Get_Collection_Documents, error, true);
     });
 }
 
@@ -19,7 +20,7 @@ export async function getDocument(documentId) {
     .get(process.env.REACT_APP_API_URL + path)
     .then(res => res.data)
     .catch(error => {
-      throw new ApiError("Error retrieving document.", error);
+      throw new ApiError(ApiErrorTypes.Get_Document, error);
     });
 }
 
@@ -30,7 +31,7 @@ export async function deleteDocument(documentId) {
     .delete(process.env.REACT_APP_API_URL + path)
     .then(res => res.data)
     .catch(error => {
-      throw new ApiError("Error deleting document.", error);
+      throw new ApiError(ApiErrorTypes.Delete_Document, error);
     });
 }
 
@@ -46,7 +47,7 @@ export async function patchDocument(document) {
     })
     .then(res => res.data)
     .catch(error => {
-      throw new ApiError("Error saving document.", error);
+      throw new ApiError(ApiErrorTypes.Save_Document, error);
     });
 }
 
@@ -57,7 +58,7 @@ export async function postDocument(document) {
     .post(process.env.REACT_APP_API_URL + path, document)
     .then(res => res.data)
     .catch(error => {
-      throw new ApiError("Error saving document.", error);
+      throw new ApiError(ApiErrorTypes.Save_Document, error);
     });
 }
 
@@ -68,6 +69,6 @@ export async function postCollection(collectionId) {
     .post(process.env.REACT_APP_API_URL + path, { id: collectionId })
     .then(res => res.data)
     .catch(error => {
-      throw new ApiError("Error creating collection.", error);
+      throw new ApiError(ApiErrorTypes.Create_Collection, error);
     });
 }

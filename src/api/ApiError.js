@@ -1,12 +1,15 @@
 class ApiError {
-  constructor(message, error) {
-    this.message = message;
+  constructor(errorType, error, autoRefresh = false) {
+    this.errorType = errorType;
 
     // Error Code
     this.errorCode = null;
     if (error.response && error.response.status) {
       this.errorCode = `${error.response.status}`;
     }
+
+    // Auto Refresh
+    this.autoRefresh = autoRefresh;
 
     // Correlation ID
     this.correlationId = null;
