@@ -23,7 +23,7 @@
     "prebuild": "npm run lint",
     "test": "react-scripts test",
     "seed-api": "node tools/seedApiDb.js",
-    "start-api": ".\\packages\\ScriptPro.Api.DocumentManager.Host.0.0.81\\Tools\\API.DocumentManager.Host.exe",
+    "start-api": ".\\packages\\ScriptPro.Api.DocumentManager.Host.0.0.90\\Tools\\API.DocumentManager.Host.exe",
     "prestart-json-server": "node tools/createMockScanDb.js",
     "start-json-server": "node tools/apiServer.js",
     "test-once": "react-scripts test --no-watch --reporters=default --reporters=jest-junit",

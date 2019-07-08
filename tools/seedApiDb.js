@@ -5,6 +5,9 @@ var serverURL = "http://localhost:13005/api/docmanager";
 
 const seedApi = async () => {
   await sleep(30000);
+  await axios.post(serverURL + "/collections", {
+    Id: mockData.documents[0].documentCollectionId
+  });
   await axios.post(serverURL + "/documents", mockData.documents[0]);
   await axios.post(serverURL + "/documents", mockData.documents[1]);
 };
