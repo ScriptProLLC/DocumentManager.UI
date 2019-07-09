@@ -122,7 +122,7 @@ describe("ModalDialog", function() {
 
       cy.get("[data-testid=modal_prompt").should(
         "contain",
-        errorTypes.Get_Document.message
+        errorTypes.Get_Document.instructions
       );
     });
 
@@ -152,7 +152,7 @@ describe("ModalDialog", function() {
 
       cy.get("[data-testid=modal_prompt").should(
         "contain",
-        errorTypes.Scan_Document.message
+        errorTypes.Scan_Document.instructions
       );
     });
 
@@ -184,7 +184,7 @@ describe("ModalDialog", function() {
 
       cy.get("[data-testid=modal_prompt").should(
         "contain",
-        errorTypes.Save_Document.message
+        errorTypes.Save_Document.instructions
       );
     });
 
@@ -224,7 +224,7 @@ describe("ModalDialog", function() {
 
       cy.get("[data-testid=modal_prompt").should(
         "contain",
-        errorTypes.Delete_Document.message
+        errorTypes.Delete_Document.instructions
       );
     });
   });
