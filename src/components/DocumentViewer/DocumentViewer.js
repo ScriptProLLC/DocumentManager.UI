@@ -8,42 +8,32 @@ export default function DocumentViewer(props) {
   let pdfDocument = props.document;
   let documentFile = pdfDocument ? pdfDocument.documentFile : null;
 
-  function render() {
-    if (!pdfDocument || !pdfDocument.documentFile) {
-      return (
-        <div
-          data-testid="document_viewer_container_nodocs"
-          className="document-viewer-container"
+  return (
+    <section
+      aria-label="Document viewer container"
+      className="document-viewer-container"
+    >
+      {!pdfDocument || !pdfDocument.documentFile ? (
+        <span
+          aria-label="Document viewer with no document"
+          className="document-viewer-empty"
         >
-          <div
-            data-testid="document_viewer_no_documents"
-            className="document-viewer-empty"
-          >
-            No document selected
-          </div>
-        </div>
-      );
-    } else {
-      return (
+          No document selected
+        </span>
+      ) : (
         <DocumentViewerContext.Provider
           value={{
             documentFile
           }}
         >
-          <div
-            data-testid="document_viewer_container_withdocs"
-            className="document-viewer-container"
-          >
-            <PDFViewer />
-          </div>
+          <PDFViewer />
         </DocumentViewerContext.Provider>
-      );
-    }
-  }
-
-  return render();
+      )}
+    </section>
+  );
 }
 
+// Define PropTypes For Document Viewer
 DocumentViewer.propTypes = {
   document: documentPropType
 };

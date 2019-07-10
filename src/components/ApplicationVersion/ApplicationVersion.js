@@ -3,10 +3,10 @@ import "./ApplicationVersion.scss";
 
 export default function ApplicationVersion() {
   return (
-    <div className="app-version-container">
-      <p data-testid="application_version">
+    <footer className="app-version-container">
+      <p aria-label="Application version number">
         Version - {process.env.REACT_APP_VERSION}
       </p>
-    </div>
+    </footer>
   );
 }

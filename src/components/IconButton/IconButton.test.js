@@ -1,84 +1,86 @@
 import React from "react";
 import { render, cleanup, fireEvent } from "react-testing-library";
-import "jest-dom/extend-expect";
 import IconButton from "./IconButton";
+import "jest-dom/extend-expect";
 
 var mockFn = jest.fn(r => r);
 
-describe("IconButton component", () => {
+describe("Icon Button", () => {
   afterEach(() => {
     cleanup();
     jest.clearAllMocks();
   });
 
   it("renders", () => {
-    const { getByTestId } = render(
-      <IconButton onClick={mockFn} data-testid="test_icon_button" icon="save" />
+    const { getByLabelText } = render(
+      <IconButton onClick={mockFn} aria-label="Test icon button" icon="save" />
     );
 
-    expect(getByTestId("test_icon_button")).toBeTruthy();
+    expect(getByLabelText("Test icon button"));
   });
 
   it("renders color property", () => {
-    const { getByTestId } = render(
+    const { getByLabelText } = render(
       <IconButton
         onClick={mockFn}
-        data-testid="test_icon_button"
+        aria-label="Test icon button"
         icon="save"
         color="primary"
       />
     );
 
-    expect(getByTestId("test_icon_button").classList).toContain("text-primary");
+    expect(getByLabelText("Test icon button").classList).toContain(
+      "text-primary"
+    );
   });
 
   it("appropriately adds passed in class name", () => {
-    const { getByTestId } = render(
+    const { getByLabelText } = render(
       <IconButton
         onClick={mockFn}
-        data-testid="test_icon_button"
+        aria-label="Test icon button"
         icon="save"
         className="test-class-name"
       />
     );
 
-    expect(getByTestId("test_icon_button").classList).toContain(
+    expect(getByLabelText("Test icon button").classList).toContain(
       "test-class-name"
     );
   });
 
   it("renders the passed in fa icon", () => {
-    const { getByTestId } = render(
-      <IconButton onClick={mockFn} data-testid="test_icon_button" icon="save" />
+    const { getByLabelText } = render(
+      <IconButton onClick={mockFn} aria-label="Test icon button" icon="save" />
     );
 
-    expect(getByTestId("test_icon_button").classList).toContain("fa-save");
+    expect(getByLabelText("Test icon button").classList).toContain("fa-save");
   });
 
   it("renders the passed in size", () => {
-    const { getByTestId } = render(
+    const { getByLabelText } = render(
       <IconButton
         onClick={mockFn}
-        data-testid="test_icon_button"
+        aria-label="Test icon button"
         icon="save"
         size="lg"
       />
     );
 
-    expect(getByTestId("test_icon_button").classList).toContain("fa-lg");
+    expect(getByLabelText("Test icon button").classList).toContain("fa-lg");
   });
 
   it("calls the onClick callback", () => {
-    const { getByTestId } = render(
+    const { getByLabelText } = render(
       <IconButton
         onClick={mockFn}
-        data-testid="test_icon_button"
+        aria-label="Test icon button"
         icon="save"
         size="lg"
       />
     );
 
-    fireEvent.click(getByTestId("test_icon_button"));
+    fireEvent.click(getByLabelText("Test icon button"));
 
     expect(mockFn).toHaveBeenCalledTimes(1);
   });

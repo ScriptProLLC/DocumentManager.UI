@@ -10,8 +10,8 @@ import {
   Row,
   Col
 } from "reactstrap";
-import "./DocumentListItem.scss";
 import { ActionTypes } from "../DocumentManager/Model/ActionTypes";
+import "./DocumentListItem.scss";
 
 export default function DocumentListItem(props) {
   let [expanded, setExpanded] = useState(props.expanded);
@@ -20,6 +20,7 @@ export default function DocumentListItem(props) {
     ...props.document.attributes
   };
 
+  // Toggle Collapse
   function toggle() {
     if (props.reportToggle) {
       props.reportToggle(expanded ? "collapsed" : "open");
@@ -28,6 +29,7 @@ export default function DocumentListItem(props) {
     setExpanded(!expanded);
   }
 
+  // Dispatch Actions
   async function select() {
     await props.dispatchDocumentAction({
       type: ActionTypes.SELECT_DOCUMENT,
@@ -35,12 +37,13 @@ export default function DocumentListItem(props) {
     });
   }
 
+  // Render List Items
   function renderListItems() {
     return Object.entries(listItems).map(([key, value]) => (
       <ListGroupItem
         key={key}
         className="document-list-expanded-item"
-        data-testid={key}
+        aria-label={key}
       >
         <span className="fa fa-level-up mr-3" />
         <strong>{key}: </strong>
@@ -51,11 +54,13 @@ export default function DocumentListItem(props) {
 
   return (
     <div
+      aria-label={props.isSelected ? "Selected document in list" : ""}
       className={
         props.isSelected
           ? "document-list-item-container selected"
           : "document-list-item-container"
       }
+      role="listitem"
     >
       {/* Document Name + Expand Button */}
       <Row>
@@ -63,7 +68,7 @@ export default function DocumentListItem(props) {
           <Button
             className="btn document-list-expand-button"
             color="dark-grey"
-            data-testid="collapse_toggle"
+            aria-label="Toggle button to collapse extra document details"
             onClick={toggle}
             outline
             size="sm"
@@ -75,7 +80,7 @@ export default function DocumentListItem(props) {
             />
           </Button>
           <div
-            data-testid="document_name"
+            aria-label="Document name in list"
             className="document-list-item-name"
             onClick={select}
           >
@@ -94,8 +99,12 @@ export default function DocumentListItem(props) {
       {/* Expandable Section */}
       <Row>
         <Col>
-          <Collapse isOpen={expanded} data-testid="collapse" onClick={select}>
-            <ListGroup data-testid="attributes_list">
+          <Collapse
+            isOpen={expanded}
+            aria-label="Collapsable content container"
+            onClick={select}
+          >
+            <ListGroup aria-label="List of document attributes">
               {renderListItems()}
             </ListGroup>
           </Collapse>
@@ -105,6 +114,7 @@ export default function DocumentListItem(props) {
   );
 }
 
+// Define PropTypes For Document List Item
 DocumentListItem.propTypes = {
   document: PropTypes.shape({
     name: PropTypes.string,

@@ -1,45 +1,44 @@
 import React from "react";
-import { render, cleanup, fireEvent } from "react-testing-library";
-import "jest-dom/extend-expect";
+import { render, cleanup, fireEvent, getByText } from "react-testing-library";
 import ModalDialog from "./ModalDialog";
+import "jest-dom/extend-expect";
 
-describe("ModalDialog component", () => {
+describe("Modal Dialog", () => {
   afterEach(() => {
     cleanup();
     jest.clearAllMocks();
   });
 
   it("renders", () => {
-    const { getByTestId } = render(<ModalDialog showDialog={true} />);
+    const { getByLabelText } = render(<ModalDialog showDialog={true} />);
 
-    expect(getByTestId("modal")).toBeTruthy();
+    expect(getByLabelText("Modal"));
   });
 
-  describe("default", () => {
+  describe("default attributes", () => {
     it("header", () => {
-      const { getByTestId } = render(<ModalDialog showDialog={true} />);
+      const { getByLabelText } = render(<ModalDialog showDialog={true} />);
+      const container = getByLabelText("Modal header");
 
-      expect(getByTestId("modal_header").textContent).toContain("Alert");
+      expect(getByText(container, "Alert"));
     });
 
     it("confirm button text", () => {
-      const { getByTestId } = render(<ModalDialog showDialog={true} />);
+      const { getByText } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal_confirm_prompt").textContent).toBe("Confirm");
+      expect(getByText("Confirm"));
     });
 
     it("cancel button text", () => {
-      const { getByTestId } = render(<ModalDialog showDialog={true} />);
+      const { getByText } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal_cancel_prompt").textContent).toContain(
-        "Cancel"
-      );
+      expect(getByText("Cancel"));
     });
 
     it("icon", () => {
-      const { getByTestId } = render(<ModalDialog showDialog={true} />);
+      const { getByLabelText } = render(<ModalDialog showDialog={true} />);
 
-      expect(getByTestId("modal_icon").classList).toContain(
+      expect(getByLabelText("Modal icon").classList).toContain(
         "fa-exclamation-triangle"
       );
     });
@@ -47,77 +46,71 @@ describe("ModalDialog component", () => {
 
   describe("uses props: ", () => {
     it("prompt", () => {
-      const { getByTestId } = render(
+      const { getByText } = render(
         <ModalDialog showDialog={true} prompt="test modal prompt" />
       );
 
-      expect(getByTestId("modal_prompt").textContent.trim()).toBe(
-        "test modal prompt"
-      );
+      expect(getByText("test modal prompt"));
     });
 
     it("header", () => {
-      const { getByTestId } = render(
+      const { getByText } = render(
         <ModalDialog showDialog={true} header="test modal header" />
       );
 
-      expect(getByTestId("modal_header").children[0].textContent).toBe(
-        "test modal header"
-      );
+      expect(getByText("test modal header"));
     });
 
     it("confirm button text", () => {
-      const { getByTestId } = render(
+      const { getByText } = render(
         <ModalDialog
           showDialog={true}
           confirmPrompt="test modal confirm prompt"
         />
       );
 
-      expect(getByTestId("modal_confirm_prompt").textContent.trim()).toBe(
-        "test modal confirm prompt"
-      );
+      expect(getByText("test modal confirm prompt"));
     });
 
     it("cancel button text", () => {
-      const { getByTestId } = render(
+      const { getByText } = render(
         <ModalDialog
           showDialog={true}
           cancelPrompt="test modal cancel prompt"
         />
       );
 
-      expect(getByTestId("modal_cancel_prompt").textContent.trim()).toBe(
-        "test modal cancel prompt"
-      );
+      expect(getByText("test modal cancel prompt"));
     });
 
     it("cancel prompt null", () => {
-      const { queryByTestId } = render(
+      const { queryByLabelText } = render(
         <ModalDialog showDialog={true} cancelPrompt={null} />
       );
 
-      expect(queryByTestId("modal_cancel_prompt")).toBeNull();
+      expect(queryByLabelText("Modal cancel prompt")).toBeNull();
     });
 
     it("error icon", () => {
-      const { getByTestId } = render(
+      const { getByLabelText } = render(
         <ModalDialog showDialog={true} iconStyle="Error" />
       );
 
-      expect(getByTestId("modal_icon").classList).toContain("fa-times");
+      expect(getByLabelText("Modal icon").classList).toContain("fa-times");
     });
 
     it("info icon", () => {
-      const { getByTestId } = render(
+      const { getByLabelText } = render(
         <ModalDialog showDialog={true} iconStyle="Info" />
       );
 
-      expect(getByTestId("modal_icon").classList).toContain("fa-info-circle");
+      expect(getByLabelText("Modal icon").classList).toContain(
+        "fa-info-circle"
+      );
     });
 
     it("autoFocus not set", () => {
-      const { getByTestId } = render(
+      const { getByLabelText } = render(
         <ModalDialog
           showDialog={true}
           iconStyle="Info"
@@ -126,16 +119,16 @@ describe("ModalDialog component", () => {
         />
       );
 
-      expect(getByTestId("modal_confirm_prompt")).not.toBe(
+      expect(getByLabelText("Modal confirm button")).not.toBe(
         document.activeElement
       );
-      expect(getByTestId("modal_cancel_prompt")).not.toBe(
+      expect(getByLabelText("Modal cancel button")).not.toBe(
         document.activeElement
       );
     });
 
     it("autoFocus set to confirm button", () => {
-      const { getByTestId } = render(
+      const { getByLabelText } = render(
         <ModalDialog
           showDialog={true}
           iconStyle="Info"
@@ -145,14 +138,16 @@ describe("ModalDialog component", () => {
         />
       );
 
-      expect(getByTestId("modal_confirm_prompt")).toBe(document.activeElement);
-      expect(getByTestId("modal_cancel_prompt")).not.toBe(
+      expect(getByLabelText("Modal confirm button")).toBe(
+        document.activeElement
+      );
+      expect(getByLabelText("Modal cancel button")).not.toBe(
         document.activeElement
       );
     });
 
     it("autoFocus set to cancel button", () => {
-      const { getByTestId } = render(
+      const { getByLabelText } = render(
         <ModalDialog
           showDialog={true}
           iconStyle="Info"
@@ -162,120 +157,111 @@ describe("ModalDialog component", () => {
         />
       );
 
-      expect(getByTestId("modal_confirm_prompt")).not.toBe(
+      expect(getByLabelText("Modal confirm button")).not.toBe(
         document.activeElement
       );
-      expect(getByTestId("modal_cancel_prompt")).toBe(document.activeElement);
+      expect(getByLabelText("Modal cancel button")).toBe(
+        document.activeElement
+      );
     });
 
     describe("events", () => {
-      describe("result reporting", () => {
-        describe("confirm click", () => {
-          it("calls callback with default prompt", () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                reportResult={mockResultCallback}
-              />
-            );
+      describe("confirm click", () => {
+        it("calls callback with default prompt", () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog showDialog={true} reportResult={mockResultCallback} />
+          );
 
-            fireEvent.click(getByTestId("modal_confirm_prompt"));
+          fireEvent.click(getByLabelText("Modal confirm button"));
 
-            expect(mockResultCallback).toBeCalledWith("Confirm");
-          });
-
-          it("calls callback with custom prompt", () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                confirmPrompt="Custom confirm propmpt"
-                reportResult={mockResultCallback}
-              />
-            );
-
-            fireEvent.click(getByTestId("modal_confirm_prompt"));
-
-            expect(mockResultCallback).toBeCalledWith("Custom confirm propmpt");
-          });
+          expect(mockResultCallback).toBeCalledWith("Confirm");
         });
 
-        describe("cancel click", () => {
-          it("calls callback with default prompt", () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                reportResult={mockResultCallback}
-              />
-            );
+        it("calls callback with custom prompt", () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog
+              showDialog={true}
+              confirmPrompt="Custom confirm propmpt"
+              reportResult={mockResultCallback}
+            />
+          );
 
-            fireEvent.click(getByTestId("modal_cancel_prompt"));
+          fireEvent.click(getByLabelText("Modal confirm button"));
 
-            expect(mockResultCallback).toBeCalledWith("Cancel");
-          });
+          expect(mockResultCallback).toBeCalledWith("Custom confirm propmpt");
+        });
+      });
 
-          it("calls callback with custom prompt", () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                cancelPrompt="Custom cancel prompt"
-                reportResult={mockResultCallback}
-              />
-            );
+      describe("cancel click", () => {
+        it("calls callback with default prompt", () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog showDialog={true} reportResult={mockResultCallback} />
+          );
 
-            fireEvent.click(getByTestId("modal_cancel_prompt"));
+          fireEvent.click(getByLabelText("Modal cancel button"));
 
-            expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
-          });
+          expect(mockResultCallback).toBeCalledWith("Cancel");
         });
 
-        describe("close click", () => {
-          it("calls callback with default prompt", () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                reportResult={mockResultCallback}
-              />
-            );
+        it("calls callback with custom prompt", () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog
+              showDialog={true}
+              cancelPrompt="Custom cancel prompt"
+              reportResult={mockResultCallback}
+            />
+          );
 
-            fireEvent.click(getByTestId("modal_header").children[1]);
+          fireEvent.click(getByLabelText("Modal cancel button"));
 
-            expect(mockResultCallback).toBeCalledWith("Cancel");
-          });
+          expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
+        });
+      });
 
-          it("calls callback with custom prompt", async () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                cancelPrompt="Custom cancel prompt"
-                reportResult={mockResultCallback}
-              />
-            );
+      describe("close click", () => {
+        it("calls callback with default prompt", () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog showDialog={true} reportResult={mockResultCallback} />
+          );
 
-            fireEvent.click(getByTestId("modal_header").children[1]);
+          fireEvent.click(getByLabelText("Close"));
 
-            expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
-          });
+          expect(mockResultCallback).toBeCalledWith("Cancel");
+        });
 
-          it("calls callback with no cancel prompt", () => {
-            var mockResultCallback = jest.fn(r => r);
-            const { getByTestId } = render(
-              <ModalDialog
-                showDialog={true}
-                cancelPrompt={null}
-                reportResult={mockResultCallback}
-              />
-            );
+        it("calls callback with custom prompt", async () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog
+              showDialog={true}
+              cancelPrompt="Custom cancel prompt"
+              reportResult={mockResultCallback}
+            />
+          );
 
-            fireEvent.click(getByTestId("modal_header").children[1]);
+          fireEvent.click(getByLabelText("Close"));
 
-            expect(mockResultCallback).toBeCalledWith("Confirm");
-          });
+          expect(mockResultCallback).toBeCalledWith("Custom cancel prompt");
+        });
+
+        it("calls callback with no cancel prompt", () => {
+          const mockResultCallback = jest.fn(r => r);
+          const { getByLabelText } = render(
+            <ModalDialog
+              showDialog={true}
+              cancelPrompt={null}
+              reportResult={mockResultCallback}
+            />
+          );
+
+          fireEvent.click(getByLabelText("Close"));
+
+          expect(mockResultCallback).toBeCalledWith("Confirm");
         });
       });
     });

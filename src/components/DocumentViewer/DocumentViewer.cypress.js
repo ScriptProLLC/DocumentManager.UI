@@ -3,7 +3,7 @@
 
 const mockData = require("../../../tools/mockData");
 
-describe("DocumentViewer", function() {
+describe("Document Viewer", function() {
   beforeEach(function() {
     cy.addCollection().as("collectionId");
   });
@@ -15,12 +15,15 @@ describe("DocumentViewer", function() {
     cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
+    // Open Application to the collection
     cy.visit(`?collection=${this.collectionId}`);
 
-    cy.get("[data-testid=document_name]")
+    // Select the last document in the list
+    cy.getByLabelText("Document name in list")
       .last()
       .click();
 
-    cy.get("[data-testid=document_viewer_iframe]").should("exist");
+    // Check to make sure the document viewer is loaded
+    cy.getByLabelText("Document viewer frame");
   });
 });

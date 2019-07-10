@@ -2,7 +2,6 @@
 /// <reference types="Cypress" />
 
 const mockData = require("../../../tools/mockData");
-
 const errorTypes = require("../../api/ApiErrorTypes");
 
 describe("ModalDialog", function() {
@@ -19,18 +18,18 @@ describe("ModalDialog", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the default selected document
-    cy.get("[data-testid=delete_button]").click();
+    cy.getByLabelText("Delete button").click();
 
     // Verify the Modal dialog is on screen
-    cy.get("[data-testid=modal_header_text]").should("have.text", "Alert");
+    cy.getByLabelText("Modal header text").should("contain", "Alert");
 
     // Attempt to click behind the modal dialog
-    cy.get("[data-testid=document_list_header]").click({
+    cy.getByLabelText("Document list header").click({
       force: true
     });
 
     // Verify the Modal dialog is still on screen
-    cy.get("[data-testid=modal_header_text]").should("have.text", "Alert");
+    cy.getByLabelText("Modal header text").should("contain", "Alert");
   });
 
   it("focuses the cancel button", function() {
@@ -42,15 +41,17 @@ describe("ModalDialog", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to open the modal dialog
-    cy.get("[data-testid=delete_button]").click();
+    cy.getByLabelText("Delete button").click();
 
     // Verify the cancel button has focus
-    cy.focused().should("have.attr", "data-testid", "modal_cancel_prompt");
+    cy.focused().should("have.attr", "aria-label", "Modal cancel button");
   });
 
   it("error dialog shows correlation id", function() {
+    // Start a server to begin routing responses
     cy.server();
 
+    // Manage the behavior of network request
     cy.route({
       method: "GET",
       url: `**/collections/**`,
@@ -65,10 +66,10 @@ describe("ModalDialog", function() {
     cy.visit(`?collection=${"invalid-collection-Id"}`);
 
     // Verify Correlation ID Exists
-    cy.get("[data-testid=modal_prompt").should(
-      "contain",
-      "Log Correlation ID: 867-5309"
-    );
+    cy.getByLabelText("Modal prompt").should(prompt => {
+      expect(prompt).to.contain("Log Correlation ID: ");
+      expect(prompt).to.contain("867-5309");
+    });
   });
 
   describe("Error Messages", function() {
@@ -76,13 +77,14 @@ describe("ModalDialog", function() {
       // Open Application to the collection
       cy.visit(`?collection=${"invalid collection Id"}`);
 
-      // Verify "There was an error retrieving the list of documents." displays
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal message is displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Get_Collection_Documents.message
       );
 
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal instructions are displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Get_Collection_Documents.instructions
       );
@@ -93,11 +95,13 @@ describe("ModalDialog", function() {
       cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
       cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
-      // // Open Application to the collection
+      // Open Application to the collection
       cy.visit(`?collection=${this.collectionId}`);
 
+      // Start a server to begin routing responses
       cy.server();
 
+      // Manage the behavior of network request
       cy.route({
         method: "GET",
         url: `**/documents/*`,
@@ -108,30 +112,34 @@ describe("ModalDialog", function() {
         }
       });
 
-      cy.get("[data-testid=document_name]")
+      // Click last document in the list
+      cy.getByLabelText("Document name in list")
         .last()
         .click({
           force: true
         });
 
-      // Verify "There was an error retrieving the document." displays
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal message is displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Get_Document.message
       );
 
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal instructions are displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Get_Document.instructions
       );
     });
 
     it("shows error scanning document", function() {
-      // // Open Application to the collection
+      // Open Application to the collection
       cy.visit(`?collection=${this.collectionId}`);
 
+      // Start a server to begin routing responses
       cy.server();
 
+      // Manage the behavior of network request
       cy.route({
         method: "GET",
         url: `**/scan`,
@@ -142,26 +150,30 @@ describe("ModalDialog", function() {
         }
       });
 
-      cy.get("[data-testid=scan_icon_button]").click();
+      // Click the scan bubton
+      cy.getByLabelText("Scan button").click();
 
-      // Verify "Error scanning Document' displays
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal message is displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Scan_Document.message
       );
 
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal instructions are displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Scan_Document.instructions
       );
     });
 
     it("shows error saving document", function() {
-      // // Open Application to the collection
+      // Open Application to the collection
       cy.visit(`?collection=${this.collectionId}`);
 
+      // Start a server to begin routing responses
       cy.server();
 
+      // Manage the behavior of network request
       cy.route({
         method: "POST",
         url: `**/documents*`,
@@ -172,17 +184,20 @@ describe("ModalDialog", function() {
         }
       });
 
-      cy.get("[data-testid=scan_icon_button]").click();
+      // Click the scan button
+      cy.getByLabelText("Scan button").click();
 
-      cy.get("[data-testid=save_button]").click();
+      // Click the save button
+      cy.getByLabelText("Save button").click();
 
-      // Verify "Error scanning Document" displays
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal message is displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Save_Document.message
       );
 
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal instructions are displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Save_Document.instructions
       );
@@ -196,8 +211,10 @@ describe("ModalDialog", function() {
       // // Open Application to the collection
       cy.visit(`?collection=${this.collectionId}`);
 
+      // Start a server to begin routing responses
       cy.server();
 
+      // Manage the behavior of network request
       cy.route({
         method: "DELETE",
         url: `**/documents/*`,
@@ -208,21 +225,25 @@ describe("ModalDialog", function() {
         }
       });
 
-      cy.get("[data-testid=document_name]")
+      // Click last document in list
+      cy.getByLabelText("Document name in list")
         .last()
         .click({ force: true });
 
-      cy.get("[data-testid=delete_button]").click();
+      // Click delete button
+      cy.getByLabelText("Delete button").click();
 
-      cy.get("[data-testid=modal_confirm_prompt]").click();
+      // Click modal confirm button
+      cy.getByLabelText("Modal confirm button").click();
 
-      // Verify "Error deleting Document" displays
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal message is displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Delete_Document.message
       );
 
-      cy.get("[data-testid=modal_prompt").should(
+      // Verify that the modal instructions are displayed
+      cy.getByLabelText("Modal prompt").should(
         "contain",
         errorTypes.Delete_Document.instructions
       );

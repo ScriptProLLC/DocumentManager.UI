@@ -52,24 +52,24 @@ export default function ModalDialog({
       autoFocus={false}
       isOpen={showDialog}
       toggle={onToggle}
-      data-testid="modal"
+      aria-label="Modal"
       backdrop="static"
     >
-      <ModalHeader toggle={onToggle} data-testid="modal_header">
-        <i className={iconClass() + " mr-3"} data-testid="modal_icon" />
-        <strong className="modal-header-text" data-testid="modal_header_text">
+      <ModalHeader toggle={onToggle} aria-label="Modal header">
+        <i className={iconClass() + " mr-3"} aria-label="Modal icon" />
+        <strong className="modal-header-text" aria-label="Modal header text">
           {header}
         </strong>
       </ModalHeader>
       <ModalBody>
-        <div data-testid="modal_prompt">{prompt}</div>
+        <div aria-label="Modal prompt">{prompt}</div>
       </ModalBody>
       <ModalFooter>
         <Button
           autoFocus={autoFocus === confirmPrompt}
           color="secondary"
           onClick={confirmClick}
-          data-testid="modal_confirm_prompt"
+          aria-label="Modal confirm button"
         >
           {confirmPrompt}
         </Button>
@@ -78,7 +78,7 @@ export default function ModalDialog({
             autoFocus={autoFocus === cancelPrompt}
             color="grey"
             onClick={cancelClick}
-            data-testid="modal_cancel_prompt"
+            aria-label="Modal cancel button"
           >
             {cancelPrompt}
           </Button>
@@ -101,6 +101,7 @@ ModalDialog.propTypes = {
   autoFocus: PropTypes.string
 };
 
+// Default Props
 ModalDialog.defaultProps = {
   header: "Alert",
   iconStyle: "Warning",

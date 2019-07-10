@@ -3,7 +3,7 @@
 
 const mockData = require("../../../../tools/mockData");
 
-describe("DocumentEdit", function() {
+describe("Document Edit Panel", function() {
   const modifiedDocName = "Modified doc name";
 
   beforeEach(function() {
@@ -12,72 +12,72 @@ describe("DocumentEdit", function() {
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("DocumentEdit Save click should update document user-friendly name", function() {
+  it("Save click should update document user-friendly name", function() {
     // Add new documents to collection
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
     // Open Application to the collection
     cy.visit(`?collection=${this.collectionId}`);
 
-    // // Click delete to delete the default selected document
-    cy.get("[data-testid=edit_button]")
-      .should("exist")
-      .click();
+    // Click the edit button
+    cy.getByLabelText("Edit button").click();
 
-    cy.get("[data-testid=document_edit_document_name").clear();
+    // Clear the input
+    cy.getByLabelText("Document name input").clear();
 
-    cy.get("[data-testid=document_edit_document_name").type(modifiedDocName);
+    // Type new name into input
+    cy.getByLabelText("Document name input").type(modifiedDocName);
 
-    cy.get("[data-testid=save_button]").click();
+    // Click the save button
+    cy.getByLabelText("Save button").click();
 
-    // verify that the DOM elements are changed
-    cy.get("[data-testid=document_action_document_name]").should(
-      "have.text",
-      modifiedDocName
-    );
+    // Verify that the selected document name is changed in the panel
+    cy.getByLabelText("Document actions panel").within(() => {
+      cy.contains(modifiedDocName);
+    });
 
-    cy.get(".document-list-item-container.selected")
-      .children()
-      .first()
-      .should("contain.text", modifiedDocName);
+    // Verify that the selected document is changed in the document list
+    cy.getByLabelText("Selected document in list").within(() => {
+      cy.contains(modifiedDocName);
+    });
 
-    // verify that the actual data is changed
+    // Verify that the actual data is changed
     cy.getCollectionDocuments(this.collectionId)
       .should("have.length", 1)
       .then(documents => documents[0].name)
       .should("equal", modifiedDocName);
   });
 
-  it("DocumentEdit Cancel click should retain old information", function() {
+  it("Cancel click should retain old information", function() {
     // Add new documents to collection
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
     // Open Application to the collection
     cy.visit(`?collection=${this.collectionId}`);
 
-    // // Click delete to delete the default selected document
-    cy.get("[data-testid=edit_button]")
-      .should("exist")
-      .click();
+    // Click the edit button
+    cy.getByLabelText("Edit button").click();
 
-    cy.get("[data-testid=document_edit_document_name").clear();
+    // Clear the input
+    cy.getByLabelText("Document name input").clear();
 
-    cy.get("[data-testid=document_edit_document_name").type(modifiedDocName);
+    // Type new name into input
+    cy.getByLabelText("Document name input").type(modifiedDocName);
 
-    cy.get("[data-testid=cancel_button]").click();
+    // Click the cancel button
+    cy.getByLabelText("Cancel button").click();
 
-    // verify that the DOM elements are not changed
-    cy.get("[data-testid=document_action_document_name]").should(
-      "have.text",
-      mockData.documents[0].name
-    );
+    // Verify that the selected document name is not changed in the panel
+    cy.getByLabelText("Document actions panel").within(() => {
+      cy.contains(mockData.documents[0].name);
+    });
 
-    cy.get(".document-list-item-container.selected")
-      .children()
-      .first()
-      .should("contain.text", mockData.documents[0].name);
+    // Verify that the selected document is not changed in the document list
+    cy.getByLabelText("Selected document in list").within(() => {
+      cy.contains(mockData.documents[0].name);
+    });
 
-    // verify that the actual data is back to old value
+    // Verify that the actual data is back to old value
     cy.getCollectionDocuments(this.collectionId)
       .should("have.length", 1)
       .then(documents => documents[0].name)

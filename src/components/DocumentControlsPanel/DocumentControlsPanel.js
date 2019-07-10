@@ -6,7 +6,7 @@ import DocumentEditPanel from "./DocumentEditPanel/DocumentEditPanel";
 
 export default function DocumentControlsPanel(props) {
   return (
-    <div>
+    <footer>
       {props.appState.isEditState ? (
         <DocumentEditPanel
           document={props.document}
@@ -18,10 +18,11 @@ export default function DocumentControlsPanel(props) {
           dispatchDocumentAction={props.dispatchDocumentAction}
         />
       )}
-    </div>
+    </footer>
   );
 }
 
+// Define PropTypes For Document Controls Panel
 DocumentControlsPanel.propTypes = {
   document: documentPropType,
   dispatchDocumentAction: PropTypes.func,

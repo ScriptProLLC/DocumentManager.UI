@@ -1,18 +1,17 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
-import "jest-dom/extend-expect";
 import DocumentViewer from "./DocumentViewer";
+import "jest-dom/extend-expect";
 
-describe("DocumentList component", () => {
+describe("Document Viewer", () => {
   afterEach(cleanup);
 
   describe("No documents present", () => {
     it("shows the no documents text when not passed a document", () => {
-      var doc = null;
+      const doc = null;
+      const { getByLabelText } = render(<DocumentViewer document={doc} />);
 
-      const { getByTestId } = render(<DocumentViewer document={doc} />);
-
-      expect(getByTestId("document_viewer_no_documents")).toBeTruthy();
+      expect(getByLabelText("Document viewer with no document"));
     });
   });
 });

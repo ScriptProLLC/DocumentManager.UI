@@ -3,14 +3,14 @@
 
 const mockData = require("../../../../tools/mockData");
 
-describe("DocumentActions", function() {
+describe("Document Actions Panel", function() {
   beforeEach(function() {
     cy.addCollection().as("collectionId");
   });
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("DocumentActions Delete click + confirm should remove one document, leave remaining", function() {
+  it("Delete click + confirm should remove one document, leave remaining", function() {
     // Add new documents to collection
     cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
@@ -19,21 +19,22 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the default selected document
-    cy.get("[data-testid=delete_button]").click();
+    cy.getByLabelText("Delete button").click();
 
     // Continue through Are you sure prompt
-    cy.get("[data-testid=modal_confirm_prompt]").click();
+    cy.getByLabelText("Modal")
+      .within(() => {
+        cy.contains("Yes");
+      })
+      .click();
 
     // Verify the list now contains only one item
-    cy.get("[data-testid=document_list_items]")
+    cy.getByLabelText("Document list with documents")
       .children()
       .should("have.length", 1);
 
     // Verify the document is the one that was not deleted
-    cy.get("[data-testid=document_name]").should(
-      "have.text",
-      mockData.documents[1].name
-    );
+    cy.contains(mockData.documents[1].name);
 
     // Verify the Selected document is no longer present in the API
     cy.getCollectionDocuments(this.collectionId)
@@ -50,19 +51,20 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the only document
-    cy.get("[data-testid=delete_button]").click();
+    cy.getByLabelText("Delete button").click();
 
     // Continue through Are you sure prompt
-    cy.get("[data-testid=modal_confirm_prompt]").click();
+    cy.getByLabelText("Modal")
+      .within(() => {
+        cy.contains("Yes");
+      })
+      .click();
 
     // Verify the No documents present message displays
-    cy.get("[data-testid=document_list_no_documents]").should(
-      "have.text",
-      "No documents present"
-    );
+    cy.contains("No documents present");
   });
 
-  it("DocumentActions Delete click + cancel should make no changes", function() {
+  it("Delete click + cancel should make no changes", function() {
     // Add new documents to collection
     cy.addDocumentToCollection(mockData.documents[1], this.collectionId);
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
@@ -71,30 +73,28 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Verify that the correct document is selected in the list
-    cy.get("[data-testid=document_action_document_name]").should(
-      "have.text",
-      mockData.documents[0].name
-    );
+    cy.getByLabelText("Document actions panel").within(() => {
+      cy.contains(mockData.documents[0].name);
+    });
 
     // Click delete to delete the selected document
-    cy.get("[data-testid=delete_button]").click();
+    cy.getByLabelText("Delete button").click();
 
     // Click No on the Are you sure prompt
-    cy.get("[data-testid=modal_cancel_prompt]").click();
+    cy.contains("No").click();
 
     // Verify no documents were removed from the list
-    cy.get("[data-testid=document_list_items]")
+    cy.getByLabelText("Document list with documents")
       .children()
       .should("have.length", 2);
 
     // Verify the selected document has not changed
-    cy.get("[data-testid=document_action_document_name]").should(
-      "have.text",
-      mockData.documents[0].name
-    );
+    cy.getByLabelText("Document actions panel").within(() => {
+      cy.contains(mockData.documents[0].name);
+    });
   });
 
-  it("DocumentActions Delete click + close should make no changes", function() {
+  it("Delete click + close should make no changes", function() {
     // Add new document to collection
     cy.addDocumentToCollection(mockData.documents[0], this.collectionId);
 
@@ -102,17 +102,12 @@ describe("DocumentActions", function() {
     cy.visit(`?collection=${this.collectionId}`);
 
     // Click delete to delete the only document
-    cy.get("[data-testid=delete_button]").click();
+    cy.getByLabelText("Delete button").click();
 
     // Click the X to close the Are you sure prompt
-    cy.get("[data-testid=modal_header]")
-      .children()
-      .last()
-      .click();
+    cy.getByLabelText("Close").click();
 
-    // Verify the documetn was not deleted
-    cy.get("[data-testid=document_list_items]")
-      .children()
-      .should("have.length", 1);
+    // Verify the document was not deleted
+    cy.getByLabelText("Document list with documents");
   });
 });

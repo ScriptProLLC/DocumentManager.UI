@@ -1,3 +1,5 @@
+// import "@testing-library/cypress/add-commands";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -58,4 +60,8 @@ Cypress.Commands.add("getCollectionDocuments", function(collectionId) {
     .then(function(res) {
       return res.body;
     });
+});
+
+Cypress.Commands.add("getByLabelText", function(label) {
+  return cy.get("[aria-label='" + label + "']");
 });

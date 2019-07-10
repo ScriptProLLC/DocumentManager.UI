@@ -9,17 +9,17 @@ import DocumentListToolbar from "../DocumentListToolbar/DocumentListToolbar";
 import ModalDialog from "../ModalDialog/ModalDialog";
 import SpinnerComponent from "./../SpinnerComponent/SpinnerComponent";
 import { ActionTypes } from "./Model/ActionTypes";
-
 import "./DocumentManager.scss";
 
 export default function DocumentManager(props) {
+  // Handle State via Collection ID
   const { state, dispatchDocumentAction } = useDocumentManagerModel(
     props.collectionId,
     props.initials
   );
 
   return (
-    <div className="document-manager-container">
+    <main className="document-manager-container">
       <SpinnerComponent
         open={state.appState.isLoadingState}
         message={state.appState.loadingMessage}
@@ -35,10 +35,10 @@ export default function DocumentManager(props) {
           dispatchDocumentAction({ type: ActionTypes.CLEAR_ERROR })
         }
       />
-      <div className="document-list-pane">
-        <div className="header" data-testid="document_list_header">
-          Documents
-        </div>
+      <section className="document-list-pane">
+        <header className="header" aria-label="Document list header">
+          <h2>Documents</h2>
+        </header>
         <DocumentListToolbar dispatchDocumentAction={dispatchDocumentAction} />
         <DocumentList
           appState={state.appState}
@@ -47,11 +47,13 @@ export default function DocumentManager(props) {
           activeDoc={state.activeDocument}
         />
         <ApplicationVersion />
-      </div>
-      <div className="document-viewer-pane">
-        <div className="header" data-testid="document_viewer_header">
-          {state.appState.headerText}
-        </div>
+      </section>
+
+      {/* Document Viewer */}
+      <section className="document-viewer-pane">
+        <header className="header" aria-label="Document viewer header">
+          <h2>{state.appState.headerText}</h2>
+        </header>
         <DocumentViewer document={state.activeDocument} />
         {state.activeDocument && (
           <DocumentControlsPanel
@@ -60,11 +62,12 @@ export default function DocumentManager(props) {
             appState={state.appState}
           />
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
+// Define PropTypes For Document Manager
 DocumentManager.propTypes = {
   collectionId: string,
   initials: string
